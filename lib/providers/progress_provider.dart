@@ -8,8 +8,9 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError('Must be overridden in main');
 });
 
-final progressProvider =
-    NotifierProvider<ProgressNotifier, UserProgress>(ProgressNotifier.new);
+final progressProvider = NotifierProvider<ProgressNotifier, UserProgress>(
+  ProgressNotifier.new,
+);
 
 class ProgressNotifier extends Notifier<UserProgress> {
   static const _key = 'user_progress';
@@ -20,9 +21,7 @@ class ProgressNotifier extends Notifier<UserProgress> {
   UserProgress build() {
     final json = _prefs.getString(_key);
     if (json != null) {
-      return UserProgress.fromJson(
-        jsonDecode(json) as Map<String, dynamic>,
-      );
+      return UserProgress.fromJson(jsonDecode(json) as Map<String, dynamic>);
     }
     return UserProgress.initial();
   }
@@ -33,18 +32,19 @@ class ProgressNotifier extends Notifier<UserProgress> {
 
   Future<void> completeLesson(int chapterId) async {
     final existing = state.chapters[chapterId];
-    final updated = (existing ??
-            ChapterProgress(
-              chapterId: chapterId,
-              completionPercent: 0,
-              lessonsCompleted: 0,
-              quizBestScore: 0,
-              quizAttempts: 0,
-            ))
-        .copyWith(
-      lessonsCompleted: (existing?.lessonsCompleted ?? 0) + 1,
-      completionPercent: 100,
-    );
+    final updated =
+        (existing ??
+                ChapterProgress(
+                  chapterId: chapterId,
+                  completionPercent: 0,
+                  lessonsCompleted: 0,
+                  quizBestScore: 0,
+                  quizAttempts: 0,
+                ))
+            .copyWith(
+              lessonsCompleted: (existing?.lessonsCompleted ?? 0) + 1,
+              completionPercent: 100,
+            );
 
     state = state.copyWith(
       chapters: {...state.chapters, chapterId: updated},
@@ -55,20 +55,21 @@ class ProgressNotifier extends Notifier<UserProgress> {
 
   Future<void> recordQuizScore(int chapterId, int score) async {
     final existing = state.chapters[chapterId];
-    final updated = (existing ??
-            ChapterProgress(
-              chapterId: chapterId,
-              completionPercent: 0,
-              lessonsCompleted: 0,
-              quizBestScore: 0,
-              quizAttempts: 0,
-            ))
-        .copyWith(
-      quizBestScore: score > (existing?.quizBestScore ?? 0)
-          ? score
-          : existing?.quizBestScore ?? 0,
-      quizAttempts: (existing?.quizAttempts ?? 0) + 1,
-    );
+    final updated =
+        (existing ??
+                ChapterProgress(
+                  chapterId: chapterId,
+                  completionPercent: 0,
+                  lessonsCompleted: 0,
+                  quizBestScore: 0,
+                  quizAttempts: 0,
+                ))
+            .copyWith(
+              quizBestScore: score > (existing?.quizBestScore ?? 0)
+                  ? score
+                  : existing?.quizBestScore ?? 0,
+              quizAttempts: (existing?.quizAttempts ?? 0) + 1,
+            );
 
     state = state.copyWith(
       chapters: {...state.chapters, chapterId: updated},
@@ -87,12 +88,18 @@ class ProgressNotifier extends Notifier<UserProgress> {
         .split('T')
         .first;
 
-    final newStreak =
-        state.lastStudyDate == yesterday ? state.currentStreak + 1 : 1;
+    final newStreak = state.lastStudyDate == yesterday
+        ? state.currentStreak + 1
+        : 1;
 
+    state = state.copyWith(currentStreak: newStreak, lastStudyDate: today);
+    await _save();
+  }
+
+  Future<void> recordTefResult(TefTestResult result) async {
     state = state.copyWith(
-      currentStreak: newStreak,
-      lastStudyDate: today,
+      tefResults: [...state.tefResults, result],
+      totalXp: state.totalXp + result.percentage,
     );
     await _save();
   }

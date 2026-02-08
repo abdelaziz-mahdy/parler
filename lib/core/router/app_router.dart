@@ -3,7 +3,9 @@ import 'package:go_router/go_router.dart';
 import '../../screens/lessons/lessons_screen.dart';
 import '../../screens/lessons/lesson_detail_screen.dart';
 import '../../screens/words/words_screen.dart';
+import '../../screens/words/flashcard_screen.dart';
 import '../../screens/tef/tef_screen.dart';
+import '../../screens/tef/tef_play_screen.dart';
 import '../../screens/quiz/quiz_screen.dart';
 import '../../screens/quiz/quiz_play_screen.dart';
 import '../../screens/splash/splash_screen.dart';
@@ -16,37 +18,30 @@ final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/splash',
   routes: [
-    GoRoute(
-      path: '/splash',
-      builder: (context, state) => const SplashScreen(),
-    ),
+    GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) => AppShell(child: child),
       routes: [
         GoRoute(
           path: '/lessons',
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: LessonsScreen(),
-          ),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: LessonsScreen()),
         ),
         GoRoute(
           path: '/words',
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: WordsScreen(),
-          ),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: WordsScreen()),
         ),
         GoRoute(
           path: '/tef',
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: TefScreen(),
-          ),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: TefScreen()),
         ),
         GoRoute(
           path: '/quiz',
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: QuizScreen(),
-          ),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: QuizScreen()),
         ),
       ],
     ),
@@ -59,13 +54,57 @@ final appRouter = GoRouter(
           child: LessonDetailScreen(chapterId: id),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 0.15),
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeOut,
-              )),
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/tef/:testId',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        final testId = state.pathParameters['testId'] ?? '';
+        return CustomTransitionPage(
+          child: TefPlayScreen(testId: testId),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/words/:category',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        final category = state.pathParameters['category'] ?? '';
+        return CustomTransitionPage(
+          child: FlashcardScreen(category: category),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
               child: FadeTransition(opacity: animation, child: child),
             );
           },
@@ -81,13 +120,13 @@ final appRouter = GoRouter(
           child: QuizPlayScreen(chapterId: id),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 0.15),
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeOut,
-              )),
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
               child: FadeTransition(opacity: animation, child: child),
             );
           },
@@ -182,8 +221,9 @@ class _NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final inactiveColor =
-        isDark ? AppColors.darkTextSecondary : AppColors.navInactive;
+    final inactiveColor = isDark
+        ? AppColors.darkTextSecondary
+        : AppColors.navInactive;
     return Expanded(
       child: Semantics(
         button: true,

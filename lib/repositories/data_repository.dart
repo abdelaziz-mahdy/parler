@@ -265,10 +265,15 @@ class DataRepository {
 
   Future<List<TefTest>> getTefTests() async {
     if (_tefTests != null) return _tefTests!;
-    final data = await _loadJson('assets/data/tef_tests.json');
-    _tefTests = (jsonDecode(data) as List)
-        .map((e) => TefTest.fromJson(e as Map<String, dynamic>))
-        .toList();
+    final manifest =
+        await _loadJson('assets/data/tef_tests/_manifest.json');
+    final filenames = (jsonDecode(manifest) as List).cast<String>();
+    final tests = <TefTest>[];
+    for (final name in filenames) {
+      final data = await _loadJson('assets/data/tef_tests/$name');
+      tests.add(TefTest.fromJson(jsonDecode(data) as Map<String, dynamic>));
+    }
+    _tefTests = tests;
     return _tefTests!;
   }
 

@@ -1,6 +1,7 @@
 class UserProgress {
   final Map<int, ChapterProgress> chapters;
   final Map<String, CardProgress> flashcards;
+  final List<TefTestResult> tefResults;
   final int totalXp;
   final int currentStreak;
   final String? lastStudyDate;
@@ -8,36 +9,54 @@ class UserProgress {
   const UserProgress({
     required this.chapters,
     required this.flashcards,
+    required this.tefResults,
     required this.totalXp,
     required this.currentStreak,
     this.lastStudyDate,
   });
 
   factory UserProgress.initial() => const UserProgress(
-        chapters: {},
-        flashcards: {},
-        totalXp: 0,
-        currentStreak: 0,
-      );
+    chapters: {},
+    flashcards: {},
+    tefResults: [],
+    totalXp: 0,
+    currentStreak: 0,
+  );
+
+  /// Best result for a given test, or null if never taken.
+  TefTestResult? bestTefResult(String testId) {
+    final results = tefResults.where((r) => r.testId == testId);
+    if (results.isEmpty) return null;
+    return results.reduce((a, b) => a.percentage >= b.percentage ? a : b);
+  }
 
   factory UserProgress.fromJson(Map<String, dynamic> json) {
     final chaptersMap = <int, ChapterProgress>{};
     if (json['chapters'] != null) {
       (json['chapters'] as Map<String, dynamic>).forEach((key, value) {
-        chaptersMap[int.parse(key)] =
-            ChapterProgress.fromJson(value as Map<String, dynamic>);
+        chaptersMap[int.parse(key)] = ChapterProgress.fromJson(
+          value as Map<String, dynamic>,
+        );
       });
     }
     final flashcardsMap = <String, CardProgress>{};
     if (json['flashcards'] != null) {
       (json['flashcards'] as Map<String, dynamic>).forEach((key, value) {
-        flashcardsMap[key] =
-            CardProgress.fromJson(value as Map<String, dynamic>);
+        flashcardsMap[key] = CardProgress.fromJson(
+          value as Map<String, dynamic>,
+        );
       });
+    }
+    final tefList = <TefTestResult>[];
+    if (json['tefResults'] != null) {
+      for (final item in json['tefResults'] as List) {
+        tefList.add(TefTestResult.fromJson(item as Map<String, dynamic>));
+      }
     }
     return UserProgress(
       chapters: chaptersMap,
       flashcards: flashcardsMap,
+      tefResults: tefList,
       totalXp: json['totalXp'] as int? ?? 0,
       currentStreak: json['currentStreak'] as int? ?? 0,
       lastStudyDate: json['lastStudyDate'] as String?,
@@ -45,17 +64,18 @@ class UserProgress {
   }
 
   Map<String, dynamic> toJson() => {
-        'chapters':
-            chapters.map((k, v) => MapEntry(k.toString(), v.toJson())),
-        'flashcards': flashcards.map((k, v) => MapEntry(k, v.toJson())),
-        'totalXp': totalXp,
-        'currentStreak': currentStreak,
-        if (lastStudyDate != null) 'lastStudyDate': lastStudyDate,
-      };
+    'chapters': chapters.map((k, v) => MapEntry(k.toString(), v.toJson())),
+    'flashcards': flashcards.map((k, v) => MapEntry(k, v.toJson())),
+    'tefResults': tefResults.map((r) => r.toJson()).toList(),
+    'totalXp': totalXp,
+    'currentStreak': currentStreak,
+    if (lastStudyDate != null) 'lastStudyDate': lastStudyDate,
+  };
 
   UserProgress copyWith({
     Map<int, ChapterProgress>? chapters,
     Map<String, CardProgress>? flashcards,
+    List<TefTestResult>? tefResults,
     int? totalXp,
     int? currentStreak,
     String? lastStudyDate,
@@ -63,6 +83,7 @@ class UserProgress {
     return UserProgress(
       chapters: chapters ?? this.chapters,
       flashcards: flashcards ?? this.flashcards,
+      tefResults: tefResults ?? this.tefResults,
       totalXp: totalXp ?? this.totalXp,
       currentStreak: currentStreak ?? this.currentStreak,
       lastStudyDate: lastStudyDate ?? this.lastStudyDate,
@@ -95,12 +116,12 @@ class ChapterProgress {
       );
 
   Map<String, dynamic> toJson() => {
-        'chapterId': chapterId,
-        'completionPercent': completionPercent,
-        'lessonsCompleted': lessonsCompleted,
-        'quizBestScore': quizBestScore,
-        'quizAttempts': quizAttempts,
-      };
+    'chapterId': chapterId,
+    'completionPercent': completionPercent,
+    'lessonsCompleted': lessonsCompleted,
+    'quizBestScore': quizBestScore,
+    'quizAttempts': quizAttempts,
+  };
 
   ChapterProgress copyWith({
     double? completionPercent,
@@ -116,6 +137,51 @@ class ChapterProgress {
       quizAttempts: quizAttempts ?? this.quizAttempts,
     );
   }
+}
+
+class TefTestResult {
+  final String testId;
+  final int score;
+  final int totalQuestions;
+  final int timeTakenSeconds;
+  final String nclcLevel;
+  final String completedAt;
+  final Map<String, int> answers; // questionId -> selectedIndex
+
+  const TefTestResult({
+    required this.testId,
+    required this.score,
+    required this.totalQuestions,
+    required this.timeTakenSeconds,
+    required this.nclcLevel,
+    required this.completedAt,
+    required this.answers,
+  });
+
+  int get percentage =>
+      totalQuestions > 0 ? ((score / totalQuestions) * 100).round() : 0;
+
+  factory TefTestResult.fromJson(Map<String, dynamic> json) => TefTestResult(
+    testId: json['testId'] as String,
+    score: json['score'] as int,
+    totalQuestions: json['totalQuestions'] as int,
+    timeTakenSeconds: json['timeTakenSeconds'] as int,
+    nclcLevel: json['nclcLevel'] as String,
+    completedAt: json['completedAt'] as String,
+    answers: (json['answers'] as Map<String, dynamic>).map(
+      (k, v) => MapEntry(k, v as int),
+    ),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'testId': testId,
+    'score': score,
+    'totalQuestions': totalQuestions,
+    'timeTakenSeconds': timeTakenSeconds,
+    'nclcLevel': nclcLevel,
+    'completedAt': completedAt,
+    'answers': answers,
+  };
 }
 
 class CardProgress {
@@ -147,22 +213,22 @@ class CardProgress {
   }
 
   factory CardProgress.fromJson(Map<String, dynamic> json) => CardProgress(
-        cardId: json['cardId'] as String,
-        easeFactor: (json['easeFactor'] as num).toDouble(),
-        interval: json['interval'] as int,
-        repetitions: json['repetitions'] as int,
-        nextReviewDate: json['nextReviewDate'] as String,
-        quality: json['quality'] as int,
-      );
+    cardId: json['cardId'] as String,
+    easeFactor: (json['easeFactor'] as num).toDouble(),
+    interval: json['interval'] as int,
+    repetitions: json['repetitions'] as int,
+    nextReviewDate: json['nextReviewDate'] as String,
+    quality: json['quality'] as int,
+  );
 
   Map<String, dynamic> toJson() => {
-        'cardId': cardId,
-        'easeFactor': easeFactor,
-        'interval': interval,
-        'repetitions': repetitions,
-        'nextReviewDate': nextReviewDate,
-        'quality': quality,
-      };
+    'cardId': cardId,
+    'easeFactor': easeFactor,
+    'interval': interval,
+    'repetitions': repetitions,
+    'nextReviewDate': nextReviewDate,
+    'quality': quality,
+  };
 
   CardProgress copyWith({
     double? easeFactor,
