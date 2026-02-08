@@ -474,7 +474,7 @@ class _CategoryCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Icon + completion indicator
+              // Icon + quiz / completion indicator
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -489,12 +489,40 @@ class _CategoryCard extends StatelessWidget {
                       child: Icon(info.icon, size: 22, color: accentColor),
                     ),
                   ),
-                  if (isComplete)
-                    const Icon(
-                      Icons.check_circle_rounded,
-                      color: AppColors.success,
-                      size: 20,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (hasStarted && words.length >= 4)
+                        GestureDetector(
+                          onTap: () =>
+                              context.push('/words/quiz/${info.key}'),
+                          child: Container(
+                            width: 28,
+                            height: 28,
+                            decoration: BoxDecoration(
+                              color:
+                                  AppColors.gold.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.quiz_rounded,
+                                size: 16,
+                                color: AppColors.gold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (isComplete) ...[
+                        const SizedBox(width: 6),
+                        const Icon(
+                          Icons.check_circle_rounded,
+                          color: AppColors.success,
+                          size: 20,
+                        ),
+                      ],
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(height: 12),

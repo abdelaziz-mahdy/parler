@@ -4,6 +4,7 @@ import '../../screens/lessons/lessons_screen.dart';
 import '../../screens/lessons/lesson_detail_screen.dart';
 import '../../screens/words/words_screen.dart';
 import '../../screens/words/flashcard_screen.dart';
+import '../../screens/words/vocab_quiz_screen.dart';
 import '../../screens/tef/tef_screen.dart';
 import '../../screens/tef/tef_play_screen.dart';
 import '../../screens/quiz/quiz_screen.dart';
@@ -74,6 +75,34 @@ final appRouter = GoRouter(
         final testId = state.pathParameters['testId'] ?? '';
         return CustomTransitionPage(
           child: TefPlayScreen(testId: testId),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/words/quiz/:category',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        final category = state.pathParameters['category'] ?? '';
+        // Support passing wordIds via extra for session-based quizzes.
+        final extra = state.extra;
+        final List<String>? wordIds =
+            extra is List ? extra.cast<String>() : null;
+        return CustomTransitionPage(
+          child: wordIds != null
+              ? VocabQuizScreen(wordIds: wordIds)
+              : VocabQuizScreen(category: category),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position:

@@ -800,6 +800,30 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
 
                 const SizedBox(height: 32),
 
+                // Quiz button
+                if (_sessionWords.length >= 4)
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        final wordIds = _sessionWords
+                            .map((w) => 'vocab_${w.french}')
+                            .toList();
+                        context.push(
+                          '/words/quiz/${widget.category}',
+                          extra: wordIds,
+                        );
+                      },
+                      icon: const Icon(Icons.quiz_rounded),
+                      label: const Text('Quiz These Words'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.gold,
+                        foregroundColor: AppColors.white,
+                      ),
+                    ),
+                  ).animate().fadeIn(delay: 520.ms),
+                const SizedBox(height: 12),
+
                 // Action buttons
                 Row(
                   children: [
