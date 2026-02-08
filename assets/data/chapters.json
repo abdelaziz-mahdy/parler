@@ -1,0 +1,349 @@
+[
+  {
+    "id": 1,
+    "title": "Cognates & Suffix Patterns",
+    "description": "You already know 3,000+ French words! Learn 16 suffix conversion patterns to unlock thousands of words overnight.",
+    "icon": "translate",
+    "sections": [
+      {
+        "id": "1.1",
+        "title": "Suffix Conversion Patterns",
+        "content": "These patterns convert English words to French words with 80-95% accuracy. Memorize these and you unlock thousands of words overnight.",
+        "dataSource": "suffix_patterns.json",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "Instant Vocabulary Hack",
+            "body": "With just these 16 patterns, you can recognize ~3,000-5,000 French words immediately. When you encounter a new English word with one of these endings, try the French version - you'll be right 80%+ of the time."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Pronunciation Rules",
+    "description": "French spelling looks intimidating, but it follows consistent rules. Learn vowels, nasals, consonants, and the CaReFuL rule.",
+    "icon": "record_voice_over",
+    "sections": [
+      {
+        "id": "2.1",
+        "title": "The Golden Rules",
+        "content": "The 3 most important pronunciation rules in French.",
+        "dataSource": "pronunciation.json:goldenRules",
+        "blocks": [
+          {
+            "type": "rule",
+            "title": "3 Most Important Pronunciation Rules",
+            "bulletPoints": [
+              "SILENT FINAL CONSONANTS: Most consonants at the end of a word are silent. 'Petit' = puh-TEE. Exception: C, R, F, L (CaReFuL).",
+              "STRESS IS ALWAYS ON THE LAST SYLLABLE: Unlike English, French stress is predictable. 'chocolat' = sho-ko-LA.",
+              "NASAL VOWELS: When a vowel is followed by N or M (and no vowel after), it becomes nasal. 'bon' = boh(n)."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "2.2",
+        "title": "Vowel Sounds",
+        "content": "French vowel sounds and their English approximations.",
+        "dataSource": "pronunciation.json:vowelSounds",
+        "blocks": []
+      },
+      {
+        "id": "2.3",
+        "title": "Nasal Vowels",
+        "content": "These are the sounds that make French sound French. Air goes through your nose.",
+        "dataSource": "pronunciation.json:nasalVowels",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "Nasal Vowel Trick",
+            "body": "If a vowel + N/M is followed by ANOTHER VOWEL or another N/M, it's NOT nasal: bonne = BON-nuh (not nasal). But: bon = boh(n) (nasal, because N is at the end)."
+          }
+        ]
+      },
+      {
+        "id": "2.4",
+        "title": "Consonant Tricks",
+        "content": "French consonant rules and their quirks.",
+        "dataSource": "pronunciation.json:consonantRules",
+        "blocks": []
+      },
+      {
+        "id": "2.5",
+        "title": "The CaReFuL Rule",
+        "content": "Most final consonants are silent, but C, R, F, L are usually pronounced.",
+        "dataSource": "pronunciation.json:carefulRule",
+        "blocks": []
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Gender Rules",
+    "description": "Every French noun is masculine or feminine. Learn patterns that let you guess correctly 80%+ of the time.",
+    "icon": "wc",
+    "sections": [
+      {
+        "id": "3.1",
+        "title": "Feminine Endings",
+        "content": "Endings that are almost always feminine (la).",
+        "dataSource": "gender_rules.json:feminine",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "Gender Survival Strategy",
+            "body": "Learn gender WITH the word: never learn 'maison' alone. Learn 'la maison'. When in doubt, -tion/-sion/-te/-ure patterns cover HUNDREDS of words and are almost always right."
+          }
+        ]
+      },
+      {
+        "id": "3.2",
+        "title": "Masculine Endings",
+        "content": "Endings that are almost always masculine (le).",
+        "dataSource": "gender_rules.json:masculine",
+        "blocks": []
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Verb Conjugation",
+    "description": "French verbs seem terrifying, but there are massive shortcuts. Learn the 27 essential verbs and conjugation patterns.",
+    "icon": "edit",
+    "sections": [
+      {
+        "id": "4.1",
+        "title": "Essential Verbs",
+        "content": "For NCLC 5 conversation, you need about 30 verbs that cover 80%+ of daily situations.",
+        "dataSource": "verbs.json:essentialVerbs",
+        "blocks": []
+      },
+      {
+        "id": "4.2",
+        "title": "Spoken French Shortcut",
+        "content": "For ALL regular -er verbs, je, tu, and il/elle forms are pronounced IDENTICALLY.",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "Conjugation Shortcut",
+            "body": "je parle, tu parles, il/elle parle = all pronounced 'PARL'. For spoken French, you only need 4 sounds per verb: je/tu/il (same), nous, vous, ils/elles."
+          }
+        ]
+      },
+      {
+        "id": "4.3",
+        "title": "Present Tense Patterns",
+        "content": "80% of French verbs end in -er and follow a simple pattern.",
+        "dataSource": "verbs.json:erConjugationPattern",
+        "blocks": []
+      },
+      {
+        "id": "4.4",
+        "title": "Future Tense Cheat",
+        "content": "Use 'aller + infinitive' instead of learning the formal future tense.",
+        "dataSource": "verbs.json:futureTenseExamples",
+        "blocks": []
+      },
+      {
+        "id": "4.5",
+        "title": "Past Tense Cheat",
+        "content": "The passe compose formula: Subject + avoir (conjugated) + past participle.",
+        "dataSource": "verbs.json:vandertrampVerbs",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "DR. & MRS. VANDERTRAMP",
+            "body": "About 15 verbs use etre instead of avoir in the past tense. These are mostly verbs of MOVEMENT. With etre, the past participle agrees with the subject."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Essential Grammar",
+    "description": "Negation, questions, articles, and contractions - the essential grammar patterns.",
+    "icon": "menu_book",
+    "sections": [
+      {
+        "id": "5.1",
+        "title": "Negation",
+        "content": "To make any sentence negative, put NE...PAS around the conjugated verb.",
+        "dataSource": "grammar.json:negation",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "Spoken French Shortcut",
+            "body": "In everyday spoken French, the 'ne' is almost always DROPPED: Je parle pas. Il mange pas. C'est pas vrai."
+          }
+        ]
+      },
+      {
+        "id": "5.2",
+        "title": "Asking Questions",
+        "content": "3 ways to ask questions, from most casual to most formal.",
+        "dataSource": "grammar.json:questionMethods",
+        "blocks": []
+      },
+      {
+        "id": "5.3",
+        "title": "Question Words",
+        "content": "Essential French question words.",
+        "dataSource": "grammar.json:questionWords",
+        "blocks": []
+      },
+      {
+        "id": "5.4",
+        "title": "Articles",
+        "content": "French ALWAYS uses articles before nouns.",
+        "dataSource": "grammar.json:articles",
+        "blocks": []
+      },
+      {
+        "id": "5.5",
+        "title": "Contractions",
+        "content": "Required contractions in French - these are mandatory, not optional.",
+        "dataSource": "grammar.json:contractions",
+        "blocks": []
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Numbers",
+    "description": "French numbers are normal until 70, then get creative. Learn the math-based system for 70-99.",
+    "icon": "pin",
+    "sections": [
+      {
+        "id": "6.1",
+        "title": "Numbers 1-69",
+        "content": "Straightforward numbers following a regular pattern.",
+        "dataSource": "numbers.json",
+        "blocks": []
+      },
+      {
+        "id": "6.2",
+        "title": "Numbers 70-99",
+        "content": "The infamous French number system: 70 = 60+10, 80 = 4x20, 90 = 4x20+10.",
+        "dataSource": "numbers.json",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "Belgian & Swiss French",
+            "body": "In Belgian & Swiss French: 70 = septante, 80 = huitante/octante, 90 = nonante. Much simpler!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "False Friends",
+    "description": "French words that look like English words but mean something completely different. Getting these wrong can be embarrassing!",
+    "icon": "warning",
+    "sections": [
+      {
+        "id": "7.1",
+        "title": "Dangerous Word Pairs",
+        "content": "Words that will trick you - learn these to avoid embarrassment.",
+        "dataSource": "false_friends.json",
+        "blocks": []
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Liaison & Connected Speech",
+    "description": "Liaison is what makes French sound flowing. Learn mandatory liaisons, sound changes, and elision rules.",
+    "icon": "link",
+    "sections": [
+      {
+        "id": "8.1",
+        "title": "Mandatory Liaisons",
+        "content": "Liaisons you must always make.",
+        "dataSource": "liaison_rules.json:mandatory",
+        "blocks": []
+      },
+      {
+        "id": "8.2",
+        "title": "Liaison Sound Changes",
+        "content": "How consonants change sound in liaisons.",
+        "dataSource": "liaison_rules.json:sound_change",
+        "blocks": []
+      },
+      {
+        "id": "8.3",
+        "title": "Elision",
+        "content": "Dropping vowels when a short word ending in -e meets a word starting with a vowel.",
+        "dataSource": "liaison_rules.json:elision",
+        "blocks": []
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Survival Phrases",
+    "description": "40+ phrases that will get you through 80% of daily situations and the TEF speaking test.",
+    "icon": "chat",
+    "sections": [
+      {
+        "id": "9.1",
+        "title": "Basics",
+        "content": "Essential greetings and polite phrases.",
+        "dataSource": "phrases.json:basics",
+        "blocks": []
+      },
+      {
+        "id": "9.2",
+        "title": "Communication Lifelines",
+        "content": "Phrases to use when you need help understanding or communicating.",
+        "dataSource": "phrases.json:communication",
+        "blocks": []
+      },
+      {
+        "id": "9.3",
+        "title": "Daily Life & Work",
+        "content": "Phrases for work, daily life, and expressing opinions.",
+        "dataSource": "phrases.json:daily_life",
+        "blocks": []
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "TEF Speaking Tricks",
+    "description": "Strategies for maximizing your NCLC 5 speaking score: fillers, opinion structures, and recovery strategies.",
+    "icon": "school",
+    "sections": [
+      {
+        "id": "10.1",
+        "title": "Filler Words",
+        "content": "Buy thinking time without silence - silence kills your score.",
+        "dataSource": "phrases.json:tef_fillers",
+        "blocks": []
+      },
+      {
+        "id": "10.2",
+        "title": "Opinion Structures",
+        "content": "Structures that make you sound organized and competent on the TEF.",
+        "dataSource": "phrases.json:tef_opinions",
+        "blocks": []
+      },
+      {
+        "id": "10.3",
+        "title": "Recovery Strategies",
+        "content": "What to do when you're stuck during the speaking test.",
+        "dataSource": "phrases.json:tef_recovery",
+        "blocks": [
+          {
+            "type": "tip",
+            "title": "The #1 TEF Speaking Secret",
+            "body": "The examiner isn't grading your grammar perfection. They're grading your ability to COMMUNICATE. A confident speaker who makes mistakes but keeps talking will ALWAYS score higher than a hesitant speaker with perfect sentences but long silences. Keep. Talking."
+          }
+        ]
+      }
+    ]
+  }
+]

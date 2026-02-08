@@ -1,0 +1,407 @@
+[
+  {
+    "id": "ch1",
+    "title": "Cognates & Suffix Patterns",
+    "subtitle": "You already know 3,000+ French words",
+    "icon": "translate",
+    "totalSections": 3,
+    "category": "vocabulary",
+    "sections": [
+      {
+        "id": "ch1_s1",
+        "title": "The Norman Connection",
+        "content": "English and French share roughly 27% of their vocabulary because of the Norman conquest of England in 1066. Thousands of English words came from French. With a few simple suffix-swap rules, you can instantly recognize and use thousands of French words.",
+        "type": "text"
+      },
+      {
+        "id": "ch1_s2",
+        "title": "Key Suffix Patterns",
+        "content": "These 16 patterns convert English words to French with 80-95% accuracy. For example: -tion stays -tion (nation, information), -ty becomes -te (university -> universite), -ic becomes -ique (music -> musique), -ous becomes -eux/-euse (famous -> fameux).",
+        "type": "tip",
+        "examples": [
+          {"french": "nation", "english": "nation", "pronunciation": "nah-see-ON"},
+          {"french": "universite", "english": "university", "pronunciation": "oo-nee-vair-see-TAY"},
+          {"french": "musique", "english": "music", "pronunciation": "moo-ZEEK"},
+          {"french": "fameux", "english": "famous", "pronunciation": "fa-MUH"}
+        ]
+      },
+      {
+        "id": "ch1_s3",
+        "title": "Instant Vocabulary Hack",
+        "content": "With just these 16 patterns, you can recognize 3,000-5,000 French words immediately. When you encounter a new English word with one of these endings, try the French version - you'll be right 80%+ of the time.",
+        "type": "tip"
+      }
+    ]
+  },
+  {
+    "id": "ch2",
+    "title": "Pronunciation Rules",
+    "subtitle": "Decode French spelling with consistent rules",
+    "icon": "record_voice_over",
+    "totalSections": 5,
+    "category": "pronunciation",
+    "sections": [
+      {
+        "id": "ch2_s1",
+        "title": "The 3 Golden Rules",
+        "content": "1) Silent final consonants - most consonants at the end are silent (except CaReFuL: C, R, F, L). 2) Stress is ALWAYS on the last syllable. 3) Nasal vowels - vowel + N/M (with no vowel after) becomes nasal.",
+        "type": "tip"
+      },
+      {
+        "id": "ch2_s2",
+        "title": "Vowel Sounds",
+        "content": "French vowels have consistent sounds: ou = 'oo', oi = 'wah', ai/ei = 'eh', au/eau = 'oh', e (accent aigu) = 'ay', e (accent grave) = 'eh'.",
+        "type": "text",
+        "examples": [
+          {"french": "vous", "english": "you", "pronunciation": "voo"},
+          {"french": "moi", "english": "me", "pronunciation": "mwah"},
+          {"french": "cafe", "english": "coffee", "pronunciation": "ka-FAY"},
+          {"french": "eau", "english": "water", "pronunciation": "oh"}
+        ]
+      },
+      {
+        "id": "ch2_s3",
+        "title": "Nasal Vowels",
+        "content": "These make French sound French. an/am/en/em = nasalized 'ah', on/om = nasalized 'oh', in/im/ain = nasalized short 'ah'. Trick: if vowel+N/M is followed by another vowel or doubled N/M, it's NOT nasal.",
+        "type": "text",
+        "examples": [
+          {"french": "bon", "english": "good", "pronunciation": "boh(n)"},
+          {"french": "vin", "english": "wine", "pronunciation": "va(n)"},
+          {"french": "France", "english": "France", "pronunciation": "FRAHNS"}
+        ]
+      },
+      {
+        "id": "ch2_s4",
+        "title": "Consonant Tricks",
+        "content": "Key consonant differences: ch = 'sh', j = 'zh', qu = 'k' (never 'kw'), h is ALWAYS silent, r is guttural (back of throat), th = just 't'.",
+        "type": "text",
+        "examples": [
+          {"french": "chat", "english": "cat", "pronunciation": "SHA"},
+          {"french": "je", "english": "I", "pronunciation": "zhuh"},
+          {"french": "qui", "english": "who", "pronunciation": "kee"}
+        ]
+      },
+      {
+        "id": "ch2_s5",
+        "title": "The CaReFuL Rule",
+        "content": "Most final consonants are silent, but C, R, F, L are usually pronounced. Remember: CaReFuL. Examples: avec (a-VEK), pour (POOR), chef (SHEF), animal (a-nee-MAL).",
+        "type": "tip"
+      }
+    ]
+  },
+  {
+    "id": "ch3",
+    "title": "Gender Rules",
+    "subtitle": "Guess noun gender correctly 80%+ of the time",
+    "icon": "wc",
+    "totalSections": 3,
+    "category": "grammar",
+    "sections": [
+      {
+        "id": "ch3_s1",
+        "title": "Feminine Endings",
+        "content": "These endings are almost always feminine (la): -tion/-sion (~99%), -te (~99%), -ee (~99%), -ure (~95%), -ence/-ance (~95%), -ie (~95%), -ette/-elle (~95%), -ise/-aise (~95%).",
+        "type": "text",
+        "examples": [
+          {"french": "la nation", "english": "the nation"},
+          {"french": "la liberte", "english": "liberty"},
+          {"french": "la nature", "english": "nature"},
+          {"french": "la journee", "english": "the day"}
+        ]
+      },
+      {
+        "id": "ch3_s2",
+        "title": "Masculine Endings",
+        "content": "These endings are almost always masculine (le): -age (~90%), -ment (~99%), -isme (~99%), -eau (~99%), -oir (~95%), -et (~95%). Consonant endings are ~65-70% masculine.",
+        "type": "text",
+        "examples": [
+          {"french": "le garage", "english": "the garage"},
+          {"french": "le moment", "english": "the moment"},
+          {"french": "le bateau", "english": "the boat"},
+          {"french": "le tourisme", "english": "tourism"}
+        ]
+      },
+      {
+        "id": "ch3_s3",
+        "title": "Gender Survival Strategy",
+        "content": "Always learn gender WITH the word: never learn 'maison' alone - learn 'la maison'. When in doubt, the -tion/-sion/-te/-ure patterns cover HUNDREDS of words. At NCLC 5, small gender errors won't fail you.",
+        "type": "tip"
+      }
+    ]
+  },
+  {
+    "id": "ch4",
+    "title": "Verb Conjugation Shortcuts",
+    "subtitle": "Master spoken French with just 30 verbs",
+    "icon": "edit",
+    "totalSections": 5,
+    "category": "grammar",
+    "sections": [
+      {
+        "id": "ch4_s1",
+        "title": "The 80/20 Verbs",
+        "content": "For NCLC 5 conversation, you need about 30 verbs covering 80%+ of daily situations: etre, avoir, faire, aller, venir, pouvoir, vouloir, devoir, savoir, dire, parler, prendre, voir, mettre, donner, and more.",
+        "type": "text"
+      },
+      {
+        "id": "ch4_s2",
+        "title": "The Spoken French Shortcut",
+        "content": "For ALL regular -er verbs (80%+ of French verbs), je, tu, and il/elle forms are pronounced IDENTICALLY. And ils/elles -ent is completely silent! So in spoken French, you really only learn 3 sounds: the stem, -ons, and -ez.",
+        "type": "tip",
+        "examples": [
+          {"french": "je parle / tu parles / il parle", "english": "all pronounced PARL"},
+          {"french": "nous parlons", "english": "par-LOH(N)"},
+          {"french": "vous parlez", "english": "par-LAY"}
+        ]
+      },
+      {
+        "id": "ch4_s3",
+        "title": "-ER Verb Pattern",
+        "content": "80% of French verbs end in -er: je -e, tu -es, il/elle -e, nous -ons, vous -ez, ils/elles -ent. Only 3 distinct sounds in speech!",
+        "type": "table"
+      },
+      {
+        "id": "ch4_s4",
+        "title": "Future Tense Cheat",
+        "content": "Instead of learning formal future tense, use aller + infinitive (just like English 'going to'): Je vais manger = I'm going to eat. 100% acceptable at NCLC 5.",
+        "type": "tip",
+        "examples": [
+          {"french": "Je vais manger", "english": "I'm going to eat"},
+          {"french": "Tu vas travailler", "english": "You're going to work"},
+          {"french": "On va partir", "english": "We're going to leave"}
+        ]
+      },
+      {
+        "id": "ch4_s5",
+        "title": "Past Tense Cheat",
+        "content": "Passe compose formula: Subject + avoir + past participle. Past participle shortcuts: -er -> -e, -ir -> -i, -re -> -u. About 15 'DR. MRS. VANDERTRAMP' verbs use etre instead.",
+        "type": "tip",
+        "examples": [
+          {"french": "J'ai mange", "english": "I ate"},
+          {"french": "Tu as parle", "english": "You spoke"},
+          {"french": "Il a travaille", "english": "He worked"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch5",
+    "title": "Essential Grammar",
+    "subtitle": "Negation, questions, articles & contractions",
+    "icon": "menu_book",
+    "totalSections": 5,
+    "category": "grammar",
+    "sections": [
+      {
+        "id": "ch5_s1",
+        "title": "Negation: Sandwich the Verb",
+        "content": "Put NE...PAS around the conjugated verb. In spoken French, 'ne' is almost always dropped. For TEF, use both ne...pas to be safe.",
+        "type": "text",
+        "examples": [
+          {"french": "Je NE parle PAS", "english": "I don't speak"},
+          {"french": "Il NE mange PAS", "english": "He doesn't eat"}
+        ]
+      },
+      {
+        "id": "ch5_s2",
+        "title": "Asking Questions: 3 Ways",
+        "content": "1) Rising intonation (easiest, used 90% of time): Tu parles francais? 2) Est-ce que (medium): Est-ce que tu parles francais? 3) Inversion (formal): Parles-tu francais?",
+        "type": "text"
+      },
+      {
+        "id": "ch5_s3",
+        "title": "Question Words",
+        "content": "Qui (Who), Quoi/Que (What), Ou (Where), Quand (When), Pourquoi (Why), Comment (How), Combien (How much/many).",
+        "type": "table"
+      },
+      {
+        "id": "ch5_s4",
+        "title": "Articles",
+        "content": "French ALWAYS uses articles: le/la/les (the), un/une/des (a/some). Before vowels: l'. Key difference: French uses 'des' where English uses nothing. 'I have cats' = 'J'ai des chats'.",
+        "type": "table"
+      },
+      {
+        "id": "ch5_s5",
+        "title": "Mandatory Contractions",
+        "content": "de+le=du, de+les=des, a+le=au, a+les=aux. These are MANDATORY - never say 'de le' or 'a le'. Also: je+vowel=j', ne+vowel=n'.",
+        "type": "tip"
+      }
+    ]
+  },
+  {
+    "id": "ch6",
+    "title": "French Numbers",
+    "subtitle": "The infamous 70-99 math system",
+    "icon": "pin",
+    "totalSections": 2,
+    "category": "vocabulary",
+    "sections": [
+      {
+        "id": "ch6_s1",
+        "title": "Numbers 1-69",
+        "content": "Numbers 0-69 are straightforward. Key ones: 0-16 have unique names, 17-19 use dix-sept/dix-huit/dix-neuf, 20-69 follow pattern (vingt, trente, quarante, cinquante, soixante) with 'et un' for 21/31/41/51/61.",
+        "type": "table"
+      },
+      {
+        "id": "ch6_s2",
+        "title": "Numbers 70-99: The Math Part",
+        "content": "70 = soixante-dix (60+10), 80 = quatre-vingts (4x20), 90 = quatre-vingt-dix (4x20+10). Belgian/Swiss French is simpler: septante, huitante/octante, nonante.",
+        "type": "tip",
+        "examples": [
+          {"french": "soixante-dix", "english": "70 (= 60+10)"},
+          {"french": "quatre-vingts", "english": "80 (= 4x20)"},
+          {"french": "quatre-vingt-dix", "english": "90 (= 4x20+10)"},
+          {"french": "quatre-vingt-dix-neuf", "english": "99 (= 4x20+19)"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch7",
+    "title": "False Friends",
+    "subtitle": "Words that will trick you",
+    "icon": "warning",
+    "totalSections": 2,
+    "category": "vocabulary",
+    "sections": [
+      {
+        "id": "ch7_s1",
+        "title": "Dangerous False Friends",
+        "content": "These French words LOOK like English words but mean something completely different. Getting these wrong can be embarrassing or worse!",
+        "type": "text",
+        "examples": [
+          {"french": "blesse", "english": "injured (NOT blessed)"},
+          {"french": "actuellement", "english": "currently (NOT actually)"},
+          {"french": "excite", "english": "sexually aroused (NOT excited!)"},
+          {"french": "preservatif", "english": "condom (NOT preservative!)"}
+        ]
+      },
+      {
+        "id": "ch7_s2",
+        "title": "Safe Alternatives",
+        "content": "For each false friend, learn the correct word: excited = enthousiaste, library = bibliotheque, actually = en fait, to attend = assister, to rest = se reposer.",
+        "type": "table"
+      }
+    ]
+  },
+  {
+    "id": "ch8",
+    "title": "Liaison & Connected Speech",
+    "subtitle": "Make your French flow naturally",
+    "icon": "link",
+    "totalSections": 3,
+    "category": "pronunciation",
+    "sections": [
+      {
+        "id": "ch8_s1",
+        "title": "Mandatory Liaisons",
+        "content": "Liaison is when a normally silent final consonant is pronounced because the next word starts with a vowel. Mandatory between: article+noun, pronoun+verb, adjective+noun, after prepositions.",
+        "type": "text",
+        "examples": [
+          {"french": "les amis", "english": "the friends", "pronunciation": "lay-ZA-mee"},
+          {"french": "nous avons", "english": "we have", "pronunciation": "noo-ZA-voh(n)"},
+          {"french": "petit enfant", "english": "small child", "pronunciation": "puh-TEE-tah(n)-fah(n)"}
+        ]
+      },
+      {
+        "id": "ch8_s2",
+        "title": "Liaison Sound Changes",
+        "content": "In liaison: s/x become Z, d becomes T, n stays N, t stays T. These sound changes are consistent and predictable.",
+        "type": "text"
+      },
+      {
+        "id": "ch8_s3",
+        "title": "Elision",
+        "content": "When a short word ending in -e meets a word starting with a vowel, the -e drops and becomes an apostrophe. This is MANDATORY: le+ami = l'ami, je+ai = j'ai, de+eau = d'eau.",
+        "type": "tip"
+      }
+    ]
+  },
+  {
+    "id": "ch9",
+    "title": "Survival Phrases",
+    "subtitle": "40+ phrases for 80% of situations",
+    "icon": "chat",
+    "totalSections": 3,
+    "category": "phrases",
+    "sections": [
+      {
+        "id": "ch9_s1",
+        "title": "Basic Greetings",
+        "content": "Essential greetings, introductions, and polite phrases that you'll use every day.",
+        "type": "text",
+        "examples": [
+          {"french": "Bonjour", "english": "Hello"},
+          {"french": "Enchante(e)", "english": "Nice to meet you"},
+          {"french": "S'il vous plait", "english": "Please"},
+          {"french": "Merci / De rien", "english": "Thank you / You're welcome"}
+        ]
+      },
+      {
+        "id": "ch9_s2",
+        "title": "Communication Lifelines",
+        "content": "These phrases save you when you're struggling to communicate. Your #1 safety phrase: Je ne comprends pas (I don't understand).",
+        "type": "text",
+        "examples": [
+          {"french": "Je ne comprends pas", "english": "I don't understand"},
+          {"french": "Pouvez-vous repeter?", "english": "Can you repeat?"},
+          {"french": "Pouvez-vous parler plus lentement?", "english": "Can you speak more slowly?"}
+        ]
+      },
+      {
+        "id": "ch9_s3",
+        "title": "Daily Life & Work",
+        "content": "Phrases for talking about yourself, your work, and expressing opinions.",
+        "type": "text",
+        "examples": [
+          {"french": "Je travaille comme...", "english": "I work as..."},
+          {"french": "Je voudrais...", "english": "I would like..."},
+          {"french": "Je suis d'accord", "english": "I agree"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch10",
+    "title": "TEF Speaking Tricks",
+    "subtitle": "Maximize your NCLC 5 speaking score",
+    "icon": "school",
+    "totalSections": 3,
+    "category": "exam",
+    "sections": [
+      {
+        "id": "ch10_s1",
+        "title": "Filler Words",
+        "content": "Silence kills your score. Use fillers to buy thinking time: Alors... (So...), Bon... (Well...), En fait... (Actually...), Comment dire... (How to say...), Par exemple... (For example...).",
+        "type": "tip",
+        "examples": [
+          {"french": "Alors...", "english": "So.../Well..."},
+          {"french": "En fait...", "english": "Actually.../In fact..."},
+          {"french": "Par exemple...", "english": "For example..."}
+        ]
+      },
+      {
+        "id": "ch10_s2",
+        "title": "Opinion Structures",
+        "content": "The TEF asks you to express opinions. Use: Je pense que... parce que..., A mon avis..., D'un cote... de l'autre cote..., En conclusion...",
+        "type": "text",
+        "examples": [
+          {"french": "Je pense que... parce que...", "english": "I think that... because..."},
+          {"french": "A mon avis...", "english": "In my opinion..."},
+          {"french": "D'un cote... de l'autre cote...", "english": "On one hand... on the other hand..."}
+        ]
+      },
+      {
+        "id": "ch10_s3",
+        "title": "Recovery Strategies",
+        "content": "The #1 TEF secret: Keep talking! Forgot a word? Describe it. Made a mistake? Self-correct: 'Non, pardon, je veux dire...' Don't understand? Ask to rephrase. NEVER go silent.",
+        "type": "tip",
+        "examples": [
+          {"french": "C'est une chose qui...", "english": "It's a thing that... (forgot a word)"},
+          {"french": "Non, pardon, je veux dire...", "english": "No, sorry, I mean... (self-correct)"},
+          {"french": "Et aussi...", "english": "And also... (need more to say)"}
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "essentialVerbs": [
+    {"infinitive": "\u00eatre", "meaning": "to be", "group": "irregular", "pastParticiple": "\u00e9t\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "avoir", "meaning": "to have", "group": "irregular", "pastParticiple": "eu", "auxiliaryVerb": "avoir"},
+    {"infinitive": "faire", "meaning": "to do/make", "group": "irregular", "pastParticiple": "fait", "auxiliaryVerb": "avoir"},
+    {"infinitive": "aller", "meaning": "to go", "group": "irregular", "pastParticiple": "all\u00e9", "auxiliaryVerb": "etre"},
+    {"infinitive": "venir", "meaning": "to come", "group": "irregular", "pastParticiple": "venu", "auxiliaryVerb": "etre"},
+    {"infinitive": "pouvoir", "meaning": "can/to be able", "group": "irregular", "pastParticiple": "pu", "auxiliaryVerb": "avoir"},
+    {"infinitive": "vouloir", "meaning": "to want", "group": "irregular", "pastParticiple": "voulu", "auxiliaryVerb": "avoir"},
+    {"infinitive": "devoir", "meaning": "must/to have to", "group": "irregular", "pastParticiple": "d\u00fb", "auxiliaryVerb": "avoir"},
+    {"infinitive": "savoir", "meaning": "to know (facts)", "group": "irregular", "pastParticiple": "su", "auxiliaryVerb": "avoir"},
+    {"infinitive": "dire", "meaning": "to say/tell", "group": "irregular", "pastParticiple": "dit", "auxiliaryVerb": "avoir"},
+    {"infinitive": "parler", "meaning": "to speak", "group": "er", "pastParticiple": "parl\u00e9", "auxiliaryVerb": "avoir",
+      "presentTense": {"je": "parle", "tu": "parles", "il/elle": "parle", "nous": "parlons", "vous": "parlez", "ils/elles": "parlent"}},
+    {"infinitive": "prendre", "meaning": "to take", "group": "re", "pastParticiple": "pris", "auxiliaryVerb": "avoir"},
+    {"infinitive": "voir", "meaning": "to see", "group": "irregular", "pastParticiple": "vu", "auxiliaryVerb": "avoir"},
+    {"infinitive": "mettre", "meaning": "to put", "group": "re", "pastParticiple": "mis", "auxiliaryVerb": "avoir"},
+    {"infinitive": "donner", "meaning": "to give", "group": "er", "pastParticiple": "donn\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "trouver", "meaning": "to find", "group": "er", "pastParticiple": "trouv\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "manger", "meaning": "to eat", "group": "er", "pastParticiple": "mang\u00e9", "auxiliaryVerb": "avoir",
+      "presentTense": {"je": "mange", "tu": "manges", "il/elle": "mange", "nous": "mangeons", "vous": "mangez", "ils/elles": "mangent"}},
+    {"infinitive": "travailler", "meaning": "to work", "group": "er", "pastParticiple": "travaill\u00e9", "auxiliaryVerb": "avoir",
+      "presentTense": {"je": "travaille", "tu": "travailles", "il/elle": "travaille", "nous": "travaillons", "vous": "travaillez", "ils/elles": "travaillent"}},
+    {"infinitive": "habiter", "meaning": "to live", "group": "er", "pastParticiple": "habit\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "comprendre", "meaning": "to understand", "group": "re", "pastParticiple": "compris", "auxiliaryVerb": "avoir"},
+    {"infinitive": "aimer", "meaning": "to like/love", "group": "er", "pastParticiple": "aim\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "penser", "meaning": "to think", "group": "er", "pastParticiple": "pens\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "demander", "meaning": "to ask", "group": "er", "pastParticiple": "demand\u00e9", "auxiliaryVerb": "avoir"},
+    {"infinitive": "croire", "meaning": "to believe", "group": "irregular", "pastParticiple": "cru", "auxiliaryVerb": "avoir"},
+    {"infinitive": "conna\u00eetre", "meaning": "to know (people)", "group": "irregular", "pastParticiple": "connu", "auxiliaryVerb": "avoir"},
+    {"infinitive": "attendre", "meaning": "to wait", "group": "re", "pastParticiple": "attendu", "auxiliaryVerb": "avoir"},
+    {"infinitive": "acheter", "meaning": "to buy", "group": "er", "pastParticiple": "achet\u00e9", "auxiliaryVerb": "avoir"}
+  ],
+  "erConjugationPattern": [
+    {"subject": "je", "ending": "-e", "sound": "[stem]"},
+    {"subject": "tu", "ending": "-es", "sound": "[same sound]"},
+    {"subject": "il/elle", "ending": "-e", "sound": "[same sound]"},
+    {"subject": "nous", "ending": "-ons", "sound": "-OH(N)"},
+    {"subject": "vous", "ending": "-ez", "sound": "-AY"},
+    {"subject": "ils/elles", "ending": "-ent", "sound": "[same as je/tu/il!]"}
+  ],
+  "vandertrampVerbs": [
+    {"verb": "Devenir", "meaning": "to become", "pastParticiple": "devenu"},
+    {"verb": "Revenir", "meaning": "to come back", "pastParticiple": "revenu"},
+    {"verb": "Monter", "meaning": "to go up", "pastParticiple": "mont\u00e9"},
+    {"verb": "Retourner", "meaning": "to return", "pastParticiple": "retourn\u00e9"},
+    {"verb": "Sortir", "meaning": "to go out", "pastParticiple": "sorti"},
+    {"verb": "Venir", "meaning": "to come", "pastParticiple": "venu"},
+    {"verb": "Aller", "meaning": "to go", "pastParticiple": "all\u00e9"},
+    {"verb": "Na\u00eetre", "meaning": "to be born", "pastParticiple": "n\u00e9"},
+    {"verb": "Descendre", "meaning": "to go down", "pastParticiple": "descendu"},
+    {"verb": "Entrer", "meaning": "to enter", "pastParticiple": "entr\u00e9"},
+    {"verb": "Rentrer", "meaning": "to re-enter", "pastParticiple": "rentr\u00e9"},
+    {"verb": "Tomber", "meaning": "to fall", "pastParticiple": "tomb\u00e9"},
+    {"verb": "Rester", "meaning": "to stay", "pastParticiple": "rest\u00e9"},
+    {"verb": "Arriver", "meaning": "to arrive", "pastParticiple": "arriv\u00e9"},
+    {"verb": "Mourir", "meaning": "to die", "pastParticiple": "mort"},
+    {"verb": "Partir", "meaning": "to leave", "pastParticiple": "parti"}
+  ],
+  "futureTenseExamples": [
+    {"french": "Je vais manger", "english": "I'm going to eat"},
+    {"french": "Tu vas travailler", "english": "You're going to work"},
+    {"french": "On va partir", "english": "We're going to leave"},
+    {"french": "Ils vont venir", "english": "They're going to come"}
+  ],
+  "pastTenseExamples": [
+    {"french": "J'ai mang\u00e9", "english": "I ate"},
+    {"french": "Tu as parl\u00e9", "english": "You spoke"},
+    {"french": "Il a travaill\u00e9", "english": "He worked"},
+    {"french": "Nous avons fini", "english": "We finished"},
+    {"french": "Vous avez pris", "english": "You took"}
+  ],
+  "pastParticipleRules": [
+    {"group": "-er verbs", "rule": "-\u00e9", "example": "manger \u2192 mang\u00e9"},
+    {"group": "-ir verbs", "rule": "-i", "example": "finir \u2192 fini"},
+    {"group": "-re verbs", "rule": "-u", "example": "vendre \u2192 vendu"}
+  ]
+}

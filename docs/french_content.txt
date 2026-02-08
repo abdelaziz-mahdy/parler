@@ -1,0 +1,848 @@
+
+
+
+
+FRENCH LANGUAGE
+TIPS, TRICKS & SHORTCUTS
+──────────────────────
+Everything You Need to Know to Learn French Fast
+Patterns · Cognates · Pronunciation · Grammar Hacks · Verb Shortcuts
+Gender Rules · Numbers · False Friends · Speaking Tricks
+
+
+A practical reference for English speakers learning French
+
+1. You Already Know 3,000+ French Words
+English and French share roughly 27% of their vocabulary because of the Norman conquest of England in 1066. Thousands of English words came from French. With a few simple suffix-swap rules, you can instantly recognize (and use) thousands of French words you already know.
+
+1.1 Suffix Conversion Patterns
+These patterns convert English words to French words with 80–95% accuracy. Memorize these and you unlock thousands of words overnight:
+
+English Ending
+French Ending
+Examples
+Notes
+-tion
+-tion
+nation, information, situation, education, revolution
+SAME spelling! Just say it French: nah-see-ON. Hundreds of words.
+-sion
+-sion
+television, decision, passion, version, mission
+Same spelling, French pronunciation.
+-ment
+-ment
+moment, apartment, document, government, department
+Often identical. French says -moh(n).
+-ous
+-eux / -euse
+famous→fameux, dangerous→dangereux, curious→curieux
+-eux (masc), -euse (fem). Huge pattern.
+-ty
+-té
+university→université, quality→qualité, city→cité, liberty→liberté
+Almost always works. Always feminine.
+-al
+-al / -el
+normal, final, national, international, animal, capital
+Usually identical spelling.
+-ble
+-ble
+possible, table, terrible, comfortable, flexible, visible
+Same spelling, French pronunciation.
+-ary / -ery
+-aire
+necessary→nécessaire, ordinary→ordinaire, military→militaire
+Very reliable pattern.
+-ence / -ance
+-ence / -ance
+difference, silence, distance, importance, intelligence
+Same spelling. Always feminine in French.
+-ic
+-ique
+music→musique, public→publique, fantastic→fantastique
+Add -que. Huge number of words.
+-ism
+-isme
+tourism→tourisme, capitalism→capitalisme, optimism→optimisme
+Add -e. Always masculine.
+-ist
+-iste
+artist→artiste, tourist→touriste, dentist→dentiste
+Add -e. Same for masc & fem.
+-ly
+-ment
+normally→normalement, exactly→exactement, rapidly→rapidement
+English adverbs ending -ly = French -ment.
+-ive
+-if / -ive
+active→actif/active, positive→positif/positive
+-if (masc), -ive (fem).
+-ure
+-ure
+nature, culture, structure, adventure, temperature
+Same spelling. Always feminine.
+-age
+-age
+garage, message, village, image, voyage
+Same spelling. Usually masculine.
+
+INSTANT VOCABULARY HACK
+With just these 16 patterns, you can recognize ~3,000–5,000 French words immediately.
+When you encounter a new English word with one of these endings, try the French version – you’ll be right 80%+ of the time.
+This is exactly what Language Transfer teaches in its first lesson: you already know more French than you think.
+
+2. French Pronunciation Decoded
+French spelling looks intimidating, but it follows consistent rules. Once you learn these patterns, you can pronounce almost any French word correctly – even words you’ve never seen before.
+
+2.1 The Golden Rules
+
+THE 3 MOST IMPORTANT PRONUNCIATION RULES
+1. SILENT FINAL CONSONANTS: Most consonants at the end of a word are silent. "Petit" = puh-TEE (the t is silent). "Vous parlez" = voo par-LAY (the z is silent). Exception: C, R, F, L are usually pronounced (remember: "CaReFuL").
+2. STRESS IS ALWAYS ON THE LAST SYLLABLE: Unlike English, French stress is predictable. Every word and phrase is stressed on the final syllable. "chocolat" = sho-ko-LA. "information" = an-for-ma-see-ON.
+3. NASAL VOWELS: When a vowel is followed by N or M (and no vowel after), it becomes nasal – the air goes through your nose. "bon" = boh(n), "pain" = pa(n), "vin" = va(n). The N/M itself is barely pronounced.
+
+2.2 Vowel Sounds
+Letters
+Sound
+Examples
+Think of...
+ou
+"oo" like boot
+vous (voo), nous (noo), tout (too)
+English "oo" in "food"
+u
+No English equivalent! Say "ee" with rounded lips
+tu (tü), rue (rü), plus (plü)
+Say "ee" but push lips forward into a kiss
+eu / oeu
+Like "uh" but with rounded lips
+deux (duh), bleu (bluh), heure (uhr)
+English "uh" in "duh" with puckered lips
+oi
+"wah"
+moi (mwah), trois (twah), boire (bwahr)
+Always says "wah" – very consistent
+ai / ei
+"eh" like bed
+lait (leh), maison (meh-zoh(n)), faire (fehr)
+English "e" in "get"
+au / eau
+"oh"
+eau (oh), beau (boh), restaurant (res-toh-rah(n))
+Always "oh" – never "aw"
+é
+"ay" like day
+café (ka-FAY), été (ay-TAY)
+Accent aigu = always "ay"
+è / ê
+"eh" like bed
+mère (mehr), fête (feht), très (treh)
+Accent grave/circumflex = open "eh"
+e (no accent, end)
+Silent or barely whispered
+table (TAHBL), France (FRAHNS)
+Just drop it mentally
+e (no accent, mid-word)
+"uh" (schwa)
+le (luh), petit (puh-TEE), devenir (duh-vuh-NEER)
+Quick unstressed "uh"
+
+2.3 Nasal Vowels (The French Sound)
+These are the sounds that make French sound French. Air goes through your nose instead of (or along with) your mouth:
+
+Spelling
+Sound
+Examples
+How to Say It
+an / am / en / em
+ah(n) – nasalized "ah"
+France, enfant, comment, temps, chanson
+Say "ah" but let air go through nose. Don’t fully pronounce the N.
+on / om
+oh(n) – nasalized "oh"
+bon, nom, maison, onze, bonjour
+Say "oh" through your nose.
+in / im / ain / ein / un
+a(n) – nasalized "ah" (shorter)
+vin, pain, demain, important, lundi
+Like "an" in English "can’t" said through nose.
+
+NASAL VOWEL TRICK
+If a vowel + N/M is followed by ANOTHER VOWEL or another N/M, it’s NOT nasal:
+bonne = BON-nuh (not nasal, because N is followed by E)
+femme = FAM (not nasal, because M is doubled)
+But: bon = boh(n) (nasal, because N is at the end)
+
+2.4 Consonant Tricks
+Letter
+Rule
+Examples
+Notes
+c
+Before e, i, y: "s" sound. Before a, o, u: "k" sound.
+centre (SAHN-truh), ici (ee-SEE), car (KAR), comme (KOM)
+Same rule as English!
+ç (c-cedilla)
+Always "s" sound
+français (frahn-SAY), garçon (gar-SOH(N))
+Cedilla forces "s" before a, o, u
+g
+Before e, i: "zh" (like pleasure). Before a, o, u: hard "g".
+manger (mahn-ZHAY), garage (ga-RAZH)
+Same logic as C rule
+gn
+"ny" sound (like canyon)
+montagne (mon-TA-nyuh), champagne, gagner
+Think "lasagna" = la-ZA-nya
+h
+ALWAYS silent
+homme (OM), hôtel (oh-TEL), heure (UHR)
+French H never makes a sound
+j
+"zh" sound (like pleasure)
+je (zhuh), jour (zhoor), jardin (zhar-DA(N))
+NEVER "dj" like English J
+r
+Back of throat, like gargling gently
+rouge (roozh), Paris (pa-REE), merci (mair-SEE)
+The signature French sound. Practice gargling.
+qu
+Always just "k" (never "kw")
+qui (kee), que (kuh), quand (kah(n))
+Unlike English, never say "kw"
+ch
+"sh" sound (never "ch" like church)
+chat (SHA), chose (SHOHZ), chercher (shair-SHAY)
+French CH = English SH
+th
+Just "t" (never the English "th")
+théâtre (tay-AH-truh), thon (TOH(N))
+No tongue-between-teeth sound in French
+
+2.5 The CaReFuL Rule (Final Consonants That ARE Pronounced)
+Most final consonants are silent, but C, R, F, L are usually pronounced:
+	•	C: avec (a-VEK), sac (SAK), parc (PARK)
+	•	R: pour (POOR), sur (SÜR), bonjour (bon-ZHOOR)
+	•	F: chef (SHEF), sportif (spor-TEEF), neuf (NUHF)
+	•	L: animal (a-nee-MAL), hotel (oh-TEL), avril (a-VREEL)
+Exceptions exist (estomac = silent C, monsieur = silent R), but CaReFuL works 90% of the time.
+
+3. Gender Hacks: Masculine vs. Feminine
+Every French noun is either masculine (le) or feminine (la). There’s no way around learning this, but there ARE patterns that let you guess correctly 80%+ of the time.
+
+3.1 Endings That Are Almost Always FEMININE (la)
+Ending
+Examples
+Accuracy
+-tion / -sion
+la nation, la télévision, la situation, la décision
+~99% feminine
+-té
+la liberté, la qualité, la société, l’université
+~99% feminine
+-ure
+la nature, la voiture, la culture, l’aventure
+~95% feminine
+-ence / -ance
+la différence, la France, la science, l’importance
+~95% feminine
+-ie
+la vie, la partie, la philosophie, l’énergie
+~95% feminine
+-ette / -elle
+la baguette, la fourchette, la nouvelle, la chapelle
+~95% feminine
+-ise / -aise
+la surprise, la valise, la française, la mayonnaise
+~95% feminine
+-ée
+la journée, l’idée, l’année, l’arrivée
+~99% feminine
+
+3.2 Endings That Are Almost Always MASCULINE (le)
+Ending
+Examples
+Accuracy
+-age
+le garage, le voyage, le message, le fromage
+~90% masc (exceptions: la plage, la page, l’image)
+-ment
+le moment, le gouvernement, le mouvement, l’appartement
+~99% masculine
+-isme
+le tourisme, le capitalisme, le journalisme
+~99% masculine
+-eau
+le bateau, le gâteau, le chapeau, le bureau
+~99% masc (exception: l’eau = fem!)
+-oir
+le miroir, le soir, le pouvoir, le devoir
+~95% masculine
+-et
+le ticket, le billet, le secret, le sujet
+~95% masculine
+consonant ending
+le sport, le restaurant, le chat, le film
+~65–70% masculine (less reliable)
+
+GENDER SURVIVAL STRATEGY
+Learn gender WITH the word: never learn "maison" alone. Learn "la maison" or "une maison."
+When in doubt, the -tion/-sion/-té/-ure patterns cover HUNDREDS of words and are almost always right.
+At NCLC 5, small gender errors won’t fail you. Examiners care about communication, not perfection.
+
+4. Verb Conjugation Shortcuts
+French verbs seem terrifying with all their forms, but there are massive shortcuts that make it manageable.
+
+4.1 The 80/20 Rule: Verbs You Actually Need
+For NCLC 5 conversation, you need about 30 verbs that cover 80%+ of daily situations:
+
+Verb
+Meaning
+Verb
+Meaning
+Verb
+Meaning
+être
+to be
+avoir
+to have
+faire
+to do/make
+aller
+to go
+venir
+to come
+pouvoir
+can/to be able
+vouloir
+to want
+devoir
+must/to have to
+savoir
+to know (facts)
+dire
+to say/tell
+parler
+to speak
+prendre
+to take
+voir
+to see
+mettre
+to put
+donner
+to give
+trouver
+to find
+manger
+to eat
+travailler
+to work
+habiter
+to live
+comprendre
+to understand
+aimer
+to like/love
+penser
+to think
+demander
+to ask
+croire
+to believe
+connaître
+to know (people)
+attendre
+to wait
+acheter
+to buy
+
+4.2 The Spoken French Shortcut: 3 Forms Sound Identical
+This is the single biggest shortcut in spoken French:
+
+CONJUGATION SHORTCUT: JE, TU, IL/ELLE ALL SOUND THE SAME
+For ALL regular -er verbs (which are 80%+ of French verbs), the je, tu, and il/elle forms are pronounced IDENTICALLY:
+je parle, tu parles, il/elle parle = all pronounced "PARL"
+je mange, tu manges, il/elle mange = all pronounced "MAHNZH"
+je travaille, tu travailles, il/elle travaille = all pronounced "tra-VIE"
+This means for spoken French, you only need to learn 4 sounds per verb: je/tu/il (same), nous, vous, ils/elles.
+For NCLC 5 (speaking test only), this cuts your conjugation workload nearly in half.
+
+4.3 Present Tense Patterns
+80% of French verbs end in -er and follow this pattern:
+
+Subject
+-ER ending
+Parler (speak)
+Travailler (work)
+Manger (eat)
+Sound
+je
+-e
+je parle
+je travaille
+je mange
+[stem]
+tu
+-es
+tu parles
+tu travailles
+tu manges
+[same sound]
+il/elle
+-e
+il parle
+elle travaille
+il mange
+[same sound]
+nous
+-ons
+nous parlons
+nous travaillons
+nous mangeons
+-OH(N)
+vous
+-ez
+vous parlez
+vous travaillez
+vous mangez
+-AY
+ils/elles
+-ent
+ils parlent
+elles travaillent
+ils mangent
+[same as je/tu/il!]
+
+The -ent ending on ils/elles is COMPLETELY SILENT. So je parle, tu parles, il parle, and ils parlent all sound identical. In spoken French, you’re really only learning 3 distinct sounds: the stem, -ons, and -ez.
+
+4.4 Future Tense Cheat: Use "aller + infinitive"
+Instead of learning the formal future tense, just use "aller" (to go) + the infinitive. This works exactly like English "I’m going to...":
+	•	Je vais manger = I’m going to eat
+	•	Tu vas travailler = You’re going to work
+	•	On va partir = We’re going to leave
+	•	Ils vont venir = They’re going to come
+This construction is used constantly in everyday French and is 100% acceptable at NCLC 5.
+
+4.5 Past Tense Cheat: Passé Composé Formula
+The most common past tense in spoken French follows a simple formula:
+Subject + avoir (conjugated) + past participle
+
+	•	J’ai mangé = I ate (I have eaten)
+	•	Tu as parlé = You spoke
+	•	Il a travaillé = He worked
+	•	Nous avons fini = We finished
+	•	Vous avez pris = You took
+
+Past participle shortcuts: -er verbs → -é (manger→mangé), -ir verbs → -i (finir→fini), -re verbs → -u (vendre→vendu). This covers 80% of past tense situations.
+
+THE "DR. & MRS. VANDERTRAMP" VERBS USE ÊTRE (not avoir)
+About 15 verbs use être instead of avoir in the past tense. These are mostly verbs of MOVEMENT:
+Devenir, Revenir, Monter, Retourner, Sortir, Venir, Aller, Naître, Descendre, Entrer, Rentrer, Tomber, Rester, Arriver, Mourir, Partir
+With être, the past participle agrees with the subject: Elle est alléE (she went), Ils sont arrivÉS (they arrived).
+Mnemonic: these are all about coming, going, arriving, leaving, being born, or dying.
+
+5. Essential Grammar Patterns
+
+5.1 Negation: Sandwich the Verb
+To make any sentence negative, put NE...PAS around the conjugated verb:
+	•	Je parle → Je NE parle PAS (I don’t speak)
+	•	Il mange → Il NE mange PAS (He doesn’t eat)
+	•	Nous avons fini → Nous N’avons PAS fini (We haven’t finished)
+
+SPOKEN FRENCH SHORTCUT
+In everyday spoken French, the "ne" is almost always DROPPED:
+Je parle pas. Il mange pas. C’est pas vrai.
+You’ll hear this constantly on TV5MONDE. It’s not "wrong" – it’s how real French people talk.
+For the TEF exam, use both ne...pas to be safe, but understand that native speakers often skip the ne.
+
+5.2 Asking Questions: 3 Ways (Easiest First)
+From most casual to most formal:
+	•	1. Rising intonation (easiest): Tu parles français? = You speak French? (Just raise your voice at the end, exactly like English.)
+	•	2. Est-ce que (medium): Est-ce que tu parles français? = Do you speak French? (Put "est-ce que" before any statement to make it a question.)
+	•	3. Inversion (formal): Parles-tu français? = Do you speak French? (Flip the verb and subject. Used in writing and formal speech.)
+For NCLC 5, methods 1 and 2 are all you need. Method 1 is what French people use 90% of the time.
+
+5.3 Question Words
+French
+English
+Example
+Pronunciation
+Qui
+Who
+Qui est-ce? (Who is it?)
+kee
+Quoi / Que
+What
+C’est quoi? / Qu’est-ce que c’est?
+kwah / kuh
+Où
+Where
+Où est la gare? (Where is the station?)
+oo
+Quand
+When
+Quand est-ce qu’on part?
+kah(n)
+Pourquoi
+Why
+Pourquoi pas? (Why not?)
+poor-KWAH
+Comment
+How
+Comment allez-vous? (How are you?)
+ko-MAH(N)
+Combien
+How much/many
+Combien ça coûte? (How much?)
+kom-BEE-A(N)
+
+5.4 Articles: Le, La, Les, Un, Une, Des
+French ALWAYS uses articles before nouns (unlike English which sometimes drops them):
+
+Type
+Masculine
+Feminine
+Plural
+Definite ("the")
+le (le chat = the cat)
+la (la maison = the house)
+les (les chats = the cats)
+Indefinite ("a/some")
+un (un chat = a cat)
+une (une maison = a house)
+des (des chats = some cats)
+Before vowel/h
+l’ (l’homme)
+l’ (l’école)
+les (les hommes)
+
+Key difference from English: French uses "des" where English uses nothing. "I have cats" = "J’ai des chats" (you can’t say "J’ai chats").
+
+5.5 Contractions (Required, Not Optional)
+Combination
+Contraction
+Example
+Notes
+de + le
+du
+du pain (some bread)
+MANDATORY. Never say "de le"
+de + les
+des
+des enfants (some children)
+MANDATORY
+à + le
+au
+au restaurant (at/to the restaurant)
+MANDATORY. Never say "à le"
+à + les
+aux
+aux États-Unis (in the US)
+MANDATORY
+je + vowel
+j’
+j’ai, j’aime, j’habite
+Always contract before vowels
+ne + vowel
+n’
+je n’ai pas
+Always contract before vowels
+
+6. The French Number System
+French numbers are normal until 70, then get... creative. Here’s how to handle them:
+
+6.1 Numbers 1–69: Straightforward
+#
+French
+#
+French
+#
+French
+0
+zéro
+10
+dix
+20
+vingt
+1
+un/une
+11
+onze
+30
+trente
+2
+deux
+12
+douze
+40
+quarante
+3
+trois
+13
+treize
+50
+cinquante
+4
+quatre
+14
+quatorze
+60
+soixante
+5
+cinq
+15
+quinze
+21
+vingt et un
+6
+six
+16
+seize
+22
+vingt-deux
+7
+sept
+17
+dix-sept
+31
+trente et un
+8
+huit
+18
+dix-huit
+32
+trente-deux
+9
+neuf
+19
+dix-neuf
+
+(same pattern to 69)
+
+6.2 Numbers 70–99: The Math Part
+
+THE INFAMOUS FRENCH NUMBER SYSTEM
+70 = soixante-dix (literally: 60 + 10)
+71 = soixante et onze (60 + 11)
+72 = soixante-douze (60 + 12)... up to 79 = soixante-dix-neuf (60 + 19)
+80 = quatre-vingts (literally: 4 × 20)
+81 = quatre-vingt-un (4×20 + 1)
+90 = quatre-vingt-dix (4×20 + 10)
+91 = quatre-vingt-onze (4×20 + 11)... up to 99 = quatre-vingt-dix-neuf (4×20 + 19)
+100 = cent (finally normal again!)
+NOTE: In Belgian & Swiss French: 70 = septante, 80 = huitante/octante, 90 = nonante. Much simpler!
+
+7. False Friends: Words That Will Trick You
+These French words look like English words but mean something completely different. Getting these wrong can be embarrassing:
+
+French Word
+Looks Like...
+Actually Means...
+Danger Level
+English Equivalent
+blessé
+blessed
+injured/wounded
+HIGH
+béni = blessed
+actuellement
+actually
+currently/right now
+HIGH
+en fait = actually
+assister
+to assist
+to attend/be present at
+MEDIUM
+aider = to assist
+attendre
+to attend
+to wait for
+HIGH
+assister = to attend
+bras
+bra
+arm
+FUNNY
+soutien-gorge = bra
+coin
+coin (money)
+corner
+LOW
+pièce = coin
+excité
+excited
+sexually aroused (!)
+VERY HIGH
+enthousiaste = excited
+librairie
+library
+bookstore
+MEDIUM
+bibliothèque = library
+préservatif
+preservative
+condom (!)
+VERY HIGH
+conservateur = preservative
+regarder
+to regard
+to watch/look at
+LOW
+considérer = to regard
+rester
+to rest
+to stay/remain
+MEDIUM
+se reposer = to rest
+sympa(thique)
+sympathetic
+nice/friendly
+LOW
+compatissant = sympathetic
+envie
+envy
+desire/want (j’ai envie de = I want to)
+MEDIUM
+jalousie = envy
+
+8. Liaison & Connected Speech
+Liaison is when a normally silent final consonant is pronounced because the next word starts with a vowel. This is what makes French sound "flowing" rather than choppy.
+
+8.1 Mandatory Liaisons (Must Do)
+	•	Article + noun: les_amis (lay-ZA-mee), un_homme (uh-NOM), des_étudiants (day-ZAY-tu-dee-ah(n))
+	•	Subject pronoun + verb: nous_avons (noo-ZA-voh(n)), vous_êtes (voo-ZET), ils_ont (eel-ZOH(N))
+	•	Adjective + noun: petit_enfant (puh-TEE-tah(n)-fah(n)), bon_ami (boh-NA-mee)
+	•	After prepositions: en_Italie (ah(n)-nee-ta-LEE), dans_un (dah(n)-ZU(N)), chez_elle (shay-ZEL)
+
+8.2 Liaison Sound Changes
+	•	s/x → Z sound: les amis = lay-ZA-mee, deux heures = duh-ZUHR
+	•	d → T sound: grand homme = grah(n)-TOM
+	•	n → N sound: un ami = uh-NA-mee, bon appetit = boh-NA-pay-tee
+	•	t → T sound: petit enfant = puh-TEE-tah(n)-fah(n)
+
+8.3 Elision (Dropping Vowels)
+When a short word ending in -e meets a word starting with a vowel, the -e drops and is replaced by an apostrophe:
+	•	le + ami = l’ami (not "le ami")
+	•	je + ai = j’ai (not "je ai")
+	•	ne + ai = n’ai (not "ne ai")
+	•	de + eau = d’eau
+	•	que + il = qu’il
+This is mandatory, not optional. You’ll never hear a French person say "je ai" – it’s always "j’ai."
+
+9. Essential Survival Phrases
+These 40 phrases will get you through 80% of daily situations and the TEF speaking test:
+
+9.1 Basics
+French
+English
+Bonjour / Bonsoir
+Hello / Good evening
+Comment allez-vous? / Ça va?
+How are you? (formal / informal)
+Je m’appelle... / Moi, c’est...
+My name is... (formal / casual)
+Enchané(e)
+Nice to meet you
+S’il vous plaît / Merci / De rien
+Please / Thank you / You’re welcome
+Excusez-moi / Pardon
+Excuse me / Sorry
+Au revoir / Bonne journée / À bientôt
+Goodbye / Have a nice day / See you soon
+
+9.2 Communication Lifelines
+French
+When to Use It
+Je ne comprends pas
+I don’t understand (your #1 safety phrase)
+Pouvez-vous répéter, s’il vous plaît?
+Can you repeat, please?
+Pouvez-vous parler plus lentement?
+Can you speak more slowly?
+Comment dit-on ___ en français?
+How do you say ___ in French?
+Qu’est-ce que ça veut dire?
+What does that mean?
+Je pense que... / À mon avis...
+I think that... / In my opinion... (TEF gold)
+C’est-à-dire que...
+That is to say... / I mean... (great filler)
+
+9.3 Daily Life & Work
+French
+English
+Je travaille comme... / Je suis...
+I work as... / I am... (profession)
+J’habite à... / Je viens de...
+I live in... / I come from...
+Je voudrais... / J’aimerais...
+I would like... (polite requests)
+Est-ce que je peux...? / Puis-je...?
+Can I...? / May I...?
+Il faut + infinitive
+It’s necessary to... / One must...
+Je suis d’accord / Je ne suis pas d’accord
+I agree / I disagree
+D’abord... Ensuite... Enfin...
+First... Then... Finally... (structure your speech)
+
+10. TEF/TCF Speaking Test Tricks
+These strategies are specifically for maximizing your NCLC 5 speaking score:
+
+10.1 Filler Words (Buy Thinking Time Without Silence)
+Silence kills your score. Use these to fill pauses while your brain catches up:
+
+French Filler
+Meaning
+Use It When...
+Alors...
+So... / Well...
+Starting any answer
+Bon... / Ben...
+Well... / Um...
+Thinking of what to say next
+En fait...
+Actually... / In fact...
+Correcting yourself or adding detail
+C’est-à-dire...
+That is to say...
+Explaining or rephrasing
+Comment dire...
+How to say...
+Searching for a word (totally acceptable!)
+Euh... / Hmm...
+Uh... / Hmm...
+Brief pauses (use sparingly)
+Vous savez... / Tu sais...
+You know...
+Casual conversation filler
+Par exemple...
+For example...
+Adding an example (examiners love this)
+
+10.2 Opinion Structures (TEF Exam Gold)
+The TEF Expression Orale section asks you to express opinions. These structures make you sound organized and competent:
+	•	Je pense que... parce que... = I think that... because... (always give a reason)
+	•	À mon avis, ... = In my opinion, ...
+	•	D’un côté... de l’autre côté... = On one hand... on the other hand...
+	•	Il y a plusieurs raisons. Premièrement... Deuxièmement... = There are several reasons. First... Second...
+	•	Je suis pour / Je suis contre = I am for / I am against
+	•	En conclusion... = In conclusion...
+
+10.3 Recovery Strategies (When You’re Stuck)
+	•	Forgot a word? Describe it: "C’est une chose qui..." (It’s a thing that...) or "C’est comme..." (It’s like...)
+	•	Made a mistake? Self-correct naturally: "Non, pardon, je veux dire..." (No, sorry, I mean...)
+	•	Don’t understand the question? "Excusez-moi, pouvez-vous reformuler la question?" (Can you rephrase the question?)
+	•	Running out of things to say? "Et aussi..." (And also...) then add any related detail.
+	•	Completely lost? Switch to a topic you know: "C’est intéressant, mais je voudrais aussi parler de..." (That’s interesting, but I’d also like to talk about...)
+
+THE #1 TEF SPEAKING SECRET
+The examiner isn’t grading your grammar perfection. They’re grading your ability to COMMUNICATE.
+A confident speaker who makes grammar mistakes but keeps talking will ALWAYS score higher than a hesitant speaker who produces perfect sentences but with long silences.
+Keep. Talking. Use fillers. Describe around words you don’t know. Self-correct and move on. NEVER go silent.
+
+NOTE
+This tutorial covers Standard French. Québécois French (used in most of Canada outside Quebec City and Montreal) has differences in pronunciation, vocabulary, and expressions. Exposure to Canadian French via Francolab and TV5 Québec is recommended alongside this guide.

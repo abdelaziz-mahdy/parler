@@ -1,0 +1,78 @@
+[
+  {
+    "type": "mandatory",
+    "description": "Article + noun",
+    "examples": [
+      {"written": "les amis", "pronunciation": "lay-ZA-mee"},
+      {"written": "un homme", "pronunciation": "uh-NOM"},
+      {"written": "des \u00e9tudiants", "pronunciation": "day-ZAY-tu-dee-ah(n)"}
+    ]
+  },
+  {
+    "type": "mandatory",
+    "description": "Subject pronoun + verb",
+    "examples": [
+      {"written": "nous avons", "pronunciation": "noo-ZA-voh(n)"},
+      {"written": "vous \u00eates", "pronunciation": "voo-ZET"},
+      {"written": "ils ont", "pronunciation": "eel-ZOH(N)"}
+    ]
+  },
+  {
+    "type": "mandatory",
+    "description": "Adjective + noun",
+    "examples": [
+      {"written": "petit enfant", "pronunciation": "puh-TEE-tah(n)-fah(n)"},
+      {"written": "bon ami", "pronunciation": "boh-NA-mee"}
+    ]
+  },
+  {
+    "type": "mandatory",
+    "description": "After prepositions",
+    "examples": [
+      {"written": "en Italie", "pronunciation": "ah(n)-nee-ta-LEE"},
+      {"written": "dans un", "pronunciation": "dah(n)-ZU(N)"},
+      {"written": "chez elle", "pronunciation": "shay-ZEL"}
+    ]
+  },
+  {
+    "type": "sound_change",
+    "description": "s/x becomes Z sound",
+    "examples": [
+      {"written": "les amis", "pronunciation": "lay-ZA-mee", "rule": "s \u2192 Z"},
+      {"written": "deux heures", "pronunciation": "duh-ZUHR", "rule": "x \u2192 Z"}
+    ]
+  },
+  {
+    "type": "sound_change",
+    "description": "d becomes T sound",
+    "examples": [
+      {"written": "grand homme", "pronunciation": "grah(n)-TOM", "rule": "d \u2192 T"}
+    ]
+  },
+  {
+    "type": "sound_change",
+    "description": "n becomes N sound",
+    "examples": [
+      {"written": "un ami", "pronunciation": "uh-NA-mee", "rule": "n \u2192 N"},
+      {"written": "bon appetit", "pronunciation": "boh-NA-pay-tee", "rule": "n \u2192 N"}
+    ]
+  },
+  {
+    "type": "sound_change",
+    "description": "t becomes T sound",
+    "examples": [
+      {"written": "petit enfant", "pronunciation": "puh-TEE-tah(n)-fah(n)", "rule": "t \u2192 T"}
+    ]
+  },
+  {
+    "type": "elision",
+    "description": "Dropping vowels when a short word ending in -e meets a word starting with a vowel",
+    "examples": [
+      {"written": "le + ami = l'ami", "pronunciation": "la-MEE", "rule": "Not 'le ami'"},
+      {"written": "je + ai = j'ai", "pronunciation": "zhay", "rule": "Not 'je ai'"},
+      {"written": "ne + ai = n'ai", "pronunciation": "nay", "rule": "Not 'ne ai'"},
+      {"written": "de + eau = d'eau", "pronunciation": "doh", "rule": "Not 'de eau'"},
+      {"written": "que + il = qu'il", "pronunciation": "keel", "rule": "Not 'que il'"}
+    ]
+  }
+]

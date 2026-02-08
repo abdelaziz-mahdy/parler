@@ -1,0 +1,98 @@
+[
+  {
+    "englishEnding": "-tion",
+    "frenchEnding": "-tion",
+    "examples": ["nation", "information", "situation", "education", "revolution"],
+    "notes": "SAME spelling! Just say it French: nah-see-ON. Hundreds of words."
+  },
+  {
+    "englishEnding": "-sion",
+    "frenchEnding": "-sion",
+    "examples": ["television", "decision", "passion", "version", "mission"],
+    "notes": "Same spelling, French pronunciation."
+  },
+  {
+    "englishEnding": "-ment",
+    "frenchEnding": "-ment",
+    "examples": ["moment", "apartment", "document", "government", "department"],
+    "notes": "Often identical. French says -moh(n)."
+  },
+  {
+    "englishEnding": "-ous",
+    "frenchEnding": "-eux / -euse",
+    "examples": ["famous\u2192fameux", "dangerous\u2192dangereux", "curious\u2192curieux"],
+    "notes": "-eux (masc), -euse (fem). Huge pattern."
+  },
+  {
+    "englishEnding": "-ty",
+    "frenchEnding": "-t\u00e9",
+    "examples": ["university\u2192universit\u00e9", "quality\u2192qualit\u00e9", "city\u2192cit\u00e9", "liberty\u2192libert\u00e9"],
+    "notes": "Almost always works. Always feminine."
+  },
+  {
+    "englishEnding": "-al",
+    "frenchEnding": "-al / -el",
+    "examples": ["normal", "final", "national", "international", "animal", "capital"],
+    "notes": "Usually identical spelling."
+  },
+  {
+    "englishEnding": "-ble",
+    "frenchEnding": "-ble",
+    "examples": ["possible", "table", "terrible", "comfortable", "flexible", "visible"],
+    "notes": "Same spelling, French pronunciation."
+  },
+  {
+    "englishEnding": "-ary / -ery",
+    "frenchEnding": "-aire",
+    "examples": ["necessary\u2192n\u00e9cessaire", "ordinary\u2192ordinaire", "military\u2192militaire"],
+    "notes": "Very reliable pattern."
+  },
+  {
+    "englishEnding": "-ence / -ance",
+    "frenchEnding": "-ence / -ance",
+    "examples": ["difference", "silence", "distance", "importance", "intelligence"],
+    "notes": "Same spelling. Always feminine in French."
+  },
+  {
+    "englishEnding": "-ic",
+    "frenchEnding": "-ique",
+    "examples": ["music\u2192musique", "public\u2192publique", "fantastic\u2192fantastique"],
+    "notes": "Add -que. Huge number of words."
+  },
+  {
+    "englishEnding": "-ism",
+    "frenchEnding": "-isme",
+    "examples": ["tourism\u2192tourisme", "capitalism\u2192capitalisme", "optimism\u2192optimisme"],
+    "notes": "Add -e. Always masculine."
+  },
+  {
+    "englishEnding": "-ist",
+    "frenchEnding": "-iste",
+    "examples": ["artist\u2192artiste", "tourist\u2192touriste", "dentist\u2192dentiste"],
+    "notes": "Add -e. Same for masc & fem."
+  },
+  {
+    "englishEnding": "-ly",
+    "frenchEnding": "-ment",
+    "examples": ["normally\u2192normalement", "exactly\u2192exactement", "rapidly\u2192rapidement"],
+    "notes": "English adverbs ending -ly = French -ment."
+  },
+  {
+    "englishEnding": "-ive",
+    "frenchEnding": "-if / -ive",
+    "examples": ["active\u2192actif/active", "positive\u2192positif/positive"],
+    "notes": "-if (masc), -ive (fem)."
+  },
+  {
+    "englishEnding": "-ure",
+    "frenchEnding": "-ure",
+    "examples": ["nature", "culture", "structure", "adventure", "temperature"],
+    "notes": "Same spelling. Always feminine."
+  },
+  {
+    "englishEnding": "-age",
+    "frenchEnding": "-age",
+    "examples": ["garage", "message", "village", "image", "voyage"],
+    "notes": "Same spelling. Usually masculine."
+  }
+]
