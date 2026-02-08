@@ -115,6 +115,22 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
     });
   }
 
+  /// Compute the next review interval (in days) for the current card at a
+  /// given quality rating, using the SM-2 algorithm.
+  String _intervalLabel(int quality) {
+    final word = _sessionWords[_currentIndex];
+    final cardId = 'vocab_${word.french}';
+    final progress = ref.read(progressProvider);
+    final card = progress.flashcards[cardId] ?? CardProgress.initial(cardId);
+    final result = SpacedRepetition.review(card, quality);
+    final days = result.interval;
+    if (days < 1) return '<1m';
+    if (days == 1) return '1d';
+    if (days < 7) return '${days}d';
+    if (days < 30) return '${(days / 7).round()}w';
+    return '${(days / 30).round()}mo';
+  }
+
   void _rateCard(int quality) {
     final word = _sessionWords[_currentIndex];
     final cardId = 'vocab_${word.french}';
@@ -560,31 +576,31 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
           Row(
             children: [
               _RatingButton(
-                label: 'Again',
-                subtitle: '<1m',
-                color: AppColors.red,
-                onTap: () => _rateCard(0),
-              ),
-              const SizedBox(width: 8),
-              _RatingButton(
-                label: 'Hard',
-                subtitle: '~6m',
-                color: AppColors.warning,
-                onTap: () => _rateCard(3),
+                label: 'Easy',
+                subtitle: _intervalLabel(5),
+                color: AppColors.info,
+                onTap: () => _rateCard(5),
               ),
               const SizedBox(width: 8),
               _RatingButton(
                 label: 'Good',
-                subtitle: '~10m',
+                subtitle: _intervalLabel(4),
                 color: AppColors.success,
                 onTap: () => _rateCard(4),
               ),
               const SizedBox(width: 8),
               _RatingButton(
-                label: 'Easy',
-                subtitle: '4d',
-                color: AppColors.info,
-                onTap: () => _rateCard(5),
+                label: 'Hard',
+                subtitle: _intervalLabel(3),
+                color: AppColors.warning,
+                onTap: () => _rateCard(3),
+              ),
+              const SizedBox(width: 8),
+              _RatingButton(
+                label: 'Again',
+                subtitle: _intervalLabel(0),
+                color: AppColors.red,
+                onTap: () => _rateCard(0),
               ),
             ],
           ),
@@ -757,14 +773,9 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           _BreakdownLegend(
-                            color: AppColors.red,
-                            label: 'Again',
-                            count: againCount,
-                          ),
-                          _BreakdownLegend(
-                            color: AppColors.warning,
-                            label: 'Hard',
-                            count: hardCount,
+                            color: AppColors.info,
+                            label: 'Easy',
+                            count: easyCount,
                           ),
                           _BreakdownLegend(
                             color: AppColors.success,
@@ -772,9 +783,14 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
                             count: goodCount,
                           ),
                           _BreakdownLegend(
-                            color: AppColors.info,
-                            label: 'Easy',
-                            count: easyCount,
+                            color: AppColors.warning,
+                            label: 'Hard',
+                            count: hardCount,
+                          ),
+                          _BreakdownLegend(
+                            color: AppColors.red,
+                            label: 'Again',
+                            count: againCount,
                           ),
                         ],
                       ),
@@ -1032,25 +1048,25 @@ class _BreakdownBar extends StatelessWidget {
         height: 12,
         child: Row(
           children: [
-            if (againCount > 0)
+            if (easyCount > 0)
               Flexible(
-                flex: againCount,
-                child: Container(color: AppColors.red),
-              ),
-            if (hardCount > 0)
-              Flexible(
-                flex: hardCount,
-                child: Container(color: AppColors.warning),
+                flex: easyCount,
+                child: Container(color: AppColors.info),
               ),
             if (goodCount > 0)
               Flexible(
                 flex: goodCount,
                 child: Container(color: AppColors.success),
               ),
-            if (easyCount > 0)
+            if (hardCount > 0)
               Flexible(
-                flex: easyCount,
-                child: Container(color: AppColors.info),
+                flex: hardCount,
+                child: Container(color: AppColors.warning),
+              ),
+            if (againCount > 0)
+              Flexible(
+                flex: againCount,
+                child: Container(color: AppColors.red),
               ),
           ],
         ),
