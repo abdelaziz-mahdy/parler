@@ -9,6 +9,7 @@ import '../../models/vocabulary_word.dart';
 import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/error_view.dart';
 
@@ -134,102 +135,107 @@ class _WordsCategoryBrowser extends StatelessWidget {
         .where((c) => wordsPerCategory.containsKey(c.key))
         .toList();
 
-    return CustomScrollView(
-      slivers: [
-        // -- Header --
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Words',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: context.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Build your vocabulary',
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    color: context.textSecondary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+    final hPad = context.horizontalPadding;
+    final columns = context.gridColumns;
 
-        // -- Stats bar --
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
-            child: _VocabStatsBar(
-              totalWords: allWords.length,
-              totalCategories: activeCategories.length,
-              learnedCount: progress.flashcards.entries
-                  .where(
-                    (e) =>
-                        e.key.startsWith('vocab_') && e.value.repetitions > 0,
-                  )
-                  .length,
-            ),
-          ),
-        ),
-
-        // -- Review Due card (conditionally shown) --
-        if (dueCount > 0)
+    return ContentConstraint(
+      child: CustomScrollView(
+        slivers: [
+          // -- Header --
           SliverToBoxAdapter(
-            child: _ReviewDueCard(
-              dueCount: dueCount,
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.08),
-          ),
-
-        // -- Section label --
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
-            child: Text(
-              'CATEGORIES',
-              style: GoogleFonts.inter(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.2,
-                color: context.textLight,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(hPad, 20, hPad, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Words',
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                      color: context.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Build your vocabulary',
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      color: context.textSecondary,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-        ),
 
-        // -- Category grid --
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 4,
-              childAspectRatio: 0.92,
+          // -- Stats bar --
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(hPad, 4, hPad, 8),
+              child: _VocabStatsBar(
+                totalWords: allWords.length,
+                totalCategories: activeCategories.length,
+                learnedCount: progress.flashcards.entries
+                    .where(
+                      (e) =>
+                          e.key.startsWith('vocab_') && e.value.repetitions > 0,
+                    )
+                    .length,
+              ),
             ),
-            delegate: SliverChildBuilderDelegate((context, index) {
-              final cat = activeCategories[index];
-              final words = wordsPerCategory[cat.key] ?? [];
-              return _CategoryCard(
-                info: cat,
-                words: words,
-                progress: progress,
-                index: index,
-              );
-            }, childCount: activeCategories.length),
           ),
-        ),
 
-        const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
-      ],
+          // -- Review Due card (conditionally shown) --
+          if (dueCount > 0)
+            SliverToBoxAdapter(
+              child: _ReviewDueCard(
+                dueCount: dueCount,
+              ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.08),
+            ),
+
+          // -- Section label --
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(hPad, 12, hPad, 8),
+              child: Text(
+                'CATEGORIES',
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.2,
+                  color: context.textLight,
+                ),
+              ),
+            ),
+          ),
+
+          // -- Category grid --
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: hPad - 4),
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: columns,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                childAspectRatio: 0.92,
+              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final cat = activeCategories[index];
+                final words = wordsPerCategory[cat.key] ?? [];
+                return _CategoryCard(
+                  info: cat,
+                  words: words,
+                  progress: progress,
+                  index: index,
+                );
+              }, childCount: activeCategories.length),
+            ),
+          ),
+
+          const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
+        ],
+      ),
     );
   }
 }

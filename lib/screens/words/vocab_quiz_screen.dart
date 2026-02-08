@@ -12,6 +12,7 @@ import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../services/spaced_repetition.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 
 /// A multiple-choice vocabulary quiz screen.
@@ -223,7 +224,9 @@ class _VocabQuizScreenState extends ConsumerState<VocabQuizScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Column(
           children: [
             // -- Top bar: close + progress bar + counter --
             Padding(
@@ -588,6 +591,7 @@ class _VocabQuizScreenState extends ConsumerState<VocabQuizScreen> {
             ),
           ],
         ),
+        ),
       ),
     );
   }
@@ -647,9 +651,11 @@ class _VocabQuizScreenState extends ConsumerState<VocabQuizScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(32),
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(32),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -821,6 +827,7 @@ class _VocabQuizScreenState extends ConsumerState<VocabQuizScreen> {
               ],
             ),
           ),
+        ),
         ),
       ),
     );

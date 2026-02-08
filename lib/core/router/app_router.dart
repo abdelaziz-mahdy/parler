@@ -11,6 +11,7 @@ import '../../screens/quiz/quiz_screen.dart';
 import '../../screens/quiz/quiz_play_screen.dart';
 import '../../screens/splash/splash_screen.dart';
 import '../constants/app_colors.dart';
+import '../constants/responsive.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -169,6 +170,13 @@ class AppShell extends StatelessWidget {
   final Widget child;
   const AppShell({super.key, required this.child});
 
+  static const _destinations = [
+    _NavDest(icon: Icons.menu_book_rounded, label: 'Lessons', path: '/lessons'),
+    _NavDest(icon: Icons.translate_rounded, label: 'Words', path: '/words'),
+    _NavDest(icon: Icons.school_rounded, label: 'TEF', path: '/tef'),
+    _NavDest(icon: Icons.quiz_rounded, label: 'Quiz', path: '/quiz'),
+  ];
+
   int _currentIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
     if (location.startsWith('/words')) return 1;
@@ -181,6 +189,56 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final index = _currentIndex(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final useRail = context.isExpanded;
+
+    if (useRail) {
+      return Scaffold(
+        body: Row(
+          children: [
+            NavigationRail(
+              selectedIndex: index,
+              onDestinationSelected: (i) =>
+                  context.go(_destinations[i].path),
+              labelType: NavigationRailLabelType.all,
+              backgroundColor:
+                  isDark ? AppColors.darkSurface : AppColors.white,
+              indicatorColor: AppColors.red.withValues(alpha: 0.12),
+              selectedIconTheme: const IconThemeData(color: AppColors.red),
+              unselectedIconTheme: IconThemeData(
+                color: isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.navInactive,
+              ),
+              selectedLabelTextStyle: TextStyle(
+                color: AppColors.red,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
+              unselectedLabelTextStyle: TextStyle(
+                color: isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.navInactive,
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+              ),
+              destinations: _destinations
+                  .map((d) => NavigationRailDestination(
+                        icon: Icon(d.icon),
+                        label: Text(d.label),
+                      ))
+                  .toList(),
+            ),
+            VerticalDivider(
+              thickness: 1,
+              width: 1,
+              color: isDark ? AppColors.darkDivider : AppColors.surfaceDark,
+            ),
+            Expanded(child: child),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       body: child,
       bottomNavigationBar: Container(
@@ -200,38 +258,29 @@ class AppShell extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Row(
-              children: [
-                _NavItem(
-                  icon: Icons.menu_book_rounded,
-                  label: 'Lessons',
-                  isActive: index == 0,
-                  onTap: () => context.go('/lessons'),
-                ),
-                _NavItem(
-                  icon: Icons.translate_rounded,
-                  label: 'Words',
-                  isActive: index == 1,
-                  onTap: () => context.go('/words'),
-                ),
-                _NavItem(
-                  icon: Icons.school_rounded,
-                  label: 'TEF',
-                  isActive: index == 2,
-                  onTap: () => context.go('/tef'),
-                ),
-                _NavItem(
-                  icon: Icons.quiz_rounded,
-                  label: 'Quiz',
-                  isActive: index == 3,
-                  onTap: () => context.go('/quiz'),
-                ),
-              ],
+              children: _destinations
+                  .asMap()
+                  .entries
+                  .map((e) => _NavItem(
+                        icon: e.value.icon,
+                        label: e.value.label,
+                        isActive: index == e.key,
+                        onTap: () => context.go(e.value.path),
+                      ))
+                  .toList(),
             ),
           ),
         ),
       ),
     );
   }
+}
+
+class _NavDest {
+  final IconData icon;
+  final String label;
+  final String path;
+  const _NavDest({required this.icon, required this.label, required this.path});
 }
 
 class _NavItem extends StatelessWidget {

@@ -9,6 +9,7 @@ import '../../models/tef_test.dart';
 import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/error_view.dart';
 
@@ -35,11 +36,13 @@ class TefScreen extends ConsumerWidget {
               }
             }
 
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 16),
+            final hPad = context.horizontalPadding;
+            return ContentConstraint(
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(hPad, 20, hPad, 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -83,7 +86,7 @@ class TefScreen extends ConsumerWidget {
                   if (completed.isNotEmpty) ...[
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
+                        padding: EdgeInsets.fromLTRB(hPad, 24, hPad, 12),
                         child: Row(
                           children: [
                             Icon(
@@ -139,8 +142,9 @@ class TefScreen extends ConsumerWidget {
                     ),
                   ],
                 ],
-                const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
-              ],
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
+                ],
+              ),
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),

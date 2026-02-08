@@ -7,6 +7,7 @@ import '../../core/constants/adaptive_colors.dart';
 import '../../core/constants/app_colors.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 
 class QuizPlayScreen extends ConsumerStatefulWidget {
@@ -77,12 +78,14 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            // Top bar
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Column(
+            children: [
+              // Top bar
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
                   IconButton(
@@ -367,6 +370,7 @@ class _QuizPlayScreenState extends ConsumerState<QuizPlayScreen> {
             }),
           ],
         ),
+        ),
       ),
     );
   }
@@ -405,38 +409,40 @@ class _QuizResultsView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: (passed ? AppColors.success : AppColors.warning)
-                        .withValues(alpha: 0.12),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    passed
-                        ? Icons.celebration_rounded
-                        : Icons.refresh_rounded,
-                    color: passed ? AppColors.success : AppColors.warning,
-                    size: 48,
-                  ),
-                )
-                    .animate()
-                    .scale(
-                      begin: const Offset(0.5, 0.5),
-                      end: const Offset(1.0, 1.0),
-                      duration: 500.ms,
-                      curve: Curves.elasticOut,
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: (passed ? AppColors.success : AppColors.warning)
+                          .withValues(alpha: 0.12),
+                      shape: BoxShape.circle,
                     ),
-                const SizedBox(height: 28),
-                Text(
-                  passed ? 'Excellent!' : 'Keep Practicing!',
+                    child: Icon(
+                      passed
+                          ? Icons.celebration_rounded
+                          : Icons.refresh_rounded,
+                      color: passed ? AppColors.success : AppColors.warning,
+                      size: 48,
+                    ),
+                  )
+                      .animate()
+                      .scale(
+                        begin: const Offset(0.5, 0.5),
+                        end: const Offset(1.0, 1.0),
+                        duration: 500.ms,
+                        curve: Curves.elasticOut,
+                      ),
+                  const SizedBox(height: 28),
+                  Text(
+                    passed ? 'Excellent!' : 'Keep Practicing!',
                   style: GoogleFonts.playfairDisplay(
                     fontSize: 28,
                     fontWeight: FontWeight.w700,
@@ -477,8 +483,9 @@ class _QuizResultsView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ).animate().fadeIn(delay: 500.ms),
-              ],
+                  ).animate().fadeIn(delay: 500.ms),
+                ],
+              ),
             ),
           ),
         ),

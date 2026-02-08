@@ -13,6 +13,7 @@ import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../providers/theme_provider.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/error_view.dart';
 
@@ -46,12 +47,14 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
               }
             }
 
-            return CustomScrollView(
-              slivers: [
-                // -- Header --
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 16),
+            final hPad = context.horizontalPadding;
+            return ContentConstraint(
+              child: CustomScrollView(
+                slivers: [
+                  // -- Header --
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(hPad, 20, hPad, 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -169,7 +172,7 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
                 if (completed.isNotEmpty) ...[
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
+                      padding: EdgeInsets.fromLTRB(hPad, 24, hPad, 12),
                       child: Row(
                         children: [
                           Icon(Icons.check_circle_rounded,
@@ -216,8 +219,9 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
                     ),
                   ),
                 ],
-                const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
-              ],
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
+                ],
+              ),
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),

@@ -11,6 +11,7 @@ import '../../models/tef_test.dart';
 import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 
 class TefPlayScreen extends ConsumerStatefulWidget {
@@ -285,7 +286,9 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Column(
           children: [
             // ---- Top bar: close, progress bar, timer ----
             Padding(
@@ -668,6 +671,7 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
             ),
           ],
         ),
+        ),
       ),
     );
   }
@@ -714,31 +718,33 @@ class _TefResultsView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Result icon
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: (passed ? AppColors.success : AppColors.warning)
-                        .withValues(alpha: 0.12),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    passed
-                        ? Icons.celebration_rounded
-                        : Icons.refresh_rounded,
-                    color: passed ? AppColors.success : AppColors.warning,
-                    size: 48,
-                  ),
-                )
-                    .animate()
-                    .scale(
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Result icon
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: (passed ? AppColors.success : AppColors.warning)
+                          .withValues(alpha: 0.12),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      passed
+                          ? Icons.celebration_rounded
+                          : Icons.refresh_rounded,
+                      color: passed ? AppColors.success : AppColors.warning,
+                      size: 48,
+                    ),
+                  )
+                      .animate()
+                      .scale(
                       begin: const Offset(0.5, 0.5),
                       end: const Offset(1.0, 1.0),
                       duration: 500.ms,
@@ -809,8 +815,9 @@ class _TefResultsView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ).animate().fadeIn(delay: 500.ms),
-              ],
+                  ).animate().fadeIn(delay: 500.ms),
+                ],
+              ),
             ),
           ),
         ),

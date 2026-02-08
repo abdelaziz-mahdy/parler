@@ -10,6 +10,7 @@ import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../services/spaced_repetition.dart';
+import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/speaker_button.dart';
 
@@ -204,42 +205,45 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildTopBar(context),
-            Expanded(
-              child: GestureDetector(
-                onTap: _isFlipped ? null : _flipCard,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 16,
-                  ),
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    transitionBuilder: (child, animation) {
-                      return FadeTransition(opacity: animation, child: child);
-                    },
-                    child: _isFlipped
-                        ? _buildCardBack(context, word)
-                        : _buildCardFront(context, word),
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Column(
+            children: [
+              _buildTopBar(context),
+              Expanded(
+                child: GestureDetector(
+                  onTap: _isFlipped ? null : _flipCard,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 16,
+                    ),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder: (child, animation) {
+                        return FadeTransition(opacity: animation, child: child);
+                      },
+                      child: _isFlipped
+                          ? _buildCardBack(context, word)
+                          : _buildCardFront(context, word),
+                    ),
                   ),
                 ),
               ),
-            ),
-            if (_isFlipped) _buildRatingButtons(context),
-            if (!_isFlipped)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                child: Text(
-                  'Tap the card to reveal',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    color: context.textLight,
+              if (_isFlipped) _buildRatingButtons(context),
+              if (!_isFlipped)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: Text(
+                    'Tap the card to reveal',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      color: context.textLight,
+                    ),
                   ),
-                ),
-              ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
-          ],
+                ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
+            ],
+          ),
         ),
       ),
     );
@@ -644,53 +648,55 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: AppColors.success.withValues(alpha: 0.12),
-                    shape: BoxShape.circle,
+        child: ContentConstraint(
+          maxWidth: 800,
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: AppColors.success.withValues(alpha: 0.12),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.celebration_rounded,
+                      color: AppColors.success,
+                      size: 48,
+                    ),
+                  ).animate().scale(
+                    begin: const Offset(0.5, 0.5),
+                    end: const Offset(1.0, 1.0),
+                    duration: 500.ms,
+                    curve: Curves.elasticOut,
                   ),
-                  child: const Icon(
-                    Icons.celebration_rounded,
-                    color: AppColors.success,
-                    size: 48,
-                  ),
-                ).animate().scale(
-                  begin: const Offset(0.5, 0.5),
-                  end: const Offset(1.0, 1.0),
-                  duration: 500.ms,
-                  curve: Curves.elasticOut,
-                ),
-                const SizedBox(height: 28),
-                Text(
-                  'Session Complete!',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w700,
-                    color: context.textPrimary,
-                  ),
-                ).animate().fadeIn(delay: 200.ms),
-                const SizedBox(height: 8),
-                Text(
-                  _isReviewMode
-                      ? 'Spaced Repetition Review'
-                      : _categoryDisplayName(widget.category),
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    color: context.textSecondary,
-                  ),
-                ).animate().fadeIn(delay: 250.ms),
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
+                  Text(
+                    'Session Complete!',
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      color: context.textPrimary,
+                    ),
+                  ).animate().fadeIn(delay: 200.ms),
+                  const SizedBox(height: 8),
+                  Text(
+                    _isReviewMode
+                        ? 'Spaced Repetition Review'
+                        : _categoryDisplayName(widget.category),
+                    style: GoogleFonts.inter(
+                      fontSize: 16,
+                      color: context.textSecondary,
+                    ),
+                  ).animate().fadeIn(delay: 250.ms),
+                  const SizedBox(height: 28),
 
-                // Stats grid
-                Container(
+                  // Stats grid
+                  Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
@@ -847,6 +853,7 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
               ],
             ),
           ),
+        ),
         ),
       ),
     );
