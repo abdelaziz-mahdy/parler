@@ -32,7 +32,7 @@ jobs:
     steps:
       # ---------- Checkout ----------
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # ---------- Flutter Setup ----------
       - name: Set up Flutter
@@ -46,7 +46,7 @@ jobs:
       # ---------- Dependency Cache ----------
       # Cache pub dependencies separately for finer control
       - name: Cache pub dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pub-cache
@@ -80,7 +80,7 @@ jobs:
       # Uploads the coverage report as an artifact for later review
       - name: Upload coverage report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-report
           path: coverage/
