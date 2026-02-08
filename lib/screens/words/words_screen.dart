@@ -248,7 +248,7 @@ class _WordsCategoryBrowser extends StatelessWidget {
                 crossAxisCount: columns,
                 mainAxisSpacing: 4,
                 crossAxisSpacing: 4,
-                childAspectRatio: 0.92,
+                childAspectRatio: context.isCompact ? 0.92 : 1.2,
               ),
               delegate: SliverChildBuilderDelegate((context, index) {
                 final cat = activeCategories[index];

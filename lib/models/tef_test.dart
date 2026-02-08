@@ -90,6 +90,7 @@ class TefQuestion {
   final String question;
   final String? questionEnglish;
   final List<String> options;
+  final List<String>? optionsEnglish;
   final int correctIndex;
   final String explanation;
 
@@ -98,6 +99,7 @@ class TefQuestion {
     required this.question,
     this.questionEnglish,
     required this.options,
+    this.optionsEnglish,
     required this.correctIndex,
     required this.explanation,
   });
@@ -107,6 +109,9 @@ class TefQuestion {
         question: json['question'] as String,
         questionEnglish: json['questionEnglish'] as String?,
         options: (json['options'] as List).map((e) => e as String).toList(),
+        optionsEnglish: (json['optionsEnglish'] as List?)
+            ?.map((e) => e as String)
+            .toList(),
         correctIndex: json['correctIndex'] as int,
         explanation: json['explanation'] as String,
       );
@@ -116,6 +121,7 @@ class TefQuestion {
         'question': question,
         if (questionEnglish != null) 'questionEnglish': questionEnglish,
         'options': options,
+        if (optionsEnglish != null) 'optionsEnglish': optionsEnglish,
         'correctIndex': correctIndex,
         'explanation': explanation,
       };

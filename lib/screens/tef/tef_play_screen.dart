@@ -276,6 +276,24 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
     );
   }
 
+  Widget _langLabel(BuildContext context, String label, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 10,
+          fontWeight: FontWeight.w700,
+          color: color,
+        ),
+      ),
+    );
+  }
+
   // ---------------------------------------------------------------------------
   // Question view
   // ---------------------------------------------------------------------------
@@ -299,33 +317,28 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                 children: [
                   IconButton(
                     onPressed: () async {
-                      if (_currentIndex > 0 || _answers.isNotEmpty) {
-                        final leave = await showDialog<bool>(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text('Leave test?'),
-                            content: const Text(
-                              'Your progress will be lost.',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.of(ctx).pop(false),
-                                child: const Text('Stay'),
-                              ),
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.of(ctx).pop(true),
-                                child: const Text('Leave'),
-                              ),
-                            ],
+                      final leave = await showDialog<bool>(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: const Text('Leave test?'),
+                          content: const Text(
+                            'Your progress will be lost.',
                           ),
-                        );
-                        if (leave == true && context.mounted) {
-                          _timer?.cancel();
-                          context.pop();
-                        }
-                      } else {
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.of(ctx).pop(false),
+                              child: const Text('Stay'),
+                            ),
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.of(ctx).pop(true),
+                              child: const Text('Leave'),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (leave == true && context.mounted) {
                         _timer?.cancel();
                         context.pop();
                       }
@@ -487,58 +500,106 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          fq.passage.content,
-                          style: GoogleFonts.inter(
-                            fontSize: 14,
-                            color: context.textPrimary,
-                            height: 1.6,
-                          ),
-                        ),
                         if (_showEnglish &&
-                            fq.passage.contentEnglish != null) ...[
-                          const SizedBox(height: 10),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color:
-                                  AppColors.info.withValues(alpha: 0.06),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color:
-                                    AppColors.info.withValues(alpha: 0.2),
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            fq.passage.contentEnglish != null &&
+                            !context.isCompact)
+                          // Side-by-side on tablet/desktop
+                          IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.stretch,
                               children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.translate_rounded,
-                                        size: 12, color: AppColors.info),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      'English',
-                                      style: GoogleFonts.inter(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.info,
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      _langLabel(context, 'FR',
+                                          AppColors.red),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        fq.passage.content,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          color: context.textPrimary,
+                                          height: 1.6,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  fq.passage.contentEnglish!,
-                                  style: GoogleFonts.inter(
-                                    fontSize: 13,
-                                    color: context.textSecondary,
-                                    height: 1.5,
+                                Container(
+                                  width: 1,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 12),
+                                  color: context.dividerColor,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      _langLabel(context, 'EN',
+                                          AppColors.info),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        fq.passage.contentEnglish!,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          color: context.textSecondary,
+                                          height: 1.6,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
+                          )
+                        else ...[
+                          Text(
+                            fq.passage.content,
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              color: context.textPrimary,
+                              height: 1.6,
+                            ),
                           ),
+                          if (_showEnglish &&
+                              fq.passage.contentEnglish != null) ...[
+                            const SizedBox(height: 10),
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: AppColors.info
+                                    .withValues(alpha: 0.06),
+                                borderRadius:
+                                    BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: AppColors.info
+                                      .withValues(alpha: 0.2),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: [
+                                  _langLabel(
+                                      context, 'EN', AppColors.info),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    fq.passage.contentEnglish!,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 13,
+                                      color: context.textSecondary,
+                                      height: 1.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ],
                         if (fq.passage.source != null) ...[
                           const SizedBox(height: 8),
@@ -557,27 +618,61 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                   const SizedBox(height: 20),
 
                   // Question text
-                  Text(
-                    fq.question.question,
-                    style: GoogleFonts.inter(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w700,
-                      color: context.textPrimary,
-                      height: 1.4,
-                    ),
-                  ).animate().fadeIn(duration: 300.ms),
                   if (_showEnglish &&
-                      fq.question.questionEnglish != null) ...[
-                    const SizedBox(height: 6),
+                      fq.question.questionEnglish != null &&
+                      !context.isCompact)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            fq.question.question,
+                            style: GoogleFonts.inter(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700,
+                              color: context.textPrimary,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Text(
+                            fq.question.questionEnglish!,
+                            style: GoogleFonts.inter(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.info,
+                              fontStyle: FontStyle.italic,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ).animate().fadeIn(duration: 300.ms)
+                  else ...[
                     Text(
-                      fq.question.questionEnglish!,
+                      fq.question.question,
                       style: GoogleFonts.inter(
-                        fontSize: 14,
-                        color: AppColors.info,
-                        fontStyle: FontStyle.italic,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: context.textPrimary,
                         height: 1.4,
                       ),
-                    ),
+                    ).animate().fadeIn(duration: 300.ms),
+                    if (_showEnglish &&
+                        fq.question.questionEnglish != null) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        fq.question.questionEnglish!,
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          color: AppColors.info,
+                          fontStyle: FontStyle.italic,
+                          height: 1.4,
+                        ),
+                      ),
+                    ],
                   ],
                   const SizedBox(height: 20),
 
@@ -670,13 +765,37 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                                 ),
                                 const SizedBox(width: 14),
                                 Expanded(
-                                  child: Text(
-                                    option,
-                                    style: GoogleFonts.inter(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: textColor,
-                                    ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        option,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                          color: textColor,
+                                        ),
+                                      ),
+                                      if (_showEnglish &&
+                                          fq.question.optionsEnglish !=
+                                              null &&
+                                          i <
+                                              fq.question.optionsEnglish!
+                                                  .length) ...[
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          fq.question
+                                              .optionsEnglish![i],
+                                          style: GoogleFonts.inter(
+                                            fontSize: 12,
+                                            color: AppColors.info,
+                                            fontStyle:
+                                                FontStyle.italic,
+                                          ),
+                                        ),
+                                      ],
+                                    ],
                                   ),
                                 ),
                               ],
