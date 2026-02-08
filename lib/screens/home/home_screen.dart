@@ -10,9 +10,10 @@ import '../../core/constants/icon_map.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../providers/theme_provider.dart';
+import '../../models/chapter.dart';
+import '../../models/progress.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/progress_ring.dart';
-import '../../widgets/stat_badge.dart';
 import '../../widgets/error_view.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -25,278 +26,270 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: chaptersAsync.when(
+          data: (chapters) {
+            final inProgress = <Chapter>[];
+            final completed = <Chapter>[];
+            for (final chapter in chapters) {
+              final cp = progress.chapters[chapter.id];
+              if (cp != null && cp.completionPercent >= 100) {
+                completed.add(chapter);
+              } else {
+                inProgress.add(chapter);
+              }
+            }
+
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              AppStrings.greeting,
-                              style: GoogleFonts.playfairDisplay(
-                                fontSize: 32,
-                                fontWeight: FontWeight.w700,
-                                color: context.textPrimary,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              AppStrings.greetingSubtitle,
-                              style: GoogleFonts.inter(
-                                fontSize: 15,
-                                color: context.textSecondary,
-                              ),
-                            ),
-                          ],
-                        ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () => ref
-                                  .read(themeModeProvider.notifier)
-                                  .toggle(),
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? AppColors.darkCard
-                                      : AppColors.surfaceLight,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Icons.light_mode_rounded
-                                      : Icons.dark_mode_rounded,
-                                  size: 20,
-                                  color: AppColors.gold,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color:
-                                    AppColors.gold.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Row(
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Icon(
-                                    Icons.local_fire_department_rounded,
-                                    color: AppColors.gold,
-                                    size: 20,
-                                  ),
-                                  const SizedBox(width: 4),
                                   Text(
-                                    '${progress.currentStreak}',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 16,
+                                    AppStrings.greeting,
+                                    style: GoogleFonts.playfairDisplay(
+                                      fontSize: 32,
                                       fontWeight: FontWeight.w700,
-                                      color: AppColors.goldDark,
+                                      color: context.textPrimary,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    AppStrings.greetingSubtitle,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 15,
+                                      color: context.textSecondary,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1),
-                    const SizedBox(height: 24),
-                    // Stats row
-                    Row(
-                      children: [
-                        Expanded(
-                          child: StatBadge(
-                            value: '${progress.currentStreak}',
-                            label: 'Day Streak',
-                            icon: Icons.local_fire_department_rounded,
-                            color: AppColors.gold,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: StatBadge(
-                            value: '${progress.totalXp}',
-                            label: 'Total XP',
-                            icon: Icons.star_rounded,
-                            color: AppColors.red,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: StatBadge(
-                            value: '${progress.chapters.length}',
-                            label: 'Chapters',
-                            icon: Icons.check_circle_rounded,
-                            color: AppColors.success,
-                          ),
-                        ),
-                      ],
-                    )
-                        .animate()
-                        .fadeIn(delay: 200.ms, duration: 400.ms)
-                        .slideY(begin: 0.2),
-                    const SizedBox(height: 28),
-                    if (progress.totalXp == 0 && progress.chapters.isEmpty)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: FrenchCard(
-                          margin: EdgeInsets.zero,
-                          color: context.creamColor,
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: AppColors.red.withValues(alpha: 0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.flag_rounded,
-                                  color: AppColors.red,
-                                  size: 24,
-                                ),
-                              ),
-                              const SizedBox(width: 14),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Start your first lesson!',
-                                      style: GoogleFonts.inter(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: context.textPrimary,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      'Pick a chapter below to begin.',
-                                      style: GoogleFonts.inter(
-                                        fontSize: 13,
-                                        color: context.textSecondary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    Text(
-                      AppStrings.continueLesson,
-                      style: GoogleFonts.inter(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: context.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                  ],
-                ),
-              ),
-            ),
-            chaptersAsync.when(
-              data: (chapters) => SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final chapter = chapters[index];
-                    final chapterProgress =
-                        progress.chapters[chapter.id];
-                    final pct =
-                        chapterProgress?.completionPercent ?? 0.0;
-                    return FrenchCard(
-                      onTap: () => context.push('/lesson/${chapter.id}'),
-                      child: Row(
-                        children: [
-                          ProgressRing(
-                            progress: pct / 100,
-                            size: 52,
-                            strokeWidth: 4,
-                            color: pct >= 100
-                                ? AppColors.success
-                                : AppColors.red,
-                            child: Icon(
-                              chapterIconFromString(chapter.icon),
-                              size: 22,
-                              color: pct >= 100
-                                  ? AppColors.success
-                                  : AppColors.navy,
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                            Row(
                               children: [
-                                Text(
-                                  chapter.title,
-                                  style: GoogleFonts.inter(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: context.textPrimary,
+                                GestureDetector(
+                                  onTap: () => ref
+                                      .read(themeModeProvider.notifier)
+                                      .toggle(),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: context.isDark
+                                          ? AppColors.darkCard
+                                          : AppColors.surfaceLight,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      context.isDark
+                                          ? Icons.light_mode_rounded
+                                          : Icons.dark_mode_rounded,
+                                      size: 20,
+                                      color: AppColors.gold,
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  chapter.description,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.inter(
-                                    fontSize: 13,
-                                    color: context.textSecondary,
+                                const SizedBox(width: 8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        AppColors.gold.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.local_fire_department_rounded,
+                                        color: AppColors.gold,
+                                        size: 20,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        '${progress.currentStreak}',
+                                        style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.goldDark,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
+                          ],
+                        )
+                            .animate()
+                            .fadeIn(duration: 400.ms)
+                            .slideX(begin: -0.1),
+                        const SizedBox(height: 24),
+                        Text(
+                          AppStrings.continueLesson,
+                          style: GoogleFonts.inter(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: context.textPrimary,
                           ),
-                          Icon(
-                            Icons.chevron_right_rounded,
-                            color: context.textLight,
+                        ),
+                        const SizedBox(height: 12),
+                      ],
+                    ),
+                  ),
+                ),
+                // In-progress chapters
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => _ChapterTile(
+                      chapter: inProgress[index],
+                      progress: progress.chapters[inProgress[index].id],
+                      index: index,
+                    ),
+                    childCount: inProgress.length,
+                  ),
+                ),
+                // Completed section
+                if (completed.isNotEmpty) ...[
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
+                      child: Row(
+                        children: [
+                          Icon(Icons.check_circle_rounded,
+                              size: 20, color: AppColors.success),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Completed',
+                            style: GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.success,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2),
+                            decoration: BoxDecoration(
+                              color:
+                                  AppColors.success.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              '${completed.length}',
+                              style: GoogleFonts.inter(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.success,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                    )
-                        .animate()
-                        .fadeIn(
-                          delay: (100 * (index < 5 ? index : 5)).ms,
-                          duration: 400.ms,
-                        )
-                        .slideX(begin: 0.1);
-                  },
-                  childCount: chapters.length,
-                ),
-              ),
-              loading: () => const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
-              ),
-              error: (e, _) => SliverErrorView(
-                onRetry: () => ref.invalidate(chaptersProvider),
-              ),
-            ),
-            const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
-          ],
+                    ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => _ChapterTile(
+                        chapter: completed[index],
+                        progress: progress.chapters[completed[index].id],
+                        index: index,
+                      ),
+                      childCount: completed.length,
+                    ),
+                  ),
+                ],
+                const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
+              ],
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (e, _) => ErrorView(
+            onRetry: () => ref.invalidate(chaptersProvider),
+          ),
         ),
       ),
     );
+  }
+}
+
+class _ChapterTile extends StatelessWidget {
+  final Chapter chapter;
+  final ChapterProgress? progress;
+  final int index;
+
+  const _ChapterTile({
+    required this.chapter,
+    this.progress,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final pct = progress?.completionPercent ?? 0.0;
+    return FrenchCard(
+      onTap: () => context.push('/lesson/${chapter.id}'),
+      child: Row(
+        children: [
+          ProgressRing(
+            progress: pct / 100,
+            size: 52,
+            strokeWidth: 4,
+            color: pct >= 100 ? AppColors.success : AppColors.red,
+            child: Icon(
+              chapterIconFromString(chapter.icon),
+              size: 22,
+              color: pct >= 100 ? AppColors.success : AppColors.navy,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  chapter.title,
+                  style: GoogleFonts.inter(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: context.textPrimary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  chapter.description,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    color: context.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.chevron_right_rounded,
+            color: context.textLight,
+          ),
+        ],
+      ),
+    )
+        .animate()
+        .fadeIn(
+          delay: (100 * (index < 5 ? index : 5)).ms,
+          duration: 400.ms,
+        )
+        .slideX(begin: 0.1);
   }
 }

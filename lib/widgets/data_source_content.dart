@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../core/constants/adaptive_colors.dart';
 import '../core/constants/app_colors.dart';
 import '../models/models.dart';
 import '../providers/data_provider.dart';
@@ -35,17 +36,19 @@ class DataSourceContent extends ConsumerWidget {
       case 'verbs.json':
         return _verbsView(ref, key!);
       case 'grammar.json':
-        return _grammarView(ref, key!);
+        return _grammarView(context, ref, key!);
       case 'numbers.json':
-        return _wrap(ref.watch(numbersProvider), _numbersView);
+        return _wrap(ref.watch(numbersProvider),
+            (numbers) => _numbersView(context, numbers));
       case 'false_friends.json':
-        return _wrap(ref.watch(falseFriendsProvider), _falseFriendsView);
+        return _wrap(ref.watch(falseFriendsProvider),
+            (friends) => _falseFriendsView(context, friends));
       case 'liaison_rules.json':
         return _wrap(ref.watch(liaisonRulesProvider),
-            (rules) => _liaisonView(rules, key!));
+            (rules) => _liaisonView(context, rules, key!));
       case 'phrases.json':
         return _wrap(ref.watch(phrasesProvider),
-            (phrases) => _phrasesView(phrases, key!));
+            (phrases) => _phrasesView(context, phrases, key!));
       default:
         return const SizedBox.shrink();
     }
@@ -78,54 +81,43 @@ class DataSourceContent extends ConsumerWidget {
   }
 
   Widget _suffixCard(SuffixPattern p) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: FrenchCard(
-        margin: EdgeInsets.zero,
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                _badge(p.englishEnding, AppColors.navy),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: Icon(Icons.arrow_forward_rounded,
-                      size: 16, color: AppColors.textLight),
-                ),
-                _badge(p.frenchEnding, AppColors.red),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: p.examples
-                  .map((e) => Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: AppColors.cream,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Text(e,
-                            style: GoogleFonts.inter(
-                                fontSize: 12,
-                                color: AppColors.textPrimary)),
-                      ))
-                  .toList(),
-            ),
-            const SizedBox(height: 6),
-            Text(p.notes,
-                style: GoogleFonts.inter(
-                    fontSize: 12,
-                    color: AppColors.textSecondary,
-                    fontStyle: FontStyle.italic)),
-          ],
+    return Builder(builder: (context) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: FrenchCard(
+          margin: EdgeInsets.zero,
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  _badge(p.englishEnding, AppColors.navy),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Icon(Icons.arrow_forward_rounded,
+                        size: 16, color: context.textLight),
+                  ),
+                  _badge(p.frenchEnding, AppColors.red),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 6,
+                runSpacing: 4,
+                children: p.examples.map(_exampleChip).toList(),
+              ),
+              const SizedBox(height: 6),
+              Text(p.notes,
+                  style: GoogleFonts.inter(
+                      fontSize: 12,
+                      color: context.textSecondary,
+                      fontStyle: FontStyle.italic)),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   // ═══════════════════════════════════════════════════════════════
@@ -171,42 +163,45 @@ class DataSourceContent extends ConsumerWidget {
   }
 
   Widget _goldenRuleCard(int num, String rule) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: FrenchCard(
-        margin: EdgeInsets.zero,
-        color: AppColors.navy.withValues(alpha: 0.04),
-        border: Border.all(color: AppColors.navy.withValues(alpha: 0.15)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 28,
-              height: 28,
-              decoration: const BoxDecoration(
-                  color: AppColors.navy, shape: BoxShape.circle),
-              alignment: Alignment.center,
-              child: Text('$num',
-                  style: GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white)),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(rule,
-                  style: GoogleFonts.inter(
-                      fontSize: 14,
-                      color: AppColors.textPrimary,
-                      height: 1.5)),
-            ),
-          ],
+    return Builder(builder: (context) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: FrenchCard(
+          margin: EdgeInsets.zero,
+          color: AppColors.navy.withValues(alpha: 0.04),
+          border: Border.all(color: AppColors.navy.withValues(alpha: 0.15)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 28,
+                height: 28,
+                decoration: const BoxDecoration(
+                    color: AppColors.navy, shape: BoxShape.circle),
+                alignment: Alignment.center,
+                child: Text('$num',
+                    style: GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(rule,
+                    style: GoogleFonts.inter(
+                        fontSize: 14,
+                        color: context.textPrimary,
+                        height: 1.5)),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _vowelSoundCard(VowelSound s) {
+    return Builder(builder: (context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: FrenchCard(
@@ -224,7 +219,7 @@ class DataSourceContent extends ConsumerWidget {
                       style: GoogleFonts.inter(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.textPrimary)),
+                          color: context.textPrimary)),
                 ),
               ],
             ),
@@ -255,9 +250,11 @@ class DataSourceContent extends ConsumerWidget {
         ),
       ),
     );
+    });
   }
 
   Widget _nasalVowelCard(NasalVowel v) {
+    return Builder(builder: (context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: FrenchCard(
@@ -275,7 +272,7 @@ class DataSourceContent extends ConsumerWidget {
                       style: GoogleFonts.inter(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.textPrimary)),
+                          color: context.textPrimary)),
                 ),
               ],
             ),
@@ -289,15 +286,17 @@ class DataSourceContent extends ConsumerWidget {
             Text(v.howToSay,
                 style: GoogleFonts.inter(
                     fontSize: 12,
-                    color: AppColors.textSecondary,
+                    color: context.textSecondary,
                     fontStyle: FontStyle.italic)),
           ],
         ),
       ),
     );
+    });
   }
 
   Widget _consonantRuleCard(ConsonantRule r) {
+    return Builder(builder: (context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: FrenchCard(
@@ -314,7 +313,7 @@ class DataSourceContent extends ConsumerWidget {
                   child: Text(r.rule,
                       style: GoogleFonts.inter(
                           fontSize: 13,
-                          color: AppColors.textPrimary,
+                          color: context.textPrimary,
                           height: 1.4)),
                 ),
               ],
@@ -330,16 +329,18 @@ class DataSourceContent extends ConsumerWidget {
               Text(r.notes,
                   style: GoogleFonts.inter(
                       fontSize: 12,
-                      color: AppColors.textSecondary,
+                      color: context.textSecondary,
                       fontStyle: FontStyle.italic)),
             ],
           ],
         ),
       ),
     );
+    });
   }
 
   Widget _carefulRuleCard(CarefulRule r) {
+    return Builder(builder: (context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: FrenchCard(
@@ -357,12 +358,13 @@ class DataSourceContent extends ConsumerWidget {
                       child: Text('  \u2022  $e',
                           style: GoogleFonts.inter(
                               fontSize: 13,
-                              color: AppColors.textPrimary)),
+                              color: context.textPrimary)),
                     )),
           ],
         ),
       ),
     );
+    });
   }
 
   // ═══════════════════════════════════════════════════════════════
@@ -461,7 +463,7 @@ class DataSourceContent extends ConsumerWidget {
   }
 
   Widget _essentialVerbsView(List<Verb> verbs) {
-    return Column(
+    return Builder(builder: (context) => Column(
       children: verbs.map((v) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
@@ -484,7 +486,7 @@ class DataSourceContent extends ConsumerWidget {
                       Text(v.meaning,
                           style: GoogleFonts.inter(
                               fontSize: 13,
-                              color: AppColors.textSecondary)),
+                              color: context.textSecondary)),
                     ],
                   ),
                 ),
@@ -497,18 +499,18 @@ class DataSourceContent extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Text(v.pastParticiple!,
                       style: GoogleFonts.inter(
-                          fontSize: 12, color: AppColors.textLight)),
+                          fontSize: 12, color: context.textLight)),
                 ],
               ],
             ),
           ),
         );
       }).toList(),
-    );
+    ));
   }
 
   Widget _conjugationView(List<VerbConjugationPattern> patterns) {
-    return FrenchCard(
+    return Builder(builder: (context) => FrenchCard(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.all(0),
       child: Column(
@@ -544,7 +546,7 @@ class DataSourceContent extends ConsumerWidget {
                 decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
-                          color: AppColors.surfaceDark,
+                          color: context.dividerColor,
                           width: 0.5)),
                 ),
                 child: Row(
@@ -568,17 +570,17 @@ class DataSourceContent extends ConsumerWidget {
                         child: Text(p.sound,
                             style: GoogleFonts.inter(
                                 fontSize: 13,
-                                color: AppColors.textSecondary))),
+                                color: context.textSecondary))),
                   ],
                 ),
               )),
         ],
       ),
-    );
+    ));
   }
 
   Widget _vandertrampView(List<VandertrampVerb> verbs) {
-    return FrenchCard(
+    return Builder(builder: (context) => FrenchCard(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.all(0),
       child: Column(
@@ -613,7 +615,7 @@ class DataSourceContent extends ConsumerWidget {
                 decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
-                          color: AppColors.surfaceDark,
+                          color: context.dividerColor,
                           width: 0.5)),
                 ),
                 child: Row(
@@ -630,7 +632,7 @@ class DataSourceContent extends ConsumerWidget {
                         child: Text(v.meaning,
                             style: GoogleFonts.inter(
                                 fontSize: 13,
-                                color: AppColors.textSecondary))),
+                                color: context.textSecondary))),
                     Expanded(
                         flex: 3,
                         child: Text(v.pastParticiple,
@@ -643,11 +645,11 @@ class DataSourceContent extends ConsumerWidget {
               )),
         ],
       ),
-    );
+    ));
   }
 
   Widget _frenchEnglishPairsView(List<Map<String, dynamic>> pairs) {
-    return Column(
+    return Builder(builder: (context) => Column(
       children: pairs.map((p) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
@@ -669,20 +671,20 @@ class DataSourceContent extends ConsumerWidget {
                   child: Text(p['english'] as String,
                       style: GoogleFonts.inter(
                           fontSize: 13,
-                          color: AppColors.textSecondary)),
+                          color: context.textSecondary)),
                 ),
               ],
             ),
           ),
         );
       }).toList(),
-    );
+    ));
   }
 
   // ═══════════════════════════════════════════════════════════════
   //  GRAMMAR
   // ═══════════════════════════════════════════════════════════════
-  Widget _grammarView(WidgetRef ref, String key) {
+  Widget _grammarView(BuildContext context, WidgetRef ref, String key) {
     switch (key) {
       case 'negation':
         return _wrap(ref.watch(negationProvider), _negationView);
@@ -693,10 +695,11 @@ class DataSourceContent extends ConsumerWidget {
         return _wrap(
             ref.watch(questionWordsProvider), _questionWordsView);
       case 'articles':
-        return _wrap(ref.watch(articlesProvider), _articlesView);
+        return _wrap(ref.watch(articlesProvider),
+            (articles) => _articlesView(context, articles));
       case 'contractions':
-        return _wrap(
-            ref.watch(contractionsProvider), _contractionsView);
+        return _wrap(ref.watch(contractionsProvider),
+            (contractions) => _contractionsView(context, contractions));
       default:
         return const SizedBox.shrink();
     }
@@ -707,7 +710,7 @@ class DataSourceContent extends ConsumerWidget {
     final examples = data['examples'] as List<dynamic>;
     final shortcut = data['spokenShortcut'] as String;
 
-    return Column(
+    return Builder(builder: (context) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FrenchCard(
@@ -744,7 +747,7 @@ class DataSourceContent extends ConsumerWidget {
                   Text(e['positive'] as String,
                       style: GoogleFonts.inter(
                           fontSize: 13,
-                          color: AppColors.textLight,
+                          color: context.textLight,
                           decoration: TextDecoration.lineThrough)),
                   const SizedBox(height: 4),
                   Text(e['negative'] as String,
@@ -755,7 +758,7 @@ class DataSourceContent extends ConsumerWidget {
                   Text(e['english'] as String,
                       style: GoogleFonts.inter(
                           fontSize: 12,
-                          color: AppColors.textSecondary)),
+                          color: context.textSecondary)),
                 ],
               ),
             ),
@@ -777,14 +780,14 @@ class DataSourceContent extends ConsumerWidget {
                 child: Text(shortcut,
                     style: GoogleFonts.inter(
                         fontSize: 13,
-                        color: AppColors.textPrimary,
+                        color: context.textPrimary,
                         height: 1.4)),
               ),
             ],
           ),
         ),
       ],
-    );
+    ));
   }
 
   Widget _questionMethodsView(List<Map<String, dynamic>> methods) {
@@ -794,10 +797,10 @@ class DataSourceContent extends ConsumerWidget {
       'formal': AppColors.red,
     };
 
-    return Column(
+    return Builder(builder: (context) => Column(
       children: methods.map((m) {
         final level = m['level'] as String;
-        final color = levelColors[level] ?? AppColors.textLight;
+        final color = levelColors[level] ?? AppColors.navy;
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: FrenchCard(
@@ -835,13 +838,13 @@ class DataSourceContent extends ConsumerWidget {
                 Text(m['english'] as String,
                     style: GoogleFonts.inter(
                         fontSize: 13,
-                        color: AppColors.textSecondary)),
+                        color: context.textSecondary)),
                 if (m['notes'] != null) ...[
                   const SizedBox(height: 4),
                   Text(m['notes'] as String,
                       style: GoogleFonts.inter(
                           fontSize: 12,
-                          color: AppColors.textLight,
+                          color: context.textLight,
                           fontStyle: FontStyle.italic)),
                 ],
               ],
@@ -849,11 +852,11 @@ class DataSourceContent extends ConsumerWidget {
           ),
         );
       }).toList(),
-    );
+    ));
   }
 
   Widget _questionWordsView(List<QuestionWord> words) {
-    return Column(
+    return Builder(builder: (context) => Column(
       children: words.map((w) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
@@ -874,13 +877,13 @@ class DataSourceContent extends ConsumerWidget {
                     Text('[${w.pronunciation}]',
                         style: GoogleFonts.inter(
                             fontSize: 13,
-                            color: AppColors.textLight,
+                            color: context.textLight,
                             fontStyle: FontStyle.italic)),
                     const Spacer(),
                     Text(w.english,
                         style: GoogleFonts.inter(
                             fontSize: 14,
-                            color: AppColors.textSecondary)),
+                            color: context.textSecondary)),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -894,10 +897,10 @@ class DataSourceContent extends ConsumerWidget {
           ),
         );
       }).toList(),
-    );
+    ));
   }
 
-  Widget _articlesView(List<Article> articles) {
+  Widget _articlesView(BuildContext context, List<Article> articles) {
     return FrenchCard(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.all(0),
@@ -932,7 +935,7 @@ class DataSourceContent extends ConsumerWidget {
                 decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
-                          color: AppColors.surfaceDark, width: 0.5)),
+                          color: context.dividerColor, width: 0.5)),
                 ),
                 child: Column(
                   children: [
@@ -944,7 +947,7 @@ class DataSourceContent extends ConsumerWidget {
                                 style: GoogleFonts.inter(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
-                                    color: AppColors.textLight))),
+                                    color: context.textLight))),
                         Expanded(
                             flex: 3,
                             child: Text(a.masculine,
@@ -962,7 +965,7 @@ class DataSourceContent extends ConsumerWidget {
                             child: Text(a.plural,
                                 style: GoogleFonts.inter(
                                     fontSize: 13,
-                                    color: AppColors.textPrimary))),
+                                    color: context.textPrimary))),
                       ],
                     ),
                     if (a.beforeVowel != null) ...[
@@ -990,7 +993,7 @@ class DataSourceContent extends ConsumerWidget {
     );
   }
 
-  Widget _contractionsView(List<Contraction> contractions) {
+  Widget _contractionsView(BuildContext context, List<Contraction> contractions) {
     return Column(
       children: contractions.map((c) {
         return Padding(
@@ -1006,11 +1009,11 @@ class DataSourceContent extends ConsumerWidget {
                     Text(c.combination,
                         style: GoogleFonts.inter(
                             fontSize: 13,
-                            color: AppColors.textLight,
+                            color: context.textLight,
                             decoration: TextDecoration.lineThrough)),
                     const SizedBox(width: 8),
-                    const Icon(Icons.arrow_forward_rounded,
-                        size: 14, color: AppColors.textLight),
+                    Icon(Icons.arrow_forward_rounded,
+                        size: 14, color: context.textLight),
                     const SizedBox(width: 8),
                     Text(c.contraction,
                         style: GoogleFonts.inter(
@@ -1026,7 +1029,7 @@ class DataSourceContent extends ConsumerWidget {
                 Text(c.notes,
                     style: GoogleFonts.inter(
                         fontSize: 12,
-                        color: AppColors.textSecondary,
+                        color: context.textSecondary,
                         fontStyle: FontStyle.italic)),
               ],
             ),
@@ -1039,7 +1042,7 @@ class DataSourceContent extends ConsumerWidget {
   // ═══════════════════════════════════════════════════════════════
   //  NUMBERS
   // ═══════════════════════════════════════════════════════════════
-  Widget _numbersView(List<NumberItem> numbers) {
+  Widget _numbersView(BuildContext context, List<NumberItem> numbers) {
     // Filter based on section: 6.1 = 0-69, 6.2 = 70+
     final filtered = sectionId == '6.1'
         ? numbers.where((n) => n.value <= 69).toList()
@@ -1085,7 +1088,7 @@ class DataSourceContent extends ConsumerWidget {
                 decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
-                          color: AppColors.surfaceDark, width: 0.5)),
+                          color: context.dividerColor, width: 0.5)),
                   color: n.formula != null
                       ? AppColors.gold.withValues(alpha: 0.04)
                       : null,
@@ -1105,7 +1108,7 @@ class DataSourceContent extends ConsumerWidget {
                       child: Text(n.french,
                           style: GoogleFonts.inter(
                               fontSize: 14,
-                              color: AppColors.textPrimary)),
+                              color: context.textPrimary)),
                     ),
                     if (filtered.any((n) => n.formula != null))
                       Expanded(
@@ -1113,7 +1116,7 @@ class DataSourceContent extends ConsumerWidget {
                         child: Text(n.formula ?? '',
                             style: GoogleFonts.inter(
                                 fontSize: 12,
-                                color: AppColors.textLight,
+                                color: context.textLight,
                                 fontStyle: FontStyle.italic)),
                       ),
                   ],
@@ -1127,7 +1130,7 @@ class DataSourceContent extends ConsumerWidget {
   // ═══════════════════════════════════════════════════════════════
   //  FALSE FRIENDS
   // ═══════════════════════════════════════════════════════════════
-  Widget _falseFriendsView(List<FalseFriend> friends) {
+  Widget _falseFriendsView(BuildContext context, List<FalseFriend> friends) {
     return Column(
       children: friends.map((f) {
         final dangerColor = _dangerColor(f.dangerLevel);
@@ -1180,7 +1183,7 @@ class DataSourceContent extends ConsumerWidget {
                           text: f.looksLike,
                           style: GoogleFonts.inter(
                               fontSize: 16,
-                              color: AppColors.textLight,
+                              color: context.textLight,
                               decoration:
                                   TextDecoration.lineThrough)),
                     ],
@@ -1230,7 +1233,7 @@ class DataSourceContent extends ConsumerWidget {
   // ═══════════════════════════════════════════════════════════════
   //  LIAISON RULES
   // ═══════════════════════════════════════════════════════════════
-  Widget _liaisonView(List<LiaisonRule> rules, String key) {
+  Widget _liaisonView(BuildContext context, List<LiaisonRule> rules, String key) {
     final filtered = rules.where((r) => r.type == key).toList();
     return Column(
       children: filtered.map((r) {
@@ -1256,10 +1259,10 @@ class DataSourceContent extends ConsumerWidget {
                             child: Text(ex.written,
                                 style: GoogleFonts.inter(
                                     fontSize: 14,
-                                    color: AppColors.textPrimary)),
+                                    color: context.textPrimary)),
                           ),
-                          const Icon(Icons.volume_up_rounded,
-                              size: 14, color: AppColors.textLight),
+                          Icon(Icons.volume_up_rounded,
+                              size: 14, color: context.textLight),
                           const SizedBox(width: 4),
                           Text(ex.pronunciation,
                               style: GoogleFonts.inter(
@@ -1284,7 +1287,7 @@ class DataSourceContent extends ConsumerWidget {
   // ═══════════════════════════════════════════════════════════════
   //  PHRASES
   // ═══════════════════════════════════════════════════════════════
-  Widget _phrasesView(List<Phrase> allPhrases, String category) {
+  Widget _phrasesView(BuildContext context, List<Phrase> allPhrases, String category) {
     final phrases =
         allPhrases.where((p) => p.category == category).toList();
     return Column(
@@ -1306,7 +1309,7 @@ class DataSourceContent extends ConsumerWidget {
                 Text(p.english,
                     style: GoogleFonts.inter(
                         fontSize: 13,
-                        color: AppColors.textSecondary)),
+                        color: context.textSecondary)),
                 if (p.usage != null) ...[
                   const SizedBox(height: 4),
                   Row(
@@ -1352,27 +1355,31 @@ class DataSourceContent extends ConsumerWidget {
   }
 
   Widget _exampleChip(String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: AppColors.cream,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Text(text,
-          style: GoogleFonts.inter(
-              fontSize: 12, color: AppColors.textPrimary)),
-    );
+    return Builder(builder: (context) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        decoration: BoxDecoration(
+          color: context.creamColor,
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Text(text,
+            style: GoogleFonts.inter(
+                fontSize: 12, color: context.textPrimary)),
+      );
+    });
   }
 
   Widget _sectionLabel(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Text(text,
-          style: GoogleFonts.inter(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textSecondary)),
-    );
+    return Builder(builder: (context) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Text(text,
+            style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: context.textSecondary)),
+      );
+    });
   }
 
   TextStyle _tableHeader() {
