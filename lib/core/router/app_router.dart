@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../screens/lessons/lessons_screen.dart';
 import '../../screens/lessons/lesson_detail_screen.dart';
+import '../../screens/words/words_screen.dart';
+import '../../screens/tef/tef_screen.dart';
 import '../../screens/quiz/quiz_screen.dart';
 import '../../screens/quiz/quiz_play_screen.dart';
 import '../../screens/splash/splash_screen.dart';
@@ -23,9 +25,21 @@ final appRouter = GoRouter(
       builder: (context, state, child) => AppShell(child: child),
       routes: [
         GoRoute(
-          path: '/',
+          path: '/lessons',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: LessonsScreen(),
+          ),
+        ),
+        GoRoute(
+          path: '/words',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: WordsScreen(),
+          ),
+        ),
+        GoRoute(
+          path: '/tef',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: TefScreen(),
           ),
         ),
         GoRoute(
@@ -89,7 +103,9 @@ class AppShell extends StatelessWidget {
 
   int _currentIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
-    if (location.startsWith('/quiz')) return 1;
+    if (location.startsWith('/words')) return 1;
+    if (location.startsWith('/tef')) return 2;
+    if (location.startsWith('/quiz')) return 3;
     return 0;
   }
 
@@ -121,12 +137,24 @@ class AppShell extends StatelessWidget {
                   icon: Icons.menu_book_rounded,
                   label: 'Lessons',
                   isActive: index == 0,
-                  onTap: () => context.go('/'),
+                  onTap: () => context.go('/lessons'),
+                ),
+                _NavItem(
+                  icon: Icons.translate_rounded,
+                  label: 'Words',
+                  isActive: index == 1,
+                  onTap: () => context.go('/words'),
+                ),
+                _NavItem(
+                  icon: Icons.school_rounded,
+                  label: 'TEF',
+                  isActive: index == 2,
+                  onTap: () => context.go('/tef'),
                 ),
                 _NavItem(
                   icon: Icons.quiz_rounded,
                   label: 'Quiz',
-                  isActive: index == 1,
+                  isActive: index == 3,
                   onTap: () => context.go('/quiz'),
                 ),
               ],
@@ -155,7 +183,7 @@ class _NavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final inactiveColor =
-        isDark ? AppColors.darkTextLight : AppColors.navInactive;
+        isDark ? AppColors.darkTextSecondary : AppColors.navInactive;
     return Expanded(
       child: Semantics(
         button: true,

@@ -10,4 +10,6 @@ export 'progress.dart';
 export 'pronunciation_rule.dart';
 export 'quiz.dart';
 export 'suffix_pattern.dart';
+export 'tef_test.dart';
 export 'verb.dart';
+export 'vocabulary_word.dart';

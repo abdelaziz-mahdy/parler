@@ -235,14 +235,14 @@ class _LessonTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: isCompleted
                       ? AppColors.success.withValues(alpha: 0.1)
-                      : AppColors.navy.withValues(alpha: 0.08),
+                      : context.navyAdaptive.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Icon(
                     chapterIconFromString(chapter.icon),
                     size: 24,
-                    color: isCompleted ? AppColors.success : AppColors.navy,
+                    color: isCompleted ? AppColors.success : context.navyAdaptive,
                   ),
                 ),
               ),

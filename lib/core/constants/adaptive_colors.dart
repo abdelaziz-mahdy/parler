@@ -24,4 +24,10 @@ extension AdaptiveColors on BuildContext {
       isDark ? AppColors.darkDivider : AppColors.surfaceDark;
   Color get progressBgColor =>
       isDark ? AppColors.darkDivider : AppColors.progressBg;
+
+  /// Navy brand color adapted for readability: stays navy in light mode,
+  /// switches to a lighter blue-gray in dark mode so text remains visible
+  /// on dark card surfaces.
+  Color get navyAdaptive =>
+      isDark ? const Color(0xFF8BA4C4) : AppColors.navy;
 }

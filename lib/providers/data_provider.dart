@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/models.dart';
 import '../repositories/data_repository.dart';
+import '../services/tts_service.dart';
 
 // --- DataRepository singleton ---
 final dataRepositoryProvider = Provider<DataRepository>((ref) {
@@ -193,4 +194,45 @@ final phrasesByCategoryProvider =
     loading: () => [],
     error: (_, _) => [],
   );
+});
+
+// --- Vocabulary ---
+final vocabularyProvider =
+    FutureProvider<List<VocabularyWord>>((ref) async {
+  ref.keepAlive();
+  return ref.watch(dataRepositoryProvider).getVocabulary();
+});
+
+final vocabularyByLevelProvider =
+    Provider.family<List<VocabularyWord>, String>((ref, level) {
+  final vocabAsync = ref.watch(vocabularyProvider);
+  return vocabAsync.when(
+    data: (words) => words.where((w) => w.level == level).toList(),
+    loading: () => [],
+    error: (_, _) => [],
+  );
+});
+
+final vocabularyByCategoryProvider =
+    Provider.family<List<VocabularyWord>, String>((ref, category) {
+  final vocabAsync = ref.watch(vocabularyProvider);
+  return vocabAsync.when(
+    data: (words) => words.where((w) => w.category == category).toList(),
+    loading: () => [],
+    error: (_, _) => [],
+  );
+});
+
+// --- TEF Tests ---
+final tefTestsProvider = FutureProvider<List<TefTest>>((ref) async {
+  ref.keepAlive();
+  return ref.watch(dataRepositoryProvider).getTefTests();
+});
+
+// --- TTS Service ---
+final ttsServiceProvider = Provider<TtsService>((ref) {
+  ref.keepAlive();
+  final service = TtsService();
+  ref.onDispose(() => service.dispose());
+  return service;
 });

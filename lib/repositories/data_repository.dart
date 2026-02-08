@@ -18,6 +18,8 @@ class DataRepository {
   List<LiaisonRule>? _liaisonRules;
   List<Phrase>? _phrases;
   List<QuizQuestion>? _quizQuestions;
+  List<VocabularyWord>? _vocabulary;
+  List<TefTest>? _tefTests;
 
   Future<List<Chapter>> getChapters() async {
     if (_chapters != null) return _chapters!;
@@ -240,6 +242,34 @@ class DataRepository {
   Future<List<QuizQuestion>> getQuizQuestionsForChapter(int chapterId) async {
     final all = await getQuizQuestions();
     return all.where((q) => q.chapterId == chapterId).toList();
+  }
+
+  Future<List<VocabularyWord>> getVocabulary() async {
+    if (_vocabulary != null) return _vocabulary!;
+    final data = await _loadJson('assets/data/vocabulary.json');
+    _vocabulary = (jsonDecode(data) as List)
+        .map((e) => VocabularyWord.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return _vocabulary!;
+  }
+
+  Future<List<VocabularyWord>> getVocabularyByLevel(String level) async {
+    final all = await getVocabulary();
+    return all.where((w) => w.level == level).toList();
+  }
+
+  Future<List<VocabularyWord>> getVocabularyByCategory(String category) async {
+    final all = await getVocabulary();
+    return all.where((w) => w.category == category).toList();
+  }
+
+  Future<List<TefTest>> getTefTests() async {
+    if (_tefTests != null) return _tefTests!;
+    final data = await _loadJson('assets/data/tef_tests.json');
+    _tefTests = (jsonDecode(data) as List)
+        .map((e) => TefTest.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return _tefTests!;
   }
 
   Future<String> _loadJson(String path) async {
