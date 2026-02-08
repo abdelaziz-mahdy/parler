@@ -54,7 +54,7 @@
     "description": "n becomes N sound",
     "examples": [
       {"written": "un ami", "pronunciation": "uh-NA-mee", "rule": "n \u2192 N"},
-      {"written": "bon appetit", "pronunciation": "boh-NA-pay-tee", "rule": "n \u2192 N"}
+      {"written": "bon appétit", "pronunciation": "boh-NA-pay-tee", "rule": "n \u2192 N"}
     ]
   },
   {
