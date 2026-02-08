@@ -48,6 +48,7 @@ class TefPassage {
   final String type; // 'text', 'email', 'advertisement', 'article', 'notice', 'letter', 'form'
   final String title;
   final String content;
+  final String? contentEnglish;
   final String? source;
   final List<TefQuestion> questions;
 
@@ -56,6 +57,7 @@ class TefPassage {
     required this.type,
     required this.title,
     required this.content,
+    this.contentEnglish,
     this.source,
     required this.questions,
   });
@@ -65,6 +67,7 @@ class TefPassage {
         type: json['type'] as String,
         title: json['title'] as String,
         content: json['content'] as String,
+        contentEnglish: json['contentEnglish'] as String?,
         source: json['source'] as String?,
         questions: (json['questions'] as List)
             .map((e) => TefQuestion.fromJson(e as Map<String, dynamic>))
@@ -76,6 +79,7 @@ class TefPassage {
         'type': type,
         'title': title,
         'content': content,
+        if (contentEnglish != null) 'contentEnglish': contentEnglish,
         if (source != null) 'source': source,
         'questions': questions.map((q) => q.toJson()).toList(),
       };
@@ -84,6 +88,7 @@ class TefPassage {
 class TefQuestion {
   final String id;
   final String question;
+  final String? questionEnglish;
   final List<String> options;
   final int correctIndex;
   final String explanation;
@@ -91,6 +96,7 @@ class TefQuestion {
   const TefQuestion({
     required this.id,
     required this.question,
+    this.questionEnglish,
     required this.options,
     required this.correctIndex,
     required this.explanation,
@@ -99,6 +105,7 @@ class TefQuestion {
   factory TefQuestion.fromJson(Map<String, dynamic> json) => TefQuestion(
         id: json['id'] as String,
         question: json['question'] as String,
+        questionEnglish: json['questionEnglish'] as String?,
         options: (json['options'] as List).map((e) => e as String).toList(),
         correctIndex: json['correctIndex'] as int,
         explanation: json['explanation'] as String,
@@ -107,6 +114,7 @@ class TefQuestion {
   Map<String, dynamic> toJson() => {
         'id': id,
         'question': question,
+        if (questionEnglish != null) 'questionEnglish': questionEnglish,
         'options': options,
         'correctIndex': correctIndex,
         'explanation': explanation,

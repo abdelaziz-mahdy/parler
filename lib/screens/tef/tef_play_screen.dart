@@ -34,6 +34,7 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
   int? _selectedIndex;
   bool _answered = false;
   bool _completed = false;
+  bool _showEnglish = false;
   final Map<String, int> _answers = {};
   TefTestResult? _result;
 
@@ -49,8 +50,6 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
   }
 
   void _startTimer() {
-    _totalSeconds = _test.timeMinutes * 60;
-    _remainingSeconds = _totalSeconds;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingSeconds <= 0) {
         timer.cancel();
@@ -195,6 +194,8 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
               _questions.add(_FlatQuestion(passage: passage, question: q));
             }
           }
+          _totalSeconds = test.timeMinutes * 60;
+          _remainingSeconds = _totalSeconds;
           _loaded = true;
           WidgetsBinding.instance.addPostFrameCallback((_) => _startTimer());
         }
@@ -387,7 +388,6 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Question ${_currentIndex + 1} of ${_questions.length}',
@@ -397,6 +397,50 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                       color: context.textSecondary,
                     ),
                   ),
+                  const Spacer(),
+                  // English translation toggle
+                  GestureDetector(
+                    onTap: () => setState(() => _showEnglish = !_showEnglish),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: _showEnglish
+                            ? AppColors.info.withValues(alpha: 0.12)
+                            : context.surfaceColor,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: _showEnglish
+                              ? AppColors.info
+                              : context.dividerColor,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.translate_rounded,
+                            size: 14,
+                            color: _showEnglish
+                                ? AppColors.info
+                                : context.textLight,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'EN',
+                            style: GoogleFonts.inter(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                              color: _showEnglish
+                                  ? AppColors.info
+                                  : context.textLight,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
                   Text(
                     '${_answers.length} answered',
                     style: GoogleFonts.inter(
@@ -451,6 +495,51 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                             height: 1.6,
                           ),
                         ),
+                        if (_showEnglish &&
+                            fq.passage.contentEnglish != null) ...[
+                          const SizedBox(height: 10),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color:
+                                  AppColors.info.withValues(alpha: 0.06),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color:
+                                    AppColors.info.withValues(alpha: 0.2),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.translate_rounded,
+                                        size: 12, color: AppColors.info),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      'English',
+                                      style: GoogleFonts.inter(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.info,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  fq.passage.contentEnglish!,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 13,
+                                    color: context.textSecondary,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                         if (fq.passage.source != null) ...[
                           const SizedBox(height: 8),
                           Text(
@@ -477,6 +566,19 @@ class _TefPlayScreenState extends ConsumerState<TefPlayScreen> {
                       height: 1.4,
                     ),
                   ).animate().fadeIn(duration: 300.ms),
+                  if (_showEnglish &&
+                      fq.question.questionEnglish != null) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      fq.question.questionEnglish!,
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        color: AppColors.info,
+                        fontStyle: FontStyle.italic,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 20),
 
                   // Options
