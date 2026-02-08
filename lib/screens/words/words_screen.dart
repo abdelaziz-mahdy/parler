@@ -83,6 +83,36 @@ const _categories = <_CategoryInfo>[
     label: 'Hobbies',
     icon: Icons.sports_tennis_rounded,
   ),
+  _CategoryInfo(
+    key: 'technology',
+    label: 'Technology',
+    icon: Icons.devices_rounded,
+  ),
+  _CategoryInfo(
+    key: 'transportation',
+    label: 'Transport',
+    icon: Icons.directions_bus_rounded,
+  ),
+  _CategoryInfo(
+    key: 'finance',
+    label: 'Finance',
+    icon: Icons.account_balance_rounded,
+  ),
+  _CategoryInfo(
+    key: 'media',
+    label: 'Media',
+    icon: Icons.newspaper_rounded,
+  ),
+  _CategoryInfo(
+    key: 'environment',
+    label: 'Environment',
+    icon: Icons.eco_rounded,
+  ),
+  _CategoryInfo(
+    key: 'society',
+    label: 'Society',
+    icon: Icons.groups_rounded,
+  ),
 ];
 
 class WordsScreen extends ConsumerWidget {
