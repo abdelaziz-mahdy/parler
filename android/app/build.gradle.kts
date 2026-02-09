@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -28,7 +31,8 @@ android {
 
                 // Read credentials from key.properties (local) or env vars (CI)
                 if (keyPropsFile.exists()) {
-                    val keyProps = java.util.Properties().apply { load(keyPropsFile.inputStream()) }
+                    val keyProps = Properties()
+                    keyProps.load(FileInputStream(keyPropsFile))
                     storePassword = keyProps.getProperty("storePassword")
                     keyAlias = keyProps.getProperty("keyAlias")
                     keyPassword = keyProps.getProperty("keyPassword")
