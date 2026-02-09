@@ -82,24 +82,17 @@ jobs:
         if: env.KEYSTORE_BASE64 != ''
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: |
-          mkdir -p ~/.android
-          echo "$KEYSTORE_BASE64" | base64 -d > ~/.android/release.keystore
-
-      - name: Set signing environment
-        if: env.KEYSTORE_BASE64 != ''
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: |
-          echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
-          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
-          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+        run: echo "$KEYSTORE_BASE64" | base64 -d > android/french_keystore.jks
 
       - name: Install dependencies
         run: flutter pub get
 
       # Build a universal (fat) APK containing all ABIs
       - name: Build universal APK
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: flutter build apk --release
 
       # Upload the universal APK as a build artifact
@@ -157,18 +150,7 @@ jobs:
         if: env.KEYSTORE_BASE64 != ''
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: |
-          mkdir -p ~/.android
-          echo "$KEYSTORE_BASE64" | base64 -d > ~/.android/release.keystore
-
-      - name: Set signing environment
-        if: env.KEYSTORE_BASE64 != ''
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: |
-          echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
-          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
-          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+        run: echo "$KEYSTORE_BASE64" | base64 -d > android/french_keystore.jks
 
       - name: Install dependencies
         run: flutter pub get
@@ -176,6 +158,10 @@ jobs:
       # Build separate APKs for each CPU architecture
       # This produces smaller APKs optimized for each device type
       - name: Build split APKs
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: flutter build apk --split-per-abi --release
 
       # Upload arm64-v8a APK (most modern Android devices)

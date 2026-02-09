@@ -20,15 +20,26 @@ android {
 
     signingConfigs {
         create("release") {
-            val home = System.getenv("HOME") ?: ""
-            val releaseKeystore = file("$home/.android/release.keystore")
-            if (releaseKeystore.exists()) {
-                storeFile = releaseKeystore
-                storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "android"
-                keyAlias = System.getenv("KEY_ALIAS") ?: "release"
-                keyPassword = System.getenv("KEY_PASSWORD") ?: "android"
+            val keystoreFile = file("${rootProject.projectDir}/french_keystore.jks")
+            val keyPropsFile = file("${rootProject.projectDir}/key.properties")
+
+            if (keystoreFile.exists()) {
+                storeFile = keystoreFile
+
+                // Read credentials from key.properties (local) or env vars (CI)
+                if (keyPropsFile.exists()) {
+                    val keyProps = java.util.Properties().apply { load(keyPropsFile.inputStream()) }
+                    storePassword = keyProps.getProperty("storePassword")
+                    keyAlias = keyProps.getProperty("keyAlias")
+                    keyPassword = keyProps.getProperty("keyPassword")
+                } else {
+                    storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+                    keyAlias = System.getenv("KEY_ALIAS") ?: ""
+                    keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+                }
             } else {
-                // Fallback to debug keystore for local development
+                // Fallback to debug keystore when french_keystore.jks is not available
+                val home = System.getenv("HOME") ?: ""
                 storeFile = file("$home/.android/debug.keystore")
                 storePassword = "android"
                 keyAlias = "androiddebugkey"
