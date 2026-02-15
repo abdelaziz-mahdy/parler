@@ -10,9 +10,11 @@ import '../../providers/database_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../services/tts_service.dart';
+import '../../services/update_service.dart';
 import '../../widgets/error_view.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/stat_badge.dart';
+import '../../widgets/update_dialog.dart';
 
 class NewProfileScreen extends ConsumerStatefulWidget {
   const NewProfileScreen({super.key});
@@ -410,6 +412,48 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                       ),
                     ),
                   ),
+                ],
+              ),
+            ).animate().fadeIn(duration: 400.ms),
+
+            const SizedBox(height: 8),
+
+            // Check for Updates
+            FrenchCard(
+              margin: EdgeInsets.zero,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              onTap: () async {
+                final info = await UpdateService.checkForUpdate(force: true);
+                if (!context.mounted) return;
+                if (info != null) {
+                  showDialog(
+                    context: context,
+                    builder: (_) => UpdateDialog(info: info),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('You\'re on the latest version!'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.system_update_rounded, size: 20, color: context.navyAdaptive),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Check for Updates',
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: context.textPrimary,
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.arrow_forward_ios_rounded, size: 14, color: context.textLight),
                 ],
               ),
             ).animate().fadeIn(duration: 400.ms),

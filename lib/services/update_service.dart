@@ -25,12 +25,16 @@ class UpdateInfo {
 
 class UpdateService {
   static const _dismissedVersionKey = 'dismissed_update_version';
+  static const _dismissedAtKey = 'dismissed_update_at';
   static const _repoOwner = 'abdelaziz-mahdy';
   static const _repoName = 'french';
 
   /// Check for updates from GitHub Releases.
   /// Returns null if no update available or if check fails.
-  static Future<UpdateInfo?> checkForUpdate() async {
+  /// Check for updates from GitHub Releases.
+  /// Returns null if no update available or if check fails.
+  /// Set [force] to true to bypass the snooze (e.g. manual check from settings).
+  static Future<UpdateInfo?> checkForUpdate({bool force = false}) async {
     // Skip on web
     if (kIsWeb) return null;
 
@@ -74,10 +78,18 @@ class UpdateService {
 
       if (!info.hasUpdate) return null;
 
-      // Check if user dismissed this version
-      final prefs = await SharedPreferences.getInstance();
-      final dismissed = prefs.getString(_dismissedVersionKey);
-      if (dismissed == latestVersion) return null;
+      // Check if user snoozed this version recently (within 24 hours)
+      if (!force) {
+        final prefs = await SharedPreferences.getInstance();
+        final dismissed = prefs.getString(_dismissedVersionKey);
+        final dismissedAt = prefs.getInt(_dismissedAtKey);
+        if (dismissed == latestVersion && dismissedAt != null) {
+          final elapsed = DateTime.now().millisecondsSinceEpoch - dismissedAt;
+          if (elapsed < const Duration(hours: 24).inMilliseconds) {
+            return null;
+          }
+        }
+      }
 
       return info;
     } catch (e) {
@@ -90,6 +102,7 @@ class UpdateService {
   static Future<void> dismissVersion(String version) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_dismissedVersionKey, version);
+    await prefs.setInt(_dismissedAtKey, DateTime.now().millisecondsSinceEpoch);
   }
 }
 
