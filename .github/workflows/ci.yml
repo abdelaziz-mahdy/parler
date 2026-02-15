@@ -59,11 +59,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # ---------- Ensure web platform exists ----------
-      # Some analysis/test steps may need platform directories
-      - name: Ensure platforms are available
-        run: flutter create --platforms=web .
-
       # ---------- Static Analysis ----------
       # Runs dart analyze to catch lint errors, type issues, etc.
       # This must pass with zero errors before merging.

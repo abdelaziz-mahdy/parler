@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.3
+
+### Branding & Polish
+- **App Icon**: Custom Parler icon across Android, iOS, macOS, and web
+- **Repo Renamed**: GitHub repository renamed from `french` to `parler`
+- **Web Branding**: Proper title, description, Open Graph tags, PWA manifest, and favicon
+- **README**: Complete rewrite reflecting v2.0 features and architecture
+- **CI/CD Cleanup**: Removed redundant `flutter create --platforms=web` steps, updated APK naming
+
 ## 2.0.2
 
 ### Improvements

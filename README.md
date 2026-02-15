@@ -1,68 +1,79 @@
-# Parler - French Learning App
+# Parler - Learn French Naturally
 
-A comprehensive French learning app built with Flutter, featuring structured lessons, vocabulary flashcards with spaced repetition, TEF exam preparation, and interactive quizzes.
+A modern French learning app built with Flutter. Parler uses spaced repetition (FSRS algorithm) and session-based learning to help English speakers build practical French skills for daily life and TEF/NCLC exams.
+
+**[Try the Web App](https://abdelaziz-mahdy.github.io/parler/)** | **[Download APK](https://github.com/abdelaziz-mahdy/parler/releases/latest)**
+
+## What Makes Parler Different
+
+- **Session-first design** — open the app, tap "Start Session", and get a personalized practice mix of review, new content, and mixed exercises
+- **FSRS spaced repetition** — the same modern algorithm used by Anki, 20-30% more efficient than SM-2
+- **Multi-mode quizzes** — French→English, English→French, and fill-in-the-blank (cloze) to keep learning engaging
+- **Smart distractors** — quiz options come from the same word category so you can't guess by elimination
+- **Post-answer context** — after every question, see the example sentence, memory hint, and related words
+- **Matching game** — end each session with a fun matching challenge connecting French↔English pairs
+- **Auto-play TTS** — French words are spoken automatically during sessions
 
 ## Features
 
-### Lessons
-- 10 structured chapters covering French fundamentals (pronunciation, grammar, vocabulary, verbs, etc.)
-- Interactive lesson content with examples and audio pronunciation
-- Progress tracking per chapter with completion status
+### Daily Sessions
+- 3-phase practice: review due words → learn new content → mixed practice
+- Configurable session length: Casual (5 min), Regular (10 min), Intense (15 min)
+- Streak tracking with streak freeze rewards (earn 1 every 7-day streak, max 2)
 
-### Vocabulary (Words)
-- 666 words across 25 categories and 4 CEFR levels (A1-B2)
-- Flashcard learning with flip-to-reveal and TTS pronunciation
-- SM-2 spaced repetition algorithm for optimal review scheduling
-- Daily review reminders for due cards
-- Category browser with level breakdown and progress tracking
+### 10 Structured Chapters
+1. Cognates & Suffix Patterns (16 patterns, ~3000-5000 instant vocabulary)
+2. Pronunciation (golden rules, vowel sounds, nasal vowels, CaReFuL rule)
+3. Gender Rules (8 feminine / 7 masculine endings with accuracy percentages)
+4. Verb Conjugation (27 essential verbs, -er patterns, future/past shortcuts)
+5. Essential Grammar (negation, questions, articles, contractions)
+6. Numbers (1-100 including the 70-99 math system)
+7. False Friends (11 pairs with danger levels)
+8. Liaison & Connected Speech (mandatory liaisons, elision)
+9. Survival Phrases (40+ phrases for basics, communication, daily life)
+10. TEF/TCF Speaking Tricks (filler words, opinion structures, recovery strategies)
 
-### TEF Test Simulator
-- Practice tests modeled after the real TEF Canada Comprehension ecrite format
+### Vocabulary
+- 873 words across 25+ categories and 4 CEFR levels (A1-B2)
+- Words mastered count based on FSRS stability (>30 days retention)
+- Chapter mastery based on both content completion and vocabulary retention
+
+### TEF Test Prep
+- Practice tests modeled after TEF Canada Comprehension ecrite
 - 3 complete tests with 60 reading comprehension questions
-- Timed sessions with countdown timer
 - NCLC level estimation based on score
-- Question-by-question flow with explanations
 
-### Quizzes
-- Chapter-based multiple choice quizzes
-- Score tracking with best score history
-- Explanations for each answer
-
-### Daily Learning Path
-- "Today" section showing personalized daily tasks
-- Streak tracking with motivational messages
-- Smart suggestions: due reviews, next chapter, quiz recommendations
-- Circular progress ring for daily goals
-
-### Additional Features
+### More
 - Dark mode with French-inspired color palette
-- Text-to-speech pronunciation (fr-FR)
-- Offline-first: all content bundled as JSON assets
-- Progress persistence via SharedPreferences
+- Text-to-speech with adjustable speed (slow/normal)
+- Auto-update notifications with in-app download (Android)
+- Offline-first: all content bundled locally
+- Desktop-friendly responsive layouts
+
+## Screenshots
+
+| Today | Session | Learn |
+|-------|---------|-------|
+| Daily overview with streak, mastery stats, and chapter roadmap | Multi-mode quiz with post-answer context | Browse chapters, word bank, and TEF prep |
 
 ## Tech Stack
 
 | Category | Technology |
 |----------|-----------|
-| Framework | Flutter (Dart ^3.10.8) |
+| Framework | Flutter 3.x (Dart ^3.10.8) |
 | State Management | Riverpod v3 (Notifier pattern) |
 | Routing | go_router with ShellRoute |
+| Database | Drift (SQLite) for card states & review logs |
+| Spaced Repetition | FSRS algorithm |
 | Typography | Google Fonts (Playfair Display, Inter) |
 | Animations | flutter_animate |
-| Audio | flutter_tts (fr-FR) |
-| Storage | SharedPreferences |
-| Spaced Repetition | SM-2 algorithm |
+| TTS | flutter_tts (fr-FR) |
 
 ## Getting Started
 
-### Prerequisites
-- Flutter SDK (stable channel)
-- Dart ^3.10.8
-
-### Setup
 ```bash
-git clone <repo-url>
-cd french
+git clone https://github.com/abdelaziz-mahdy/parler.git
+cd parler
 flutter pub get
 flutter run
 ```
@@ -74,13 +85,11 @@ flutter test
 
 ### Building
 
-**Android APK:**
 ```bash
+# Android APK
 flutter build apk --release
-```
 
-**Web:**
-```bash
+# Web
 flutter build web --release
 ```
 
@@ -92,45 +101,38 @@ lib/
     constants/     # Colors, adaptive colors, icon mappings
     router/        # go_router configuration with ShellRoute
   models/          # Data models (manual fromJson/toJson)
-  providers/       # Riverpod providers (data, progress, theme)
-  repositories/    # DataRepository for JSON asset loading
+  providers/       # Riverpod providers (data, progress, theme, database)
   screens/
-    lessons/       # Lesson list + detail screens with Today section
-    words/         # Category browser, flashcards, vocab quiz
-    tef/           # TEF test list + play screens
-    quiz/          # Quiz list + play screens
-    splash/        # Splash screen
-  services/        # Spaced repetition, TTS service
-  widgets/         # Reusable widgets (FrenchCard, SpeakerButton, etc.)
+    home/          # Today tab — streak, session preview, chapter roadmap
+    learn/         # Learn tab — chapters, word bank, TEF prep
+    profile/       # Profile tab — stats, settings, chapter mastery
+    session/       # Session flow — quiz, matching game, completion
+    words/         # Word detail screen
+    tef/           # TEF test play screen
+  services/        # FSRS, TTS, update service
+  widgets/         # Reusable components (FrenchCard, StatBadge, etc.)
 assets/
-  data/            # JSON data files (chapters, vocabulary, TEF tests, etc.)
+  data/            # JSON content files (chapters, vocabulary, TEF tests)
+  icon/            # App icon source files
 ```
 
 ## CI/CD
 
-GitHub Actions workflows are included:
-
-- **CI** (`ci.yml`): Runs `dart analyze` + `flutter test` on every push/PR
-- **Build** (`build.yml`): Builds APK and web on version tags (`v*`)
-- **Release** (`release.yml`): Attaches APK to GitHub releases, deploys web to Pages
-- **Deploy Web** (`deploy-web.yml`): Auto-deploys web build to GitHub Pages on push to main
-
-### Downloads
-
-Once CI/CD is configured with a GitHub remote:
-- **APK**: Available as release assets on the Releases page
-- **Web**: Deployed to GitHub Pages automatically
+| Workflow | Trigger | What it does |
+|----------|---------|-------------|
+| CI | Push / PR | `dart analyze` + `flutter test` |
+| Release | `v*` tag | Creates GitHub Release, builds APK, deploys web to Pages |
+| Deploy Web | Push to main | Deploys web build to GitHub Pages |
+| Build | Manual | Builds APK (universal + split) and web artifacts |
 
 ## Design
 
 French-inspired color palette:
-- Navy `#1B2A4A` - Primary dark color
-- Red `#E63946` - Accent / active states
-- Gold `#D4A574` - Highlights / streak
-- Cream `#F1FAEE` - Light backgrounds
-
-Dark mode uses `#121212` / `#1E1E1E` / `#2C2C2C` with adaptive color extensions.
+- Navy `#1B2A4A` — primary
+- Red `#E63946` — accent / active states
+- Gold `#D4A574` — highlights / achievements
+- Cream `#F1FAEE` — light backgrounds
 
 ## License
 
-This project is for personal/educational use.
+This project is for personal and educational use.

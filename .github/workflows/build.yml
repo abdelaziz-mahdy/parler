@@ -214,10 +214,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Ensure web platform files exist
-      - name: Ensure web platform support
-        run: flutter create --platforms=web .
-
       # Build the web release
       - name: Build web
         run: flutter build web --release

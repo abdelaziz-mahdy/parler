@@ -69,10 +69,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Ensure web platform files exist (in case web/ directory is gitignored)
-      - name: Ensure web platform support
-        run: flutter create --platforms=web .
-
       # Build the Flutter web app with the correct base-href for GitHub Pages
       # --base-href ensures all asset paths are relative to /<repo-name>/
       # This is critical for GitHub Pages where the app is served from a subdirectory

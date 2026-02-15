@@ -27,7 +27,7 @@ class UpdateService {
   static const _dismissedVersionKey = 'dismissed_update_version';
   static const _dismissedAtKey = 'dismissed_update_at';
   static const _repoOwner = 'abdelaziz-mahdy';
-  static const _repoName = 'french';
+  static const _repoName = 'parler';
 
   /// Check for updates from GitHub Releases.
   /// Returns null if no update available or if check fails.
