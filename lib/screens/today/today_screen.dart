@@ -30,6 +30,9 @@ class TodayScreen extends ConsumerWidget {
     final chapterProgressAsync = ref.watch(chapterProgressStreamProvider);
 
     final hPad = context.horizontalPadding;
+    final useWideLayout = context.isMedium || context.isExpanded;
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    final completedToday = progress.lastStudyDate == today;
 
     return Scaffold(
       body: SafeArea(
@@ -48,52 +51,96 @@ class TodayScreen extends ConsumerWidget {
                       color: context.textPrimary,
                     ),
                   ),
-                ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.06),
+                ).animate().fadeIn(duration: 400.ms),
               ),
 
-              // -- Streak Banner --
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(hPad, 8, hPad, 12),
-                  child: _StreakBanner(
-                    streak: progress.currentStreak,
-                    freezes: progress.streakFreezes,
-                  ),
-                ).animate().fadeIn(delay: 80.ms, duration: 400.ms).slideY(begin: 0.06),
-              ),
+              if (useWideLayout) ...[
+                // -- Wide layout: 2 columns --
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(hPad, 8, hPad, 12),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Left column: streak + session button + preview
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            children: [
+                              _StreakBanner(
+                                streak: progress.currentStreak,
+                                freezes: progress.streakFreezes,
+                              ),
+                              const SizedBox(height: 12),
+                              _StartSessionButton(
+                                onTap: () => context.push('/session'),
+                                completedToday: completedToday,
+                              ),
+                              const SizedBox(height: 12),
+                              _SessionPreview(
+                                dueCardsAsync: dueCardsAsync,
+                                vocabAsync: vocabAsync,
+                                progress: progress,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        // Right column: mastered card
+                        Expanded(
+                          flex: 2,
+                          child: _MasteredCard(
+                            masteredAsync: masteredAsync,
+                            vocabAsync: vocabAsync,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                ),
+              ] else ...[
+                // -- Narrow layout: stacked --
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(hPad, 8, hPad, 12),
+                    child: _StreakBanner(
+                      streak: progress.currentStreak,
+                      freezes: progress.streakFreezes,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                ),
 
-              // -- Start Session Button --
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: hPad),
-                  child: _StartSessionButton(
-                    onTap: () => context.push('/session'),
-                  ),
-                ).animate().fadeIn(delay: 160.ms, duration: 400.ms).slideY(begin: 0.06),
-              ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: hPad),
+                    child: _StartSessionButton(
+                      onTap: () => context.push('/session'),
+                      completedToday: completedToday,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                ),
 
-              // -- Session Preview --
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(hPad, 12, hPad, 12),
-                  child: _SessionPreview(
-                    dueCardsAsync: dueCardsAsync,
-                    vocabAsync: vocabAsync,
-                    progress: progress,
-                  ),
-                ).animate().fadeIn(delay: 240.ms, duration: 400.ms).slideY(begin: 0.06),
-              ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(hPad, 12, hPad, 12),
+                    child: _SessionPreview(
+                      dueCardsAsync: dueCardsAsync,
+                      vocabAsync: vocabAsync,
+                      progress: progress,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                ),
 
-              // -- Words Mastered Counter --
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(hPad, 0, hPad, 12),
-                  child: _MasteredCard(
-                    masteredAsync: masteredAsync,
-                    vocabAsync: vocabAsync,
-                  ),
-                ).animate().fadeIn(delay: 320.ms, duration: 400.ms).slideY(begin: 0.06),
-              ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(hPad, 0, hPad, 12),
+                    child: _MasteredCard(
+                      masteredAsync: masteredAsync,
+                      vocabAsync: vocabAsync,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                ),
+              ],
 
               // -- Chapter Roadmap --
               SliverToBoxAdapter(
@@ -107,7 +154,7 @@ class TodayScreen extends ConsumerWidget {
                       color: context.textPrimary,
                     ),
                   ),
-                ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                ).animate().fadeIn(duration: 400.ms),
               ),
               SliverToBoxAdapter(
                 child: chaptersAsync.when(
@@ -252,13 +299,21 @@ class _StreakBanner extends StatelessWidget {
 
 class _StartSessionButton extends StatelessWidget {
   final VoidCallback onTap;
+  final bool completedToday;
 
-  const _StartSessionButton({required this.onTap});
+  const _StartSessionButton({
+    required this.onTap,
+    this.completedToday = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.red,
+    final buttonColor = completedToday ? AppColors.success : AppColors.red;
+    final label = completedToday ? 'Practice More' : "Start Today's Session";
+    final icon = completedToday ? Icons.replay_rounded : Icons.play_arrow_rounded;
+
+    final button = Material(
+      color: buttonColor,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         onTap: onTap,
@@ -269,14 +324,10 @@ class _StartSessionButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.play_arrow_rounded,
-                color: AppColors.white,
-                size: 28,
-              ),
+              Icon(icon, color: AppColors.white, size: 28),
               const SizedBox(width: 10),
               Text(
-                "Start Today's Session",
+                label,
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -287,7 +338,11 @@ class _StartSessionButton extends StatelessWidget {
           ),
         ),
       ),
-    )
+    );
+
+    if (completedToday) return button;
+
+    return button
         .animate(onComplete: (c) => c.repeat(reverse: true))
         .shimmer(
           delay: 2000.ms,
@@ -333,32 +388,35 @@ class _SessionPreview extends StatelessWidget {
         border: Border.all(color: context.dividerColor),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _PreviewChip(
-            icon: Icons.replay_rounded,
-            color: AppColors.red,
-            label: '$dueCount reviews',
+          Expanded(
+            child: Center(
+              child: _PreviewChip(
+                icon: Icons.replay_rounded,
+                color: AppColors.red,
+                label: '$dueCount reviews',
+              ),
+            ),
           ),
-          Container(
-            width: 1,
-            height: 28,
-            color: context.dividerColor,
+          Container(width: 1, height: 28, color: context.dividerColor),
+          Expanded(
+            child: Center(
+              child: _PreviewChip(
+                icon: Icons.auto_stories_rounded,
+                color: AppColors.gold,
+                label: '$newWordCount new',
+              ),
+            ),
           ),
-          _PreviewChip(
-            icon: Icons.auto_stories_rounded,
-            color: AppColors.gold,
-            label: '$newWordCount new words',
-          ),
-          Container(
-            width: 1,
-            height: 28,
-            color: context.dividerColor,
-          ),
-          _PreviewChip(
-            icon: Icons.quiz_rounded,
-            color: AppColors.info,
-            label: '1 practice',
+          Container(width: 1, height: 28, color: context.dividerColor),
+          Expanded(
+            child: Center(
+              child: _PreviewChip(
+                icon: Icons.quiz_rounded,
+                color: AppColors.info,
+                label: '1 practice',
+              ),
+            ),
           ),
         ],
       ),
@@ -383,13 +441,17 @@ class _PreviewChip extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon, size: 18, color: color),
-        const SizedBox(width: 6),
-        Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-            color: context.textPrimary,
+        const SizedBox(width: 4),
+        Flexible(
+          child: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.inter(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: context.textPrimary,
+            ),
           ),
         ),
       ],
@@ -517,94 +579,137 @@ class _ChapterRoadmap extends StatelessWidget {
       }
     }
 
+    final nodes = List.generate(chapters.length, (index) {
+      final chapter = chapters[index];
+      final chId = chapter.id;
+      final driftPct = driftProgressMap[chId.toString()];
+      final legacyPct = legacyProgress.chapters[chId]?.completionPercent ?? 0.0;
+      final pct = driftPct ?? legacyPct;
+
+      final isCompleted = pct >= 100;
+      final isCurrent = index == currentIndex;
+
+      return _RoadmapNode(
+        chapter: chapter,
+        index: index,
+        isCompleted: isCompleted,
+        isCurrent: isCurrent,
+      );
+    });
+
+    final useWrap = context.isMedium || context.isExpanded;
+
+    if (useWrap) {
+      return Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.horizontalPadding,
+          vertical: 8,
+        ),
+        child: Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: nodes,
+        ),
+      ).animate().fadeIn(duration: 400.ms);
+    }
+
     return SizedBox(
       height: 100,
-      child: ListView.builder(
+      child: ListView(
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(
           horizontal: context.horizontalPadding,
           vertical: 8,
         ),
-        itemCount: chapters.length,
-        itemBuilder: (context, index) {
-          final chapter = chapters[index];
-          final chId = chapter.id;
-          final driftPct = driftProgressMap[chId.toString()];
-          final legacyPct = legacyProgress.chapters[chId]?.completionPercent ?? 0.0;
-          final pct = driftPct ?? legacyPct;
+        children: nodes
+            .map((node) => Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: node,
+                ))
+            .toList(),
+      ),
+    ).animate().fadeIn(duration: 400.ms);
+  }
+}
 
-          final isCompleted = pct >= 100;
-          final isCurrent = index == currentIndex;
+class _RoadmapNode extends StatelessWidget {
+  final Chapter chapter;
+  final int index;
+  final bool isCompleted;
+  final bool isCurrent;
 
-          return Padding(
-            padding: EdgeInsets.only(right: index < chapters.length - 1 ? 12 : 0),
-            child: GestureDetector(
-              onTap: () => context.push('/lesson/${chapter.id}'),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: isCompleted
-                          ? AppColors.success
-                          : isCurrent
-                              ? AppColors.red
-                              : context.isDark
-                                  ? AppColors.darkCard
-                                  : AppColors.surfaceLight,
-                      border: Border.all(
-                        color: isCompleted
-                            ? AppColors.success
-                            : isCurrent
-                                ? AppColors.red
-                                : context.dividerColor,
-                        width: isCurrent ? 2.5 : 1.5,
-                      ),
-                    ),
-                    child: Center(
-                      child: isCompleted
-                          ? const Icon(
-                              Icons.check_rounded,
-                              color: AppColors.white,
-                              size: 22,
-                            )
-                          : Icon(
-                              chapterIconFromString(chapter.icon),
-                              color: isCurrent
-                                  ? AppColors.white
-                                  : context.textLight,
-                              size: 20,
-                            ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    width: 52,
-                    child: Text(
-                      'Ch ${index + 1}',
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w500,
-                        color: isCurrent
-                            ? AppColors.red
-                            : isCompleted
-                                ? AppColors.success
-                                : context.textLight,
-                      ),
-                    ),
-                  ),
-                ],
+  const _RoadmapNode({
+    required this.chapter,
+    required this.index,
+    required this.isCompleted,
+    required this.isCurrent,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/lesson/${chapter.id}'),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isCompleted
+                  ? AppColors.success
+                  : isCurrent
+                      ? AppColors.red
+                      : context.isDark
+                          ? AppColors.darkCard
+                          : AppColors.surfaceLight,
+              border: Border.all(
+                color: isCompleted
+                    ? AppColors.success
+                    : isCurrent
+                        ? AppColors.red
+                        : context.dividerColor,
+                width: isCurrent ? 2.5 : 1.5,
               ),
             ),
-          );
-        },
+            child: Center(
+              child: isCompleted
+                  ? const Icon(
+                      Icons.check_rounded,
+                      color: AppColors.white,
+                      size: 22,
+                    )
+                  : Icon(
+                      chapterIconFromString(chapter.icon),
+                      color: isCurrent
+                          ? AppColors.white
+                          : context.textLight,
+                      size: 20,
+                    ),
+            ),
+          ),
+          const SizedBox(height: 4),
+          SizedBox(
+            width: 52,
+            child: Text(
+              'Ch ${index + 1}',
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.inter(
+                fontSize: 11,
+                fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w500,
+                color: isCurrent
+                    ? AppColors.red
+                    : isCompleted
+                        ? AppColors.success
+                        : context.textLight,
+              ),
+            ),
+          ),
+        ],
       ),
-    ).animate().fadeIn(delay: 400.ms, duration: 400.ms).slideX(begin: 0.05);
+    );
   }
 }

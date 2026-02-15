@@ -15,6 +15,7 @@ import '../../providers/database_provider.dart';
 import '../../services/fsrs.dart';
 import '../../services/session_engine.dart';
 import '../../services/tts_service.dart';
+import '../../widgets/matching_card.dart';
 import '../../widgets/quiz_card.dart';
 import '../../widgets/speaker_button.dart';
 
@@ -33,6 +34,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
   int _phase = 1; // 1, 2, or 3
   int _stepInPhase = 0;
   bool _showingNewWordTeach = true; // For phase 2: teach then quiz
+  bool _showingMatching = false;
   int _completedSteps = 0;
 
   // Stats
@@ -141,13 +143,11 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
 
   int get _totalSteps {
     if (_session == null) return 0;
-    return _session!.phase1Review.length +
-        _session!.phase2NewWords.length +
-        _session!.phase2MiniQuiz.length +
-        _session!.phase3Mixed.length;
+    return _session!.totalItems;
   }
 
   String get _phaseLabel {
+    if (_showingMatching) return 'Matching';
     switch (_phase) {
       case 1:
         return 'Review';
@@ -248,6 +248,8 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
         } else if (session.phase3Mixed.isNotEmpty) {
           _phase = 3;
           _stepInPhase = 0;
+        } else if (session.matchingChallenge != null) {
+          _showingMatching = true;
         } else {
           _navigateToComplete();
         }
@@ -258,12 +260,16 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
         } else if (session.phase3Mixed.isNotEmpty) {
           _phase = 3;
           _stepInPhase = 0;
+        } else if (session.matchingChallenge != null) {
+          _showingMatching = true;
         } else {
           _navigateToComplete();
         }
       } else if (_phase == 3) {
         if (_stepInPhase < session.phase3Mixed.length - 1) {
           _stepInPhase++;
+        } else if (session.matchingChallenge != null) {
+          _showingMatching = true;
         } else {
           _navigateToComplete();
         }
@@ -413,6 +419,18 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
         ttsService: tts,
         onComplete: (correct, time) =>
             _onQuizAnswer(correct, time, question.word),
+      );
+    }
+
+    if (_showingMatching && session.matchingChallenge != null) {
+      return MatchingCard(
+        key: const ValueKey('matching'),
+        challenge: session.matchingChallenge!,
+        tts: tts,
+        onComplete: (wrongAttempts) {
+          _completedSteps++;
+          _navigateToComplete();
+        },
       );
     }
 

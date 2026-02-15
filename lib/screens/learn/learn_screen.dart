@@ -16,6 +16,8 @@ import '../../providers/theme_provider.dart';
 import '../../widgets/error_view.dart';
 import '../../widgets/french_card.dart';
 
+enum _LearnSection { chapters, wordBank, tef }
+
 class LearnScreen extends ConsumerWidget {
   const LearnScreen({super.key});
 
@@ -41,7 +43,7 @@ class LearnScreen extends ConsumerWidget {
   }
 }
 
-class _LearnContent extends ConsumerWidget {
+class _LearnContent extends ConsumerStatefulWidget {
   final List<Chapter> chapters;
   final UserProgress progress;
 
@@ -51,13 +53,20 @@ class _LearnContent extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_LearnContent> createState() => _LearnContentState();
+}
+
+class _LearnContentState extends ConsumerState<_LearnContent> {
+  _LearnSection _selectedSection = _LearnSection.chapters;
+
+  @override
+  Widget build(BuildContext context) {
     final hPad = context.horizontalPadding;
 
     // Find first incomplete chapter for "Recommended" badge
     int? recommendedId;
-    for (final chapter in chapters) {
-      final cp = progress.chapters[chapter.id];
+    for (final chapter in widget.chapters) {
+      final cp = widget.progress.chapters[chapter.id];
       if (cp == null || cp.completionPercent < 100) {
         recommendedId = chapter.id;
         break;
@@ -122,72 +131,163 @@ class _LearnContent extends ConsumerWidget {
             ),
           ),
 
-          // -- Chapters header --
+          // -- Section Filter Chips --
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(hPad, 8, hPad, 8),
-              child: _SectionHeader(
-                title: 'Chapters',
-                icon: Icons.menu_book_rounded,
-                count: chapters.length,
+              padding: EdgeInsets.fromLTRB(hPad, 0, hPad, 12),
+              child: Row(
+                children: [
+                  _FilterChip(
+                    label: 'Chapters',
+                    icon: Icons.menu_book_rounded,
+                    isSelected: _selectedSection == _LearnSection.chapters,
+                    onTap: () => setState(() => _selectedSection = _LearnSection.chapters),
+                  ),
+                  const SizedBox(width: 8),
+                  _FilterChip(
+                    label: 'Word Bank',
+                    icon: Icons.translate_rounded,
+                    isSelected: _selectedSection == _LearnSection.wordBank,
+                    onTap: () => setState(() => _selectedSection = _LearnSection.wordBank),
+                  ),
+                  const SizedBox(width: 8),
+                  _FilterChip(
+                    label: 'TEF Prep',
+                    icon: Icons.school_rounded,
+                    isSelected: _selectedSection == _LearnSection.tef,
+                    onTap: () => setState(() => _selectedSection = _LearnSection.tef),
+                  ),
+                ],
               ),
-            ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.06),
+            ).animate().fadeIn(duration: 300.ms),
           ),
 
-          // -- Chapter tiles --
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final chapter = chapters[index];
-                final cp = progress.chapters[chapter.id];
-                final isCompleted =
-                    cp != null && cp.completionPercent >= 100;
-                final isRecommended = chapter.id == recommendedId;
-
-                return _ChapterTile(
-                  chapter: chapter,
-                  chapterProgress: cp,
-                  isCompleted: isCompleted,
-                  isRecommended: isRecommended,
-                  index: index,
-                );
-              },
-              childCount: chapters.length,
+          // -- Filtered content --
+          if (_selectedSection == _LearnSection.chapters) ...[
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(hPad, 0, hPad, 8),
+                child: _SectionHeader(
+                  title: 'Chapters',
+                  icon: Icons.menu_book_rounded,
+                  count: widget.chapters.length,
+                ),
+              ).animate().fadeIn(duration: 300.ms),
             ),
-          ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final chapter = widget.chapters[index];
+                  final cp = widget.progress.chapters[chapter.id];
+                  final isCompleted =
+                      cp != null && cp.completionPercent >= 100;
+                  final isRecommended = chapter.id == recommendedId;
 
-          // -- Word Bank section --
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(hPad, 24, hPad, 8),
-              child: _SectionHeader(
-                title: 'Word Bank',
-                icon: Icons.translate_rounded,
+                  return _ChapterTile(
+                    chapter: chapter,
+                    chapterProgress: cp,
+                    isCompleted: isCompleted,
+                    isRecommended: isRecommended,
+                  );
+                },
+                childCount: widget.chapters.length,
               ),
-            ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.06),
-          ),
+            ),
+          ],
 
-          SliverToBoxAdapter(
-            child: _WordBankCard(),
-          ),
+          if (_selectedSection == _LearnSection.wordBank) ...[
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(hPad, 0, hPad, 8),
+                child: _SectionHeader(
+                  title: 'Word Bank',
+                  icon: Icons.translate_rounded,
+                ),
+              ).animate().fadeIn(duration: 300.ms),
+            ),
+            SliverToBoxAdapter(
+              child: _WordBankCard(),
+            ),
+          ],
 
-          // -- TEF Practice section --
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(hPad, 24, hPad, 8),
-              child: _SectionHeader(
-                title: 'TEF Prep',
-                icon: Icons.school_rounded,
-              ),
-            ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.06),
-          ),
-
-          SliverToBoxAdapter(
-            child: _TefPracticeCard(),
-          ),
+          if (_selectedSection == _LearnSection.tef) ...[
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(hPad, 0, hPad, 8),
+                child: _SectionHeader(
+                  title: 'TEF Prep',
+                  icon: Icons.school_rounded,
+                ),
+              ).animate().fadeIn(duration: 300.ms),
+            ),
+            SliverToBoxAdapter(
+              child: _TefPracticeCard(),
+            ),
+          ],
 
           const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
         ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Filter Chip
+// ---------------------------------------------------------------------------
+
+class _FilterChip extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _FilterChip({
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppColors.red
+              : context.isDark
+                  ? AppColors.darkCard
+                  : AppColors.surfaceLight,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected
+                ? AppColors.red
+                : context.dividerColor,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 16,
+              color: isSelected ? AppColors.white : context.textSecondary,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: GoogleFonts.inter(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: isSelected ? AppColors.white : context.textPrimary,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -247,7 +347,7 @@ class _SectionHeader extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Chapter Tile
+// Chapter Tile (no stagger delay)
 // ---------------------------------------------------------------------------
 
 class _ChapterTile extends StatelessWidget {
@@ -255,14 +355,12 @@ class _ChapterTile extends StatelessWidget {
   final ChapterProgress? chapterProgress;
   final bool isCompleted;
   final bool isRecommended;
-  final int index;
 
   const _ChapterTile({
     required this.chapter,
     this.chapterProgress,
     required this.isCompleted,
     required this.isRecommended,
-    required this.index,
   });
 
   @override
@@ -393,13 +491,7 @@ class _ChapterTile extends StatelessWidget {
           ),
         ],
       ),
-    )
-        .animate()
-        .fadeIn(
-          delay: (80 * (index < 5 ? index : 5)).ms,
-          duration: 400.ms,
-        )
-        .slideY(begin: 0.1);
+    );
   }
 }
 
@@ -465,7 +557,7 @@ class _WordBankCard extends ConsumerWidget {
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1);
+    );
   }
 }
 
@@ -531,6 +623,6 @@ class _TefPracticeCard extends ConsumerWidget {
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1);
+    );
   }
 }

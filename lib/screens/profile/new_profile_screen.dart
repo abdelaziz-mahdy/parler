@@ -112,7 +112,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   ),
                 ),
               ],
-            ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 12),
 
@@ -140,7 +140,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   ),
                 ),
               ],
-            ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 28),
 
@@ -152,7 +152,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                 fontWeight: FontWeight.w700,
                 color: context.textPrimary,
               ),
-            ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 12),
 
@@ -166,7 +166,6 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
 
                 return Column(
                   children: chapters.asMap().entries.map((entry) {
-                    final i = entry.key;
                     final chapter = entry.value;
                     final pct = progressMap[chapter.id.toString()] ??
                         (progress.chapters[chapter.id]?.completionPercent ?? 0.0);
@@ -229,10 +228,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                           ],
                         ),
                       ),
-                    ).animate().fadeIn(
-                          delay: (350 + i * 50).ms,
-                          duration: 300.ms,
-                        );
+                    );
                   }).toList(),
                 );
               },
@@ -257,7 +253,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                 fontWeight: FontWeight.w700,
                 color: context.textPrimary,
               ),
-            ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 12),
 
@@ -295,7 +291,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   ),
                 ],
               ),
-            ).animate().fadeIn(delay: 650.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 8),
 
@@ -331,7 +327,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   ),
                 ],
               ),
-            ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 8),
 
@@ -364,7 +360,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   ),
                 ],
               ),
-            ).animate().fadeIn(delay: 750.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
 
             const SizedBox(height: 8),
 
@@ -416,7 +412,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   ),
                 ],
               ),
-            ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+            ).animate().fadeIn(duration: 400.ms),
           ],
         ),
       ),
