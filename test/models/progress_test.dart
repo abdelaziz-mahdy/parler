@@ -8,9 +8,10 @@ void main() {
 
       expect(progress.chapters, isEmpty);
       expect(progress.flashcards, isEmpty);
-      expect(progress.totalXp, 0);
       expect(progress.currentStreak, 0);
       expect(progress.lastStudyDate, isNull);
+      expect(progress.streakFreezes, 0);
+      expect(progress.lastStreakFreezeEarned, isNull);
     });
 
     test('fromJson/toJson roundtrip', () {
@@ -34,9 +35,10 @@ void main() {
             'quality': 4,
           },
         },
-        'totalXp': 150,
         'currentStreak': 5,
         'lastStudyDate': '2026-02-08',
+        'streakFreezes': 1,
+        'lastStreakFreezeEarned': '2026-02-07',
       };
 
       final progress = UserProgress.fromJson(json);
@@ -46,38 +48,41 @@ void main() {
       expect(progress.chapters[1]!.completionPercent, 75.0);
       expect(progress.flashcards.length, 1);
       expect(progress.flashcards['card1']!.easeFactor, 2.5);
-      expect(progress.totalXp, 150);
       expect(progress.currentStreak, 5);
       expect(progress.lastStudyDate, '2026-02-08');
+      expect(progress.streakFreezes, 1);
 
       final restoredJson = progress.toJson();
       final restored = UserProgress.fromJson(restoredJson);
 
       expect(restored.chapters.length, progress.chapters.length);
-      expect(restored.totalXp, progress.totalXp);
       expect(restored.currentStreak, progress.currentStreak);
+      expect(restored.streakFreezes, progress.streakFreezes);
     });
 
     test('copyWith creates modified copy', () {
       final original = UserProgress.initial();
-      final modified = original.copyWith(totalXp: 100, currentStreak: 3);
+      final modified = original.copyWith(
+        currentStreak: 3,
+        streakFreezes: 2,
+      );
 
-      expect(modified.totalXp, 100);
       expect(modified.currentStreak, 3);
+      expect(modified.streakFreezes, 2);
       expect(modified.chapters, isEmpty);
-      expect(original.totalXp, 0); // original unchanged
+      expect(original.currentStreak, 0); // original unchanged
     });
 
     test('fromJson handles missing optional fields', () {
       final json = {
         'chapters': <String, dynamic>{},
-        'flashcards': <String, dynamic>{},
-        'totalXp': 0,
         'currentStreak': 0,
       };
 
       final progress = UserProgress.fromJson(json);
       expect(progress.lastStudyDate, isNull);
+      expect(progress.streakFreezes, 0);
+      expect(progress.lastStreakFreezeEarned, isNull);
     });
   });
 

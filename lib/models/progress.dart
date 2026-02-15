@@ -1,25 +1,28 @@
 class UserProgress {
   final Map<int, ChapterProgress> chapters;
-  final Map<String, CardProgress> flashcards;
   final List<TefTestResult> tefResults;
-  final int totalXp;
   final int currentStreak;
   final String? lastStudyDate;
+  final int streakFreezes;
+  final String? lastStreakFreezeEarned;
+
+  /// Legacy flashcard map — kept for backward compat with old screens.
+  /// New card state is managed via Drift database. This field is not persisted.
+  final Map<String, CardProgress> flashcards;
 
   const UserProgress({
     required this.chapters,
-    required this.flashcards,
     required this.tefResults,
-    required this.totalXp,
     required this.currentStreak,
     this.lastStudyDate,
+    this.streakFreezes = 0,
+    this.lastStreakFreezeEarned,
+    this.flashcards = const {},
   });
 
   factory UserProgress.initial() => const UserProgress(
     chapters: {},
-    flashcards: {},
     tefResults: [],
-    totalXp: 0,
     currentStreak: 0,
   );
 
@@ -39,6 +42,13 @@ class UserProgress {
         );
       });
     }
+    final tefList = <TefTestResult>[];
+    if (json['tefResults'] != null) {
+      for (final item in json['tefResults'] as List) {
+        tefList.add(TefTestResult.fromJson(item as Map<String, dynamic>));
+      }
+    }
+    // Parse legacy flashcards for SM-2 migration
     final flashcardsMap = <String, CardProgress>{};
     if (json['flashcards'] != null) {
       (json['flashcards'] as Map<String, dynamic>).forEach((key, value) {
@@ -47,46 +57,45 @@ class UserProgress {
         );
       });
     }
-    final tefList = <TefTestResult>[];
-    if (json['tefResults'] != null) {
-      for (final item in json['tefResults'] as List) {
-        tefList.add(TefTestResult.fromJson(item as Map<String, dynamic>));
-      }
-    }
     return UserProgress(
       chapters: chaptersMap,
-      flashcards: flashcardsMap,
       tefResults: tefList,
-      totalXp: json['totalXp'] as int? ?? 0,
       currentStreak: json['currentStreak'] as int? ?? 0,
       lastStudyDate: json['lastStudyDate'] as String?,
+      streakFreezes: json['streakFreezes'] as int? ?? 0,
+      lastStreakFreezeEarned: json['lastStreakFreezeEarned'] as String?,
+      flashcards: flashcardsMap,
     );
   }
 
   Map<String, dynamic> toJson() => {
     'chapters': chapters.map((k, v) => MapEntry(k.toString(), v.toJson())),
-    'flashcards': flashcards.map((k, v) => MapEntry(k, v.toJson())),
     'tefResults': tefResults.map((r) => r.toJson()).toList(),
-    'totalXp': totalXp,
     'currentStreak': currentStreak,
     if (lastStudyDate != null) 'lastStudyDate': lastStudyDate,
+    'streakFreezes': streakFreezes,
+    if (lastStreakFreezeEarned != null)
+      'lastStreakFreezeEarned': lastStreakFreezeEarned,
   };
 
   UserProgress copyWith({
     Map<int, ChapterProgress>? chapters,
-    Map<String, CardProgress>? flashcards,
     List<TefTestResult>? tefResults,
-    int? totalXp,
     int? currentStreak,
     String? lastStudyDate,
+    int? streakFreezes,
+    String? lastStreakFreezeEarned,
+    Map<String, CardProgress>? flashcards,
   }) {
     return UserProgress(
       chapters: chapters ?? this.chapters,
-      flashcards: flashcards ?? this.flashcards,
       tefResults: tefResults ?? this.tefResults,
-      totalXp: totalXp ?? this.totalXp,
       currentStreak: currentStreak ?? this.currentStreak,
       lastStudyDate: lastStudyDate ?? this.lastStudyDate,
+      streakFreezes: streakFreezes ?? this.streakFreezes,
+      lastStreakFreezeEarned:
+          lastStreakFreezeEarned ?? this.lastStreakFreezeEarned,
+      flashcards: flashcards ?? this.flashcards,
     );
   }
 }
@@ -184,6 +193,8 @@ class TefTestResult {
   };
 }
 
+/// Legacy SM-2 card progress — kept for migration from old data.
+/// New card state is managed via Drift database (CardStates table).
 class CardProgress {
   final String cardId;
   final double easeFactor;

@@ -523,7 +523,7 @@ class _ChapterRoadmap extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(
           horizontal: context.horizontalPadding,
-          vertical: 12,
+          vertical: 8,
         ),
         itemCount: chapters.length,
         itemBuilder: (context, index) {
@@ -580,12 +580,14 @@ class _ChapterRoadmap extends StatelessWidget {
                             ),
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 4),
                   SizedBox(
                     width: 52,
                     child: Text(
                       'Ch ${index + 1}',
                       textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.inter(
                         fontSize: 11,
                         fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w500,

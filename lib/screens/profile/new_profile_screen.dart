@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/adaptive_colors.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/icon_map.dart';
@@ -60,9 +59,9 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
 
     final completedChapters = chaptersAsync.when(
       data: (chapters) {
-        final dbProgress = chapterProgressStream.valueOrNull ?? [];
+        final dbProgress = chapterProgressStream.value ?? [];
         return dbProgress.where((cp) {
-          return (cp.masteryPercent ?? 0) >= 100;
+          return cp.masteryPercent >= 100;
         }).length;
       },
       loading: () => 0,
@@ -159,10 +158,10 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
 
             chaptersAsync.when(
               data: (chapters) {
-                final dbProgress = chapterProgressStream.valueOrNull ?? [];
+                final dbProgress = chapterProgressStream.value ?? [];
                 final progressMap = <String, double>{};
                 for (final cp in dbProgress) {
-                  progressMap[cp.chapterId] = (cp.masteryPercent ?? 0).toDouble();
+                  progressMap[cp.chapterId] = cp.masteryPercent.toDouble();
                 }
 
                 return Column(
@@ -361,7 +360,7 @@ class _NewProfileScreenState extends ConsumerState<NewProfileScreen> {
                   Switch(
                     value: themeMode == ThemeMode.dark,
                     onChanged: (_) => ref.read(themeModeProvider.notifier).toggle(),
-                    activeColor: AppColors.red,
+                    activeThumbColor: AppColors.red,
                   ),
                 ],
               ),
