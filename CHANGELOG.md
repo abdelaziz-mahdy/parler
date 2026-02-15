@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2
+
+### Improvements
+- **Check for Updates**: Added manual update check button in Profile settings
+- **Snooze Dismiss**: "Later" now snoozes for 24 hours instead of permanently hiding the update
+
 ## 2.0.1
 
 ### Bug Fixes & Polish
