@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../screens/lessons/lessons_screen.dart';
+import '../../screens/today/today_screen.dart';
+import '../../screens/learn/learn_screen.dart';
+import '../../screens/profile/new_profile_screen.dart';
+import '../../screens/session/session_screen.dart';
+import '../../screens/session/session_complete_screen.dart';
 import '../../screens/lessons/lesson_detail_screen.dart';
 import '../../screens/words/words_screen.dart';
 import '../../screens/words/flashcard_screen.dart';
 import '../../screens/words/vocab_quiz_screen.dart';
 import '../../screens/tef/tef_screen.dart';
 import '../../screens/tef/tef_play_screen.dart';
-import '../../screens/quiz/quiz_screen.dart';
 import '../../screens/quiz/quiz_play_screen.dart';
 import '../../screens/splash/splash_screen.dart';
 import '../constants/app_colors.dart';
@@ -26,26 +29,59 @@ final appRouter = GoRouter(
       builder: (context, state, child) => AppShell(child: child),
       routes: [
         GoRoute(
-          path: '/lessons',
+          path: '/today',
           pageBuilder: (context, state) =>
-              const NoTransitionPage(child: LessonsScreen()),
+              const NoTransitionPage(child: TodayScreen()),
         ),
         GoRoute(
-          path: '/words',
+          path: '/learn',
           pageBuilder: (context, state) =>
-              const NoTransitionPage(child: WordsScreen()),
+              const NoTransitionPage(child: LearnScreen()),
         ),
         GoRoute(
-          path: '/tef',
+          path: '/profile',
           pageBuilder: (context, state) =>
-              const NoTransitionPage(child: TefScreen()),
-        ),
-        GoRoute(
-          path: '/quiz',
-          pageBuilder: (context, state) =>
-              const NoTransitionPage(child: QuizScreen()),
+              const NoTransitionPage(child: NewProfileScreen()),
         ),
       ],
+    ),
+    GoRoute(
+      path: '/session',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: const SessionScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/session/complete',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        return CustomTransitionPage(
+          child: SessionCompleteScreen(
+            reviewedCount: extra['reviewed'] as int? ?? 0,
+            newWordsCount: extra['newWords'] as int? ?? 0,
+            correctCount: extra['correct'] as int? ?? 0,
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/lesson/:id',
@@ -54,6 +90,27 @@ final appRouter = GoRouter(
         final id = int.tryParse(state.pathParameters['id'] ?? '') ?? 1;
         return CustomTransitionPage(
           child: LessonDetailScreen(chapterId: id),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: '/tef',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: const TefScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position:
@@ -92,11 +149,31 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
+      path: '/words',
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: const WordsScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(
+                    begin: const Offset(0, 0.15),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
       path: '/words/quiz/:category',
       parentNavigatorKey: _rootNavigatorKey,
       pageBuilder: (context, state) {
         final category = state.pathParameters['category'] ?? '';
-        // Support passing wordIds via extra for session-based quizzes.
         final extra = state.extra;
         final List<String>? wordIds =
             extra is List ? extra.cast<String>() : null;
@@ -171,17 +248,15 @@ class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.child});
 
   static const _destinations = [
-    _NavDest(icon: Icons.menu_book_rounded, label: 'Lessons', path: '/lessons'),
-    _NavDest(icon: Icons.translate_rounded, label: 'Words', path: '/words'),
-    _NavDest(icon: Icons.school_rounded, label: 'TEF', path: '/tef'),
-    _NavDest(icon: Icons.quiz_rounded, label: 'Quiz', path: '/quiz'),
+    _NavDest(icon: Icons.today_rounded, label: 'Today', path: '/today'),
+    _NavDest(icon: Icons.menu_book_rounded, label: 'Learn', path: '/learn'),
+    _NavDest(icon: Icons.person_rounded, label: 'Profile', path: '/profile'),
   ];
 
   int _currentIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
-    if (location.startsWith('/words')) return 1;
-    if (location.startsWith('/tef')) return 2;
-    if (location.startsWith('/quiz')) return 3;
+    if (location.startsWith('/learn')) return 1;
+    if (location.startsWith('/profile')) return 2;
     return 0;
   }
 
