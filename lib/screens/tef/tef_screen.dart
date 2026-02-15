@@ -22,8 +22,23 @@ class TefScreen extends ConsumerWidget {
     final progress = ref.watch(progressProvider);
 
     return Scaffold(
-      body: SafeArea(
-        child: testsAsync.when(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () => context.pop(),
+        ),
+        title: Text(
+          'TEF Practice',
+          style: GoogleFonts.playfairDisplay(
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: false,
+        elevation: 0,
+        scrolledUnderElevation: 1,
+      ),
+      body: testsAsync.when(
           data: (tests) {
             final available = <TefTest>[];
             final completed = <TefTest>[];
@@ -42,19 +57,10 @@ class TefScreen extends ConsumerWidget {
                 slivers: [
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(hPad, 20, hPad, 16),
+                      padding: EdgeInsets.fromLTRB(hPad, 12, hPad, 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'TEF Practice',
-                          style: GoogleFonts.playfairDisplay(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            color: context.textPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
                         Text(
                           'Prepare for the TEF exam',
                           style: GoogleFonts.inter(
@@ -151,7 +157,6 @@ class TefScreen extends ConsumerWidget {
           error: (e, _) =>
               ErrorView(onRetry: () => ref.invalidate(tefTestsProvider)),
         ),
-      ),
     );
   }
 }
