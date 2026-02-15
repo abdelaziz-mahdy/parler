@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/constants/app_colors.dart';
@@ -48,11 +49,43 @@ class UpdateDialog extends StatelessWidget {
           if (info.releaseNotes != null && info.releaseNotes!.isNotEmpty) ...[
             const SizedBox(height: 12),
             ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 200),
+              constraints: const BoxConstraints(maxHeight: 300),
               child: SingleChildScrollView(
-                child: Text(
-                  info.releaseNotes!,
-                  style: GoogleFonts.inter(fontSize: 13, height: 1.4),
+                child: MarkdownBody(
+                  data: info.releaseNotes!,
+                  styleSheet: MarkdownStyleSheet(
+                    p: GoogleFonts.inter(fontSize: 13, height: 1.4),
+                    h1: GoogleFonts.inter(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    h2: GoogleFonts.inter(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    h3: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    listBullet: GoogleFonts.inter(fontSize: 13),
+                    strong: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    em: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    blockSpacing: 8,
+                  ),
+                  onTapLink: (text, href, title) {
+                    if (href != null) {
+                      launchUrl(
+                        Uri.parse(href),
+                        mode: LaunchMode.externalApplication,
+                      );
+                    }
+                  },
                 ),
               ),
             ),
