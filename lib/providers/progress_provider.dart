@@ -48,7 +48,6 @@ class ProgressNotifier extends Notifier<UserProgress> {
 
     state = state.copyWith(
       chapters: {...state.chapters, chapterId: updated},
-      totalXp: state.totalXp + 10,
     );
     await _save();
   }
@@ -73,37 +72,68 @@ class ProgressNotifier extends Notifier<UserProgress> {
 
     state = state.copyWith(
       chapters: {...state.chapters, chapterId: updated},
-      totalXp: state.totalXp + score,
     );
     await _save();
   }
 
   Future<void> updateStreak() async {
-    final today = DateTime.now().toIso8601String().split('T').first;
+    final now = DateTime.now();
+    final today = now.toIso8601String().split('T').first;
     if (state.lastStudyDate == today) return;
 
-    final yesterday = DateTime.now()
-        .subtract(const Duration(days: 1))
-        .toIso8601String()
-        .split('T')
-        .first;
+    final yesterday =
+        now.subtract(const Duration(days: 1)).toIso8601String().split('T').first;
 
-    final newStreak = state.lastStudyDate == yesterday
-        ? state.currentStreak + 1
-        : 1;
+    int newStreak;
+    int newFreezes = state.streakFreezes;
 
-    state = state.copyWith(currentStreak: newStreak, lastStudyDate: today);
+    if (state.lastStudyDate == yesterday) {
+      // Consecutive day
+      newStreak = state.currentStreak + 1;
+    } else if (state.lastStudyDate != null && newFreezes > 0) {
+      // Missed a day but have a streak freeze — check 24h grace period
+      final lastDate = DateTime.parse(state.lastStudyDate!);
+      final hoursSince = now.difference(lastDate).inHours;
+      if (hoursSince <= 48) {
+        // Use a freeze to preserve streak
+        newStreak = state.currentStreak;
+        newFreezes -= 1;
+      } else {
+        newStreak = 1;
+      }
+    } else {
+      newStreak = 1;
+    }
+
+    // Earn a streak freeze every 7 consecutive days (max 2)
+    String? newFreezeEarned = state.lastStreakFreezeEarned;
+    if (newStreak > 0 && newStreak % 7 == 0 && newFreezes < 2) {
+      final lastEarned = state.lastStreakFreezeEarned;
+      if (lastEarned == null || lastEarned != today) {
+        newFreezes += 1;
+        newFreezeEarned = today;
+      }
+    }
+
+    state = state.copyWith(
+      currentStreak: newStreak,
+      lastStudyDate: today,
+      streakFreezes: newFreezes,
+      lastStreakFreezeEarned: newFreezeEarned,
+    );
     await _save();
   }
 
   Future<void> recordTefResult(TefTestResult result) async {
     state = state.copyWith(
       tefResults: [...state.tefResults, result],
-      totalXp: state.totalXp + result.percentage,
     );
     await _save();
   }
 
+  /// Legacy: update SM-2 card progress in SharedPreferences.
+  /// Kept for backward compat with old flashcard/quiz screens.
+  /// New card state is managed via Drift database.
   Future<void> updateCardProgress(CardProgress card) async {
     state = state.copyWith(
       flashcards: {...state.flashcards, card.cardId: card},

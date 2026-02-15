@@ -6,6 +6,7 @@ import '../../core/constants/adaptive_colors.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/icon_map.dart';
 import '../../providers/data_provider.dart';
+import '../../providers/database_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/error_view.dart';
@@ -19,6 +20,8 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final progress = ref.watch(progressProvider);
     final chaptersAsync = ref.watch(chaptersProvider);
+    final masteredCount = ref.watch(masteredCountProvider);
+    final totalStudied = ref.watch(totalStudiedProvider);
 
     final totalChapters = chaptersAsync.when(
       data: (c) => c.length,
@@ -153,8 +156,12 @@ class ProfileScreen extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: StatBadge(
-                    value: '${progress.totalXp}',
-                    label: 'Total XP',
+                    value: masteredCount.when(
+                      data: (v) => '$v',
+                      loading: () => '...',
+                      error: (_, _) => '0',
+                    ),
+                    label: 'Mastered',
                     icon: Icons.star_rounded,
                     color: AppColors.red,
                   ),
@@ -177,8 +184,12 @@ class ProfileScreen extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: StatBadge(
-                    value: '${progress.flashcards.length}',
-                    label: 'Cards Reviewed',
+                    value: totalStudied.when(
+                      data: (v) => '$v',
+                      loading: () => '...',
+                      error: (_, _) => '0',
+                    ),
+                    label: 'Cards Studied',
                     icon: Icons.style_rounded,
                     color: AppColors.info,
                   ),
