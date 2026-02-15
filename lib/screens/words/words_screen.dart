@@ -124,14 +124,28 @@ class WordsScreen extends ConsumerWidget {
     final progress = ref.watch(progressProvider);
 
     return Scaffold(
-      body: SafeArea(
-        child: vocabAsync.when(
-          data: (allWords) =>
-              _WordsCategoryBrowser(allWords: allWords, progress: progress),
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) =>
-              ErrorView(onRetry: () => ref.invalidate(vocabularyProvider)),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () => context.pop(),
         ),
+        title: Text(
+          'Words',
+          style: GoogleFonts.playfairDisplay(
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: false,
+        elevation: 0,
+        scrolledUnderElevation: 1,
+      ),
+      body: vocabAsync.when(
+        data: (allWords) =>
+            _WordsCategoryBrowser(allWords: allWords, progress: progress),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, _) =>
+            ErrorView(onRetry: () => ref.invalidate(vocabularyProvider)),
       ),
     );
   }
@@ -171,34 +185,6 @@ class _WordsCategoryBrowser extends StatelessWidget {
     return ContentConstraint(
       child: CustomScrollView(
         slivers: [
-          // -- Header --
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(hPad, 20, hPad, 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Words',
-                    style: GoogleFonts.playfairDisplay(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700,
-                      color: context.textPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Build your vocabulary',
-                    style: GoogleFonts.inter(
-                      fontSize: 15,
-                      color: context.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
           // -- Stats bar --
           SliverToBoxAdapter(
             child: Padding(

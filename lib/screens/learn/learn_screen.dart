@@ -10,6 +10,7 @@ import '../../core/constants/icon_map.dart';
 import '../../core/constants/responsive.dart';
 import '../../models/chapter.dart';
 import '../../models/progress.dart';
+import '../../models/vocabulary_word.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../providers/theme_provider.dart';
@@ -205,9 +206,7 @@ class _LearnContentState extends ConsumerState<_LearnContent> {
                 ),
               ).animate().fadeIn(duration: 300.ms),
             ),
-            SliverToBoxAdapter(
-              child: _WordBankCard(),
-            ),
+            _WordBankGrid(),
           ],
 
           if (_selectedSection == _LearnSection.tef) ...[
@@ -220,9 +219,7 @@ class _LearnContentState extends ConsumerState<_LearnContent> {
                 ),
               ).animate().fadeIn(duration: 300.ms),
             ),
-            SliverToBoxAdapter(
-              child: _TefPracticeCard(),
-            ),
+            _TefTestList(),
           ],
 
           const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
@@ -496,65 +493,188 @@ class _ChapterTile extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Word Bank Card
+// Word Bank Grid (inline categories)
 // ---------------------------------------------------------------------------
 
-class _WordBankCard extends ConsumerWidget {
+const _vocabCategories = <({String key, String label, IconData icon})>[
+  (key: 'greetings', label: 'Greetings', icon: Icons.waving_hand_rounded),
+  (key: 'family', label: 'Family', icon: Icons.family_restroom_rounded),
+  (key: 'food', label: 'Food', icon: Icons.restaurant_rounded),
+  (key: 'home', label: 'Home', icon: Icons.home_rounded),
+  (key: 'daily_routine', label: 'Daily Routine', icon: Icons.schedule_rounded),
+  (key: 'work', label: 'Work', icon: Icons.work_rounded),
+  (key: 'emotions', label: 'Emotions', icon: Icons.mood_rounded),
+  (key: 'colors', label: 'Colors', icon: Icons.palette_rounded),
+  (key: 'time', label: 'Time', icon: Icons.access_time_rounded),
+  (key: 'weather', label: 'Weather', icon: Icons.cloud_rounded),
+  (key: 'shopping', label: 'Shopping', icon: Icons.shopping_bag_rounded),
+  (key: 'city', label: 'City', icon: Icons.location_city_rounded),
+  (key: 'travel', label: 'Travel', icon: Icons.flight_rounded),
+  (key: 'health', label: 'Health', icon: Icons.health_and_safety_rounded),
+  (key: 'education', label: 'Education', icon: Icons.school_rounded),
+  (key: 'nature', label: 'Nature', icon: Icons.park_rounded),
+  (key: 'clothing', label: 'Clothing', icon: Icons.checkroom_rounded),
+  (key: 'body', label: 'Body', icon: Icons.accessibility_new_rounded),
+  (key: 'numbers_misc', label: 'Numbers', icon: Icons.tag_rounded),
+  (key: 'hobbies', label: 'Hobbies', icon: Icons.sports_tennis_rounded),
+  (key: 'technology', label: 'Technology', icon: Icons.devices_rounded),
+  (key: 'transportation', label: 'Transport', icon: Icons.directions_bus_rounded),
+  (key: 'finance', label: 'Finance', icon: Icons.account_balance_rounded),
+  (key: 'media', label: 'Media', icon: Icons.newspaper_rounded),
+  (key: 'environment', label: 'Environment', icon: Icons.eco_rounded),
+  (key: 'society', label: 'Society', icon: Icons.groups_rounded),
+];
+
+class _WordBankGrid extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vocabAsync = ref.watch(vocabularyProvider);
-    final wordCount = vocabAsync.whenOrNull(data: (words) => words.length);
+    final progress = ref.watch(progressProvider);
+
+    return vocabAsync.when(
+      data: (allWords) {
+        final wordsPerCategory = <String, List<VocabularyWord>>{};
+        for (final word in allWords) {
+          wordsPerCategory.putIfAbsent(word.category, () => []).add(word);
+        }
+
+        final activeCategories = _vocabCategories
+            .where((c) => wordsPerCategory.containsKey(c.key))
+            .toList();
+
+        final hPad = context.horizontalPadding;
+        final columns = context.gridColumns;
+
+        return SliverPadding(
+          padding: EdgeInsets.symmetric(horizontal: hPad - 4),
+          sliver: SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: columns,
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+              childAspectRatio: context.isCompact ? 0.92 : 1.2,
+            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              final cat = activeCategories[index];
+              final words = wordsPerCategory[cat.key] ?? [];
+              final studiedCount = words.where((w) {
+                final card = progress.flashcards['vocab_${w.french}'];
+                return card != null && card.repetitions > 0;
+              }).length;
+              final isComplete = studiedCount == words.length && words.isNotEmpty;
+
+              return _VocabCategoryCard(
+                categoryKey: cat.key,
+                label: cat.label,
+                icon: cat.icon,
+                wordCount: words.length,
+                studiedCount: studiedCount,
+                isComplete: isComplete,
+              );
+            }, childCount: activeCategories.length),
+          ),
+        );
+      },
+      loading: () => const SliverToBoxAdapter(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(32),
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      ),
+      error: (e, _) => SliverToBoxAdapter(
+        child: ErrorView(onRetry: () => ref.invalidate(vocabularyProvider)),
+      ),
+    );
+  }
+}
+
+class _VocabCategoryCard extends StatelessWidget {
+  final String categoryKey;
+  final String label;
+  final IconData icon;
+  final int wordCount;
+  final int studiedCount;
+  final bool isComplete;
+
+  const _VocabCategoryCard({
+    required this.categoryKey,
+    required this.label,
+    required this.icon,
+    required this.wordCount,
+    required this.studiedCount,
+    required this.isComplete,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final accentColor = isComplete ? AppColors.success : context.navyAdaptive;
+    final hasStarted = studiedCount > 0;
 
     return FrenchCard(
-      onTap: () => context.push('/words'),
-      child: Row(
+      margin: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(16),
+      onTap: () => context.push('/words/$categoryKey'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppColors.info.withValues(alpha: 0.10),
-              borderRadius: BorderRadius.circular(12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: accentColor.withValues(alpha: 0.10),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Icon(icon, size: 22, color: accentColor),
+                ),
+              ),
+              if (isComplete)
+                const Icon(
+                  Icons.check_circle_rounded,
+                  color: AppColors.success,
+                  size: 20,
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            label,
+            style: GoogleFonts.inter(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: context.textPrimary,
             ),
-            child: const Center(
-              child: Icon(
-                Icons.translate_rounded,
-                size: 24,
-                color: AppColors.info,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 2),
+          Text(
+            '$wordCount words',
+            style: GoogleFonts.inter(
+              fontSize: 12,
+              color: context.textSecondary,
+            ),
+          ),
+          const Spacer(),
+          if (hasStarted) ...[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(
+                value: wordCount > 0 ? studiedCount / wordCount : 0,
+                minHeight: 4,
+                backgroundColor: context.progressBgColor,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  isComplete ? AppColors.success : AppColors.red,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Browse All Words',
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: context.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  wordCount != null
-                      ? '$wordCount words available'
-                      : 'Loading...',
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    color: context.textSecondary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: context.textLight,
-          ),
+            const SizedBox(height: 4),
+          ],
         ],
       ),
     );
@@ -562,66 +682,126 @@ class _WordBankCard extends ConsumerWidget {
 }
 
 // ---------------------------------------------------------------------------
-// TEF Practice Card
+// TEF Test List (inline tests)
 // ---------------------------------------------------------------------------
 
-class _TefPracticeCard extends ConsumerWidget {
+class _TefTestList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tefAsync = ref.watch(tefTestsProvider);
-    final testCount = tefAsync.whenOrNull(data: (tests) => tests.length);
+    final progress = ref.watch(progressProvider);
 
-    return FrenchCard(
-      onTap: () => context.push('/tef'),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppColors.gold.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Center(
-              child: Icon(
-                Icons.school_rounded,
-                size: 24,
-                color: AppColors.goldDark,
+    return tefAsync.when(
+      data: (tests) {
+        if (tests.isEmpty) {
+          return const SliverToBoxAdapter(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(32),
+                child: Text('No practice tests available yet.'),
               ),
             ),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Practice Tests',
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: context.textPrimary,
-                  ),
+          );
+        }
+
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final test = tests[index];
+              final bestResult = progress.bestTefResult(test.id);
+              final isCompleted = bestResult != null;
+
+              return FrenchCard(
+                onTap: () => context.push('/tef/${test.id}'),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: BoxDecoration(
+                        color: isCompleted
+                            ? AppColors.success.withValues(alpha: 0.1)
+                            : context.navyAdaptive.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.school_rounded,
+                          size: 24,
+                          color: isCompleted
+                              ? AppColors.success
+                              : context.navyAdaptive,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            test.title,
+                            style: GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: context.textPrimary,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            test.description,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              color: context.textSecondary,
+                              height: 1.4,
+                            ),
+                          ),
+                          if (bestResult != null) ...[
+                            const SizedBox(height: 6),
+                            Text(
+                              'Best: ${bestResult.score}/${bestResult.totalQuestions}',
+                              style: GoogleFonts.inter(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.success,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    if (isCompleted)
+                      const Icon(
+                        Icons.check_circle_rounded,
+                        color: AppColors.success,
+                        size: 20,
+                      )
+                    else
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 16,
+                        color: context.textLight,
+                      ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  testCount != null
-                      ? '$testCount tests available'
-                      : 'Loading...',
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    color: context.textSecondary,
-                  ),
-                ),
-              ],
-            ),
+              );
+            },
+            childCount: tests.length,
           ),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: context.textLight,
+        );
+      },
+      loading: () => const SliverToBoxAdapter(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(32),
+            child: CircularProgressIndicator(),
           ),
-        ],
+        ),
+      ),
+      error: (e, _) => SliverToBoxAdapter(
+        child: ErrorView(onRetry: () => ref.invalidate(tefTestsProvider)),
       ),
     );
   }
