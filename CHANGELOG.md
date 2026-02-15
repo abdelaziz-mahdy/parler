@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.1
+
+### Bug Fixes & Polish
+- **Missing Back Buttons**: Added back navigation to Words and TEF screens
+- **Inline Learn Content**: Word Bank now shows category grid directly, TEF shows test list — no extra tap needed
+- **App Name**: Renamed from "french" to "Parler" on Android, iOS, and macOS
+- **Update Dialog**: Release notes now render markdown properly using flutter_markdown_plus
+
 ## 2.0.0
 
 ### Session-First Redesign
