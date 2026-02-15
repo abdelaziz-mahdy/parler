@@ -1,5 +1,35 @@
 # Changelog
 
+## 2.0.0
+
+### Session-First Redesign
+
+Complete UX overhaul — the app now guides your daily learning instead of requiring you to choose what to study.
+
+### New Learning Experience
+- **Daily Sessions**: Open the app, tap "Start Session", and get a personalized 3-phase practice (review, new content, mixed practice)
+- **Quiz-Style Reviews**: No more rating yourself Easy/Hard/Again — answer multiple choice questions and the algorithm learns from your results
+- **FSRS Algorithm**: Replaced SM-2 with the modern FSRS spaced repetition scheduler (20-30% more efficient, used by Anki)
+- **Auto-Play TTS**: French words are spoken automatically during sessions — no need to tap the speaker button
+- **Configurable Session Length**: Choose Casual (5 min), Regular (10 min), or Intense (15 min) in settings
+
+### New Navigation
+- **3-Tab Layout**: Today / Learn / Profile (replaced 4-tab Lessons/Words/TEF/Quiz)
+- **Today Tab**: See your streak, session preview, words mastered count, and chapter roadmap at a glance
+- **Learn Tab**: Browse all chapters, word bank, and TEF practice in one place
+- **Profile Tab**: Stats dashboard, chapter mastery bars, and all settings
+
+### Improved Progress Tracking
+- **Words Mastered**: Real count of words you've retained (FSRS stability > 30 days) — replaces meaningless XP
+- **Chapter Mastery**: Based on both content completion and vocabulary retention — no more speedrunning without learning
+- **Streak Freeze**: Earn 1 streak freeze every 7 consecutive days (max 2) — miss a day without losing your streak
+
+### Under the Hood
+- Drift (SQLite) database for card states and review logs (replaces SharedPreferences for learning data)
+- Web support via WASM-compiled SQLite
+- Configurable TTS speed (Slow / Normal)
+- Full SM-2 to FSRS data migration on first launch
+
 ## 1.1.0
 
 ### UX Improvements
