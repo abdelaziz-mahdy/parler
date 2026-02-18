@@ -12,6 +12,7 @@ import '../../database/app_database.dart';
 import '../../models/vocabulary_word.dart';
 import '../../providers/data_provider.dart';
 import '../../providers/database_provider.dart';
+import '../../providers/progress_provider.dart';
 import '../../services/fsrs.dart';
 import '../../services/session_engine.dart';
 import '../../services/tts_service.dart';
@@ -46,6 +47,15 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _buildSession());
+  }
+
+  SessionLength _getSessionLength() {
+    final prefs = ref.read(sharedPreferencesProvider);
+    final value = prefs.getString('session_length') ?? 'regular';
+    return SessionLength.values.firstWhere(
+      (e) => e.name == value,
+      orElse: () => SessionLength.regular,
+    );
   }
 
   Future<void> _buildSession() async {
@@ -93,13 +103,29 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     final studiedIds = allCardStates.map((c) => c.cardId).toSet();
     final newWords = allWords.where((w) => !studiedIds.contains(w.id)).toList();
 
+    // Load bonus content (phrases, verbs, false friends) for Phase 3 variety
+    final bonusContent = <VocabularyWord>[];
+    final phrasesAsync = ref.read(phrasesProvider);
+    if (phrasesAsync case AsyncData(:final value)) {
+      bonusContent.addAll(value.map(phraseToVocab));
+    }
+    final verbsAsync = ref.read(essentialVerbsProvider);
+    if (verbsAsync case AsyncData(:final value)) {
+      bonusContent.addAll(value.map(verbToVocab));
+    }
+    final ffAsync = ref.read(falseFriendsProvider);
+    if (ffAsync case AsyncData(:final value)) {
+      bonusContent.addAll(value.map(falseFriendToVocab));
+    }
+
     final engine = SessionEngine(fsrs: ref.read(fsrsProvider));
     final session = engine.build(
       dueCards: dueEntries,
       newWords: newWords,
       allWords: allWords,
-      settings: SessionLength.regular,
+      settings: _getSessionLength(),
       currentChapterId: 1,
+      bonusContent: bonusContent,
     );
 
     setState(() {

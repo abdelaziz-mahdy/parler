@@ -1,7 +1,55 @@
 import 'dart:math';
 
+import '../models/false_friend.dart';
+import '../models/phrase.dart';
+import '../models/verb.dart';
 import '../models/vocabulary_word.dart';
 import 'fsrs.dart';
+
+// ---------------------------------------------------------------------------
+// Content → VocabularyWord converters
+// ---------------------------------------------------------------------------
+
+/// Convert a Phrase to a VocabularyWord so it can flow through the quiz engine.
+VocabularyWord phraseToVocab(Phrase p) => VocabularyWord(
+      id: 'phrase_${p.french.toLowerCase().replaceAll(RegExp(r"[^a-z0-9]"), '_')}',
+      french: p.french,
+      english: p.english,
+      partOfSpeech: 'expression',
+      exampleFr: p.usage ?? '',
+      exampleEn: '',
+      level: 'A1',
+      category: 'phrases',
+      phonetic: '',
+    );
+
+/// Convert a Verb to a VocabularyWord.
+VocabularyWord verbToVocab(Verb v) => VocabularyWord(
+      id: 'verb_${v.infinitive.toLowerCase().replaceAll(RegExp(r"[^a-z0-9]"), '_')}',
+      french: v.infinitive,
+      english: v.meaning,
+      partOfSpeech: 'verb',
+      exampleFr: '',
+      exampleEn: '',
+      level: 'A1',
+      category: 'verbs',
+      phonetic: '',
+    );
+
+/// Convert a FalseFriend to a VocabularyWord.
+/// The english field is the *actual* meaning, so the quiz naturally tests
+/// whether the user knows the real meaning vs the deceptive cognate.
+VocabularyWord falseFriendToVocab(FalseFriend f) => VocabularyWord(
+      id: 'ff_${f.frenchWord.toLowerCase().replaceAll(RegExp(r"[^a-z0-9]"), '_')}',
+      french: f.frenchWord,
+      english: f.actualMeaning,
+      partOfSpeech: 'expression',
+      exampleFr: '',
+      exampleEn: 'Looks like "${f.looksLike}" but means "${f.actualMeaning}"',
+      level: 'B1',
+      category: 'false_friends',
+      phonetic: '',
+    );
 
 /// Session intensity setting
 enum SessionLength {
@@ -119,12 +167,15 @@ class SessionEngine {
   /// [allWords] — all vocabulary for generating distractors
   /// [settings] — session length preference
   /// [currentChapterId] — the chapter the user is currently on
+  /// [bonusContent] — extra VocabularyWord items (phrases, verbs, false friends)
+  ///   mixed into Phase 3 for variety
   DailySession build({
     required List<MapEntry<FsrsCardState, VocabularyWord>> dueCards,
     required List<VocabularyWord> newWords,
     required List<VocabularyWord> allWords,
     required SessionLength settings,
     required int currentChapterId,
+    List<VocabularyWord> bonusContent = const [],
   }) {
     // Phase 1: Review due cards (prioritized by lowest retrievability)
     final sortedDue = fsrs.prioritize(
@@ -143,11 +194,14 @@ class SessionEngine {
       return _makeFrenchToEnglish(w, allWords, isNew: true);
     }).toList();
 
-    // Phase 3: Mixed practice (interleave new + old)
+    // Phase 3: Mixed practice (interleave new + old + bonus content)
+    // Combine allWords with bonus content for the distractor pool
+    final distractorPool = [...allWords, ...bonusContent];
+
     final mixedPool = <ReviewQuestion>[];
     // Add some new words again
     for (final w in chapterNewWords.take(settings.mixedQuestions ~/ 2)) {
-      mixedPool.add(_makeRandomQuestion(w, allWords, isNew: true));
+      mixedPool.add(_makeRandomQuestion(w, distractorPool, isNew: true));
     }
     // Add some review cards
     final remainingSlots = settings.mixedQuestions - mixedPool.length;
@@ -155,13 +209,27 @@ class SessionEngine {
         .where((e) => !phase1Cards.any((p) => p.cardId == e.key.cardId))
         .take(remainingSlots);
     for (final entry in reviewForMix) {
-      mixedPool.add(_makeRandomQuestion(entry.value, allWords));
+      mixedPool.add(_makeRandomQuestion(entry.value, distractorPool));
     }
     // If not enough review cards, add more from phase1
     if (mixedPool.length < settings.mixedQuestions) {
       final needed = settings.mixedQuestions - mixedPool.length;
       for (final entry in dueCards.take(needed)) {
-        mixedPool.add(_makeRandomQuestion(entry.value, allWords));
+        mixedPool.add(_makeRandomQuestion(entry.value, distractorPool));
+      }
+    }
+    // Inject bonus content questions (phrases, verbs, false friends)
+    if (bonusContent.isNotEmpty) {
+      final shuffledBonus = List<VocabularyWord>.from(bonusContent)
+        ..shuffle(_random);
+      // Add 2-3 bonus questions depending on session length
+      final bonusCount = switch (settings) {
+        SessionLength.casual => 1,
+        SessionLength.regular => 2,
+        SessionLength.intense => 3,
+      };
+      for (final bonus in shuffledBonus.take(bonusCount)) {
+        mixedPool.add(_makeFrenchToEnglish(bonus, distractorPool));
       }
     }
     mixedPool.shuffle(_random);
