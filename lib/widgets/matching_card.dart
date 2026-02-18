@@ -159,48 +159,56 @@ class _MatchingCardState extends State<MatchingCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Header
-        Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Text(
-            'Match the pairs',
-            style: GoogleFonts.inter(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: context.textPrimary,
-            ),
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 500),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  'Match the pairs',
+                  style: GoogleFonts.inter(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: context.textPrimary,
+                  ),
+                ),
+              ),
+
+              // Two columns
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Left column -- French words
+                  Expanded(
+                    child: Column(
+                      children: List.generate(
+                        widget.challenge.shuffledFrench.length,
+                        (i) => _buildFrenchButton(context, i),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  // Right column -- English words
+                  Expanded(
+                    child: Column(
+                      children: List.generate(
+                        widget.challenge.shuffledEnglish.length,
+                        (i) => _buildEnglishButton(context, i),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-
-        // Two columns
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Left column -- French words
-            Expanded(
-              child: Column(
-                children: List.generate(
-                  widget.challenge.shuffledFrench.length,
-                  (i) => _buildFrenchButton(context, i),
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            // Right column -- English words
-            Expanded(
-              child: Column(
-                children: List.generate(
-                  widget.challenge.shuffledEnglish.length,
-                  (i) => _buildEnglishButton(context, i),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
+      ),
     );
   }
 

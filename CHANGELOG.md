@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0
+
+### UX Fixes
+- **Quiz Continue Button**: Helper text (examples, memory hints) after answering now stays until you tap "Continue" instead of auto-dismissing on a 2.5s timer
+- **Matching Exercise Layout**: Pick-and-choose matching game is now centered with a max-width constraint instead of stretching full-width
+- **Word Count Accuracy**: "Words I Know" count now updates correctly after completing sessions (migrated from legacy SharedPreferences to Drift database)
+
+### Data Migration
+- **Full FSRS Migration**: All screens (Flashcards, Vocab Quiz, Today, Learn, Lessons) now read/write card progress exclusively through Drift/FSRS instead of the legacy SM-2/SharedPreferences system
+- **Removed Legacy Flashcard System**: Cleaned up `UserProgress.flashcards` field, `updateCardProgress()`, and all SM-2 references from UI screens
+
 ## 2.0.3
 
 ### Branding & Polish

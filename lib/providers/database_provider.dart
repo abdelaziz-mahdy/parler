@@ -41,6 +41,11 @@ final totalStudiedProvider = StreamProvider<int>((ref) {
   return ref.watch(cardStateDaoProvider).watchTotalStudied();
 });
 
+/// Stream: set of studied card IDs (for word count tracking)
+final studiedCardIdsProvider = StreamProvider<Set<String>>((ref) {
+  return ref.watch(cardStateDaoProvider).watchStudiedCardIds();
+});
+
 /// Stream: chapter progress
 final chapterProgressStreamProvider =
     StreamProvider<List<ChapterProgressesData>>((ref) {

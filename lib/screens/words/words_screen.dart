@@ -6,9 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/adaptive_colors.dart';
 import '../../core/constants/app_colors.dart';
 import '../../models/vocabulary_word.dart';
-import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
-import '../../providers/progress_provider.dart';
+import '../../providers/database_provider.dart';
 import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/error_view.dart';
@@ -121,7 +120,7 @@ class WordsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vocabAsync = ref.watch(vocabularyProvider);
-    final progress = ref.watch(progressProvider);
+    final studiedIdsAsync = ref.watch(studiedCardIdsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -141,8 +140,10 @@ class WordsScreen extends ConsumerWidget {
         scrolledUnderElevation: 1,
       ),
       body: vocabAsync.when(
-        data: (allWords) =>
-            _WordsCategoryBrowser(allWords: allWords, progress: progress),
+        data: (allWords) {
+          final studiedIds = studiedIdsAsync.whenOrNull(data: (ids) => ids) ?? <String>{};
+          return _WordsCategoryBrowser(allWords: allWords, studiedIds: studiedIds);
+        },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) =>
             ErrorView(onRetry: () => ref.invalidate(vocabularyProvider)),
@@ -151,28 +152,23 @@ class WordsScreen extends ConsumerWidget {
   }
 }
 
-class _WordsCategoryBrowser extends StatelessWidget {
+class _WordsCategoryBrowser extends ConsumerWidget {
   final List<VocabularyWord> allWords;
-  final UserProgress progress;
+  final Set<String> studiedIds;
 
-  const _WordsCategoryBrowser({required this.allWords, required this.progress});
+  const _WordsCategoryBrowser({required this.allWords, required this.studiedIds});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // Pre-compute word counts per category for efficient lookup.
     final wordsPerCategory = <String, List<VocabularyWord>>{};
     for (final word in allWords) {
       wordsPerCategory.putIfAbsent(word.category, () => []).add(word);
     }
 
-    // Compute review-due count across all vocabulary flashcards.
-    final today = DateTime.now().toIso8601String().split('T').first;
-    final dueCards = progress.flashcards.entries.where((entry) {
-      // Only count vocabulary cards (prefixed with 'vocab_').
-      if (!entry.key.startsWith('vocab_')) return false;
-      return entry.value.nextReviewDate.compareTo(today) <= 0;
-    }).toList();
-    final dueCount = dueCards.length;
+    // Compute review-due count from Drift DB.
+    final dueCardsAsync = ref.watch(dueCardsProvider);
+    final dueCount = dueCardsAsync.whenOrNull(data: (cards) => cards.length) ?? 0;
 
     // Filter categories that actually have words in the data.
     final activeCategories = _categories
@@ -192,12 +188,7 @@ class _WordsCategoryBrowser extends StatelessWidget {
               child: _VocabStatsBar(
                 totalWords: allWords.length,
                 totalCategories: activeCategories.length,
-                learnedCount: progress.flashcards.entries
-                    .where(
-                      (e) =>
-                          e.key.startsWith('vocab_') && e.value.repetitions > 0,
-                    )
-                    .length,
+                learnedCount: studiedIds.length,
               ),
             ),
           ),
@@ -242,7 +233,7 @@ class _WordsCategoryBrowser extends StatelessWidget {
                 return _CategoryCard(
                   info: cat,
                   words: words,
-                  progress: progress,
+                  studiedIds: studiedIds,
                   index: index,
                 );
               }, childCount: activeCategories.length),
@@ -461,13 +452,13 @@ class _ReviewDueCard extends StatelessWidget {
 class _CategoryCard extends StatelessWidget {
   final _CategoryInfo info;
   final List<VocabularyWord> words;
-  final UserProgress progress;
+  final Set<String> studiedIds;
   final int index;
 
   const _CategoryCard({
     required this.info,
     required this.words,
-    required this.progress,
+    required this.studiedIds,
     required this.index,
   });
 
@@ -480,10 +471,7 @@ class _CategoryCard extends StatelessWidget {
     }
 
     // Determine how many words in this category the user has studied.
-    final studiedCount = words.where((w) {
-      final card = progress.flashcards['vocab_${w.french}'];
-      return card != null && card.repetitions > 0;
-    }).length;
+    final studiedCount = words.where((w) => studiedIds.contains(w.id)).length;
     final isComplete = studiedCount == words.length && words.isNotEmpty;
     final hasStarted = studiedCount > 0;
 

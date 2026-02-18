@@ -7,7 +7,6 @@ void main() {
       final progress = UserProgress.initial();
 
       expect(progress.chapters, isEmpty);
-      expect(progress.flashcards, isEmpty);
       expect(progress.currentStreak, 0);
       expect(progress.lastStudyDate, isNull);
       expect(progress.streakFreezes, 0);
@@ -25,16 +24,6 @@ void main() {
             'quizAttempts': 2,
           },
         },
-        'flashcards': {
-          'card1': {
-            'cardId': 'card1',
-            'easeFactor': 2.5,
-            'interval': 3,
-            'repetitions': 2,
-            'nextReviewDate': '2026-02-10',
-            'quality': 4,
-          },
-        },
         'currentStreak': 5,
         'lastStudyDate': '2026-02-08',
         'streakFreezes': 1,
@@ -46,8 +35,6 @@ void main() {
       expect(progress.chapters.length, 1);
       expect(progress.chapters[1]!.chapterId, 1);
       expect(progress.chapters[1]!.completionPercent, 75.0);
-      expect(progress.flashcards.length, 1);
-      expect(progress.flashcards['card1']!.easeFactor, 2.5);
       expect(progress.currentStreak, 5);
       expect(progress.lastStudyDate, '2026-02-08');
       expect(progress.streakFreezes, 1);

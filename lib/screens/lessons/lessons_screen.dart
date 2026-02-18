@@ -12,6 +12,7 @@ import '../../models/chapter.dart';
 import '../../models/progress.dart';
 import '../../models/vocabulary_word.dart';
 import '../../providers/data_provider.dart';
+import '../../providers/database_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../core/constants/responsive.dart';
@@ -271,12 +272,10 @@ class _TodaySection extends ConsumerWidget {
     // Compute daily tasks data
     final today = DateTime.now().toIso8601String().split('T').first;
 
-    // 1) Words due for review
-    final dueCards = progress.flashcards.entries.where((entry) {
-      if (!entry.key.startsWith('vocab_')) return false;
-      return entry.value.nextReviewDate.compareTo(today) <= 0;
-    }).toList();
-    final dueCount = dueCards.length;
+    // 1) Words due for review (from Drift)
+    final dueCount = ref.watch(dueCardsProvider).whenOrNull(data: (cards) => cards.length) ?? 0;
+    final studiedIds = ref.watch(studiedCardIdsProvider).whenOrNull(data: (ids) => ids) ?? <String>{};
+    final hasStudiedCards = studiedIds.isNotEmpty;
 
     // 2) Next unfinished chapter
     Chapter? nextChapter;
@@ -311,10 +310,7 @@ class _TodaySection extends ConsumerWidget {
       }
       int totalUnstudied = 0;
       for (final entry in byCategory.entries) {
-        final unstudied = entry.value.where((w) {
-          final card = progress.flashcards['vocab_${w.french}'];
-          return card == null || card.repetitions == 0;
-        }).length;
+        final unstudied = entry.value.where((w) => !studiedIds.contains(w.id)).length;
         totalUnstudied += unstudied;
       }
       if (totalUnstudied > 0) {
@@ -340,9 +336,9 @@ class _TodaySection extends ConsumerWidget {
     }
 
     // Review task
-    if (dueCount > 0 || progress.flashcards.isNotEmpty) {
+    if (dueCount > 0 || hasStudiedCards) {
       totalTasks++;
-      if (dueCount == 0 && progress.flashcards.isNotEmpty) completedTasks++;
+      if (dueCount == 0 && hasStudiedCards) completedTasks++;
     }
 
     // Continue learning task
@@ -419,7 +415,7 @@ class _TodaySection extends ConsumerWidget {
                           subtitle: dueCount > 0
                               ? '$dueCount card${dueCount == 1 ? '' : 's'} due'
                               : 'All caught up!',
-                          isDone: dueCount == 0 && progress.flashcards.isNotEmpty,
+                          isDone: dueCount == 0 && hasStudiedCards,
                           onTap: dueCount > 0
                               ? () => context.push('/words/review')
                               : null,

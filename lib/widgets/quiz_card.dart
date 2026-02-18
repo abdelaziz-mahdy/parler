@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,11 +30,13 @@ class _QuizCardState extends State<QuizCard> {
   int? _selectedIndex;
   bool _answered = false;
   late DateTime _startTime;
+  late int _responseTime;
 
   @override
   void initState() {
     super.initState();
     _startTime = DateTime.now();
+    _responseTime = 0;
     // Only auto-play TTS for frenchToEnglish mode
     if (widget.question.mode == QuestionMode.frenchToEnglish) {
       widget.ttsService.speakAuto(widget.question.word.french);
@@ -45,8 +45,7 @@ class _QuizCardState extends State<QuizCard> {
 
   void _onOptionTap(int index) {
     if (_answered) return;
-    final responseTime = DateTime.now().difference(_startTime).inMilliseconds;
-    final isCorrect = index == widget.question.correctIndex;
+    _responseTime = DateTime.now().difference(_startTime).inMilliseconds;
 
     setState(() {
       _selectedIndex = index;
@@ -61,40 +60,67 @@ class _QuizCardState extends State<QuizCard> {
     if (widget.question.mode == QuestionMode.cloze) {
       widget.ttsService.speak(widget.question.word.exampleFr);
     }
+  }
 
-    Timer(const Duration(milliseconds: 2500), () {
-      if (mounted) {
-        widget.onComplete(isCorrect, responseTime);
-      }
-    });
+  void _onContinue() {
+    final isCorrect = _selectedIndex == widget.question.correctIndex;
+    widget.onComplete(isCorrect, _responseTime);
   }
 
   @override
   Widget build(BuildContext context) {
     final word = widget.question.word;
     final mode = widget.question.mode;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 32),
-            // Question header — varies by mode
-            _buildQuestionHeader(context, word, mode),
-            const SizedBox(height: 32),
-            // 2x2 option grid
-            _buildOptionsGrid(context),
-            // Post-answer context section
-            if (_answered) ...[
-              const SizedBox(height: 20),
-              _buildPostAnswerContext(context, word),
-            ],
-            const SizedBox(height: 32),
-          ],
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 32),
+                // Question header — varies by mode
+                _buildQuestionHeader(context, word, mode),
+                const SizedBox(height: 32),
+                // 2x2 option grid
+                _buildOptionsGrid(context),
+                // Post-answer context section
+                if (_answered) ...[
+                  const SizedBox(height: 20),
+                  _buildPostAnswerContext(context, word),
+                ],
+                const SizedBox(height: 32),
+              ],
+            ),
+          ),
         ),
-      ),
+        if (_answered)
+          Container(
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
+            decoration: BoxDecoration(
+              color: isDark ? AppColors.darkSurface : AppColors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: isDark
+                      ? Colors.black.withValues(alpha: 0.3)
+                      : AppColors.navy.withValues(alpha: 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _onContinue,
+                child: const Text('Continue'),
+              ),
+            ),
+          ).animate().fadeIn(duration: 250.ms).slideY(begin: 0.1),
+      ],
     );
   }
 

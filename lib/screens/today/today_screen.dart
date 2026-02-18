@@ -80,7 +80,6 @@ class TodayScreen extends ConsumerWidget {
                               _SessionPreview(
                                 dueCardsAsync: dueCardsAsync,
                                 vocabAsync: vocabAsync,
-                                progress: progress,
                               ),
                             ],
                           ),
@@ -126,7 +125,6 @@ class TodayScreen extends ConsumerWidget {
                     child: _SessionPreview(
                       dueCardsAsync: dueCardsAsync,
                       vocabAsync: vocabAsync,
-                      progress: progress,
                     ),
                   ).animate().fadeIn(duration: 400.ms),
                 ),
@@ -356,27 +354,24 @@ class _StartSessionButton extends StatelessWidget {
 // Session Preview
 // ---------------------------------------------------------------------------
 
-class _SessionPreview extends StatelessWidget {
+class _SessionPreview extends ConsumerWidget {
   final AsyncValue<List<CardState>> dueCardsAsync;
   final AsyncValue<List<VocabularyWord>> vocabAsync;
-  final dynamic progress;
 
   const _SessionPreview({
     required this.dueCardsAsync,
     required this.vocabAsync,
-    required this.progress,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final dueCount = dueCardsAsync.whenOrNull(data: (cards) => cards.length) ?? 0;
 
+    // Count new words using Drift's studiedCardIds.
+    final studiedIds = ref.watch(studiedCardIdsProvider).whenOrNull(data: (ids) => ids) ?? <String>{};
     int newWordCount = 0;
     if (vocabAsync case AsyncData<List<VocabularyWord>>(:final value)) {
-      newWordCount = value.where((w) {
-        final card = progress.flashcards['vocab_${w.french}'];
-        return card == null || card.repetitions == 0;
-      }).length;
+      newWordCount = value.where((w) => !studiedIds.contains(w.id)).length;
       if (newWordCount > 15) newWordCount = 15;
     }
 

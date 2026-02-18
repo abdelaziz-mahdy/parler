@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,11 +8,12 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/adaptive_colors.dart';
 import '../../core/constants/app_colors.dart';
+import '../../database/app_database.dart';
 import '../../models/vocabulary_word.dart';
-import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
+import '../../providers/database_provider.dart';
 import '../../providers/progress_provider.dart';
-import '../../services/spaced_repetition.dart';
+import '../../services/fsrs.dart';
 import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/speaker_button.dart';
@@ -817,7 +819,7 @@ class _VocabQuizScreenState extends ConsumerState<VocabQuizScreen> {
   // Check / Next Logic
   // ---------------------------------------------------------------------------
 
-  void _checkAnswer() {
+  Future<void> _checkAnswer() async {
     final q = _questions[_currentIndex];
     final isCorrect = _selectedIndex == q.correctIndex;
 
@@ -831,16 +833,79 @@ class _VocabQuizScreenState extends ConsumerState<VocabQuizScreen> {
       ));
     }
 
-    // Spaced repetition integration.
-    final cardId = 'vocab_${q.word.french}';
-    final progress = ref.read(progressProvider);
-    final existingCard =
-        progress.flashcards[cardId] ?? CardProgress.initial(cardId);
-    final quality = isCorrect ? 4 : 0; // Good vs Again
-    final updatedCard = SpacedRepetition.review(existingCard, quality);
-    ref.read(progressProvider.notifier).updateCardProgress(updatedCard);
+    // FSRS integration via Drift.
+    final fsrs = ref.read(fsrsProvider);
+    final cardStateDao = ref.read(cardStateDaoProvider);
+    final reviewLogDao = ref.read(reviewLogDaoProvider);
+
+    final existingCard = await cardStateDao.getCard(q.word.id);
+    final currentFsrs = existingCard != null
+        ? FsrsCardState(
+            cardId: existingCard.cardId,
+            stability: existingCard.stability,
+            difficulty: existingCard.difficulty,
+            lastReview: existingCard.lastReview,
+            nextReview: existingCard.nextReview,
+            reps: existingCard.reps,
+            lapses: existingCard.lapses,
+            state: _parseFsrsState(existingCard.state),
+          )
+        : FsrsCardState(cardId: q.word.id);
+
+    final rating = isCorrect ? FsrsRating.good : FsrsRating.again;
+    final now = DateTime.now();
+    final schedule = fsrs.review(currentFsrs, rating, now: now);
+
+    await cardStateDao.upsertCard(CardStatesCompanion(
+      cardId: drift.Value(q.word.id),
+      stability: drift.Value(schedule.stability),
+      difficulty: drift.Value(schedule.difficulty),
+      lastReview: drift.Value(now),
+      nextReview: drift.Value(schedule.nextReview),
+      reps: drift.Value(schedule.reps),
+      lapses: drift.Value(schedule.lapses),
+      state: drift.Value(_fsrsStateToString(schedule.state)),
+    ));
+
+    final elapsed = currentFsrs.lastReview != null
+        ? now.difference(currentFsrs.lastReview!).inHours / 24.0
+        : 0.0;
+    await reviewLogDao.insert(ReviewLogsCompanion(
+      cardId: drift.Value(q.word.id),
+      timestamp: drift.Value(now),
+      rating: drift.Value(rating.value),
+      elapsedDays: drift.Value(elapsed),
+      stability: drift.Value(schedule.stability),
+      difficulty: drift.Value(schedule.difficulty),
+    ));
 
     setState(() => _answered = true);
+  }
+
+  FsrsState _parseFsrsState(String state) {
+    switch (state) {
+      case 'learning':
+        return FsrsState.learning;
+      case 'review':
+        return FsrsState.review;
+      case 'relearning':
+        return FsrsState.relearning;
+      default:
+        return FsrsState.newCard;
+    }
+  }
+
+  String _fsrsStateToString(FsrsState state) {
+    switch (state) {
+      case FsrsState.newCard:
+        return 'new';
+      case FsrsState.learning:
+        return 'learning';
+      case FsrsState.review:
+        return 'review';
+      case FsrsState.relearning:
+        return 'relearning';
+    }
   }
 
   void _nextQuestion() {

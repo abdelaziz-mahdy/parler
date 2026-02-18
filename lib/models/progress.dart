@@ -6,10 +6,6 @@ class UserProgress {
   final int streakFreezes;
   final String? lastStreakFreezeEarned;
 
-  /// Legacy flashcard map — kept for backward compat with old screens.
-  /// New card state is managed via Drift database. This field is not persisted.
-  final Map<String, CardProgress> flashcards;
-
   const UserProgress({
     required this.chapters,
     required this.tefResults,
@@ -17,7 +13,6 @@ class UserProgress {
     this.lastStudyDate,
     this.streakFreezes = 0,
     this.lastStreakFreezeEarned,
-    this.flashcards = const {},
   });
 
   factory UserProgress.initial() => const UserProgress(
@@ -48,15 +43,6 @@ class UserProgress {
         tefList.add(TefTestResult.fromJson(item as Map<String, dynamic>));
       }
     }
-    // Parse legacy flashcards for SM-2 migration
-    final flashcardsMap = <String, CardProgress>{};
-    if (json['flashcards'] != null) {
-      (json['flashcards'] as Map<String, dynamic>).forEach((key, value) {
-        flashcardsMap[key] = CardProgress.fromJson(
-          value as Map<String, dynamic>,
-        );
-      });
-    }
     return UserProgress(
       chapters: chaptersMap,
       tefResults: tefList,
@@ -64,7 +50,6 @@ class UserProgress {
       lastStudyDate: json['lastStudyDate'] as String?,
       streakFreezes: json['streakFreezes'] as int? ?? 0,
       lastStreakFreezeEarned: json['lastStreakFreezeEarned'] as String?,
-      flashcards: flashcardsMap,
     );
   }
 
@@ -85,7 +70,6 @@ class UserProgress {
     String? lastStudyDate,
     int? streakFreezes,
     String? lastStreakFreezeEarned,
-    Map<String, CardProgress>? flashcards,
   }) {
     return UserProgress(
       chapters: chapters ?? this.chapters,
@@ -95,7 +79,6 @@ class UserProgress {
       streakFreezes: streakFreezes ?? this.streakFreezes,
       lastStreakFreezeEarned:
           lastStreakFreezeEarned ?? this.lastStreakFreezeEarned,
-      flashcards: flashcards ?? this.flashcards,
     );
   }
 }
