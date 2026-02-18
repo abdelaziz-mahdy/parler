@@ -1,0 +1,21 @@
+{
+  "feminine": [
+    {"ending": "-tion / -sion", "gender": "feminine", "examples": ["la nation", "la t\u00e9l\u00e9vision", "la situation", "la d\u00e9cision"], "accuracy": "~99% feminine"},
+    {"ending": "-t\u00e9", "gender": "feminine", "examples": ["la libert\u00e9", "la qualit\u00e9", "la soci\u00e9t\u00e9", "l'universit\u00e9"], "accuracy": "~99% feminine"},
+    {"ending": "-ure", "gender": "feminine", "examples": ["la nature", "la voiture", "la culture", "l'aventure"], "accuracy": "~95% feminine"},
+    {"ending": "-ence / -ance", "gender": "feminine", "examples": ["la diff\u00e9rence", "la France", "la science", "l'importance"], "accuracy": "~95% feminine"},
+    {"ending": "-ie", "gender": "feminine", "examples": ["la vie", "la partie", "la philosophie", "l'\u00e9nergie"], "accuracy": "~95% feminine"},
+    {"ending": "-ette / -elle", "gender": "feminine", "examples": ["la baguette", "la fourchette", "la nouvelle", "la chapelle"], "accuracy": "~95% feminine"},
+    {"ending": "-ise / -aise", "gender": "feminine", "examples": ["la surprise", "la valise", "la fran\u00e7aise", "la mayonnaise"], "accuracy": "~95% feminine"},
+    {"ending": "-\u00e9e", "gender": "feminine", "examples": ["la journ\u00e9e", "l'id\u00e9e", "l'ann\u00e9e", "l'arriv\u00e9e"], "accuracy": "~99% feminine"}
+  ],
+  "masculine": [
+    {"ending": "-age", "gender": "masculine", "examples": ["le garage", "le voyage", "le message", "le fromage"], "accuracy": "~90% masculine", "exceptions": "la plage, la page, l'image"},
+    {"ending": "-ment", "gender": "masculine", "examples": ["le moment", "le gouvernement", "le mouvement", "l'appartement"], "accuracy": "~99% masculine"},
+    {"ending": "-isme", "gender": "masculine", "examples": ["le tourisme", "le capitalisme", "le journalisme"], "accuracy": "~99% masculine"},
+    {"ending": "-eau", "gender": "masculine", "examples": ["le bateau", "le g\u00e2teau", "le chapeau", "le bureau"], "accuracy": "~99% masculine", "exceptions": "l'eau = feminine!"},
+    {"ending": "-oir", "gender": "masculine", "examples": ["le miroir", "le soir", "le pouvoir", "le devoir"], "accuracy": "~95% masculine"},
+    {"ending": "-et", "gender": "masculine", "examples": ["le ticket", "le billet", "le secret", "le sujet"], "accuracy": "~95% masculine"},
+    {"ending": "consonant ending", "gender": "masculine", "examples": ["le sport", "le restaurant", "le chat", "le film"], "accuracy": "~65-70% masculine"}
+  ]
+}

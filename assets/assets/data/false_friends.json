@@ -1,0 +1,15 @@
+[
+  {"frenchWord": "bless\u00e9", "looksLike": "blessed", "actualMeaning": "injured/wounded", "dangerLevel": "HIGH", "correctEnglish": "b\u00e9ni = blessed"},
+  {"frenchWord": "actuellement", "looksLike": "actually", "actualMeaning": "currently/right now", "dangerLevel": "HIGH", "correctEnglish": "en fait = actually"},
+  {"frenchWord": "assister", "looksLike": "to assist", "actualMeaning": "to attend/be present at", "dangerLevel": "MEDIUM", "correctEnglish": "aider = to assist"},
+  {"frenchWord": "attendre", "looksLike": "to attend", "actualMeaning": "to wait for", "dangerLevel": "HIGH", "correctEnglish": "assister = to attend"},
+  {"frenchWord": "bras", "looksLike": "bra", "actualMeaning": "arm", "dangerLevel": "FUNNY", "correctEnglish": "soutien-gorge = bra"},
+  {"frenchWord": "coin", "looksLike": "coin (money)", "actualMeaning": "corner", "dangerLevel": "LOW", "correctEnglish": "pi\u00e8ce = coin"},
+  {"frenchWord": "excit\u00e9", "looksLike": "excited", "actualMeaning": "sexually aroused (!)", "dangerLevel": "VERY HIGH", "correctEnglish": "enthousiaste = excited"},
+  {"frenchWord": "librairie", "looksLike": "library", "actualMeaning": "bookstore", "dangerLevel": "MEDIUM", "correctEnglish": "biblioth\u00e8que = library"},
+  {"frenchWord": "pr\u00e9servatif", "looksLike": "preservative", "actualMeaning": "condom (!)", "dangerLevel": "VERY HIGH", "correctEnglish": "conservateur = preservative"},
+  {"frenchWord": "regarder", "looksLike": "to regard", "actualMeaning": "to watch/look at", "dangerLevel": "LOW", "correctEnglish": "consid\u00e9rer = to regard"},
+  {"frenchWord": "rester", "looksLike": "to rest", "actualMeaning": "to stay/remain", "dangerLevel": "MEDIUM", "correctEnglish": "se reposer = to rest"},
+  {"frenchWord": "sympa(thique)", "looksLike": "sympathetic", "actualMeaning": "nice/friendly", "dangerLevel": "LOW", "correctEnglish": "compatissant = sympathetic"},
+  {"frenchWord": "envie", "looksLike": "envy", "actualMeaning": "desire/want (j'ai envie de = I want to)", "dangerLevel": "MEDIUM", "correctEnglish": "jalousie = envy"}
+]

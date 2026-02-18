@@ -1,0 +1,489 @@
+{
+  "id": "tef_ce_001",
+  "title": "TEF Compréhension écrite - Test 1",
+  "description": "Practice test covering short texts, medium texts, longer texts, and complex texts.",
+  "section": "comprehension_ecrite",
+  "difficulty": "B1",
+  "timeMinutes": 60,
+  "passages": [
+    {
+      "id": "tef_ce_001_A_01",
+      "type": "sign",
+      "title": "Bibliothèque municipale",
+      "content": "BIBLIOTHÈQUE MUNICIPALE VICTOR HUGO\nHoraires d'ouverture :\nLundi - Vendredi : 9h00 - 18h30\nSamedi : 10h00 - 17h00\nDimanche : Fermée\n\nInscription gratuite sur présentation\nd'un justificatif de domicile.",
+      "contentEnglish": "VICTOR HUGO MUNICIPAL LIBRARY\nOpening hours:\nMonday - Friday: 9:00 AM - 6:30 PM\nSaturday: 10:00 AM - 5:00 PM\nSunday: Closed\n\nFree registration upon presentation\nof proof of address.",
+      "questions": [
+        {
+          "id": "tef_ce_001_A_01_q1",
+          "question": "Pour s'inscrire à la bibliothèque, que faut-il présenter ?",
+          "questionEnglish": "To register at the library, what must you present?",
+          "options": [
+            "Une carte d'identité",
+            "Un justificatif de domicile",
+            "Une photo d'identité",
+            "Un bulletin de salaire"
+          ],
+          "optionsEnglish": [
+            "An ID card",
+            "Proof of address",
+            "An identity photo",
+            "A pay slip"
+          ],
+          "correctIndex": 1,
+          "explanation": "The sign states 'Inscription gratuite sur présentation d'un justificatif de domicile' (Free registration upon presentation of proof of address)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_A_02",
+      "type": "notice",
+      "title": "Avis aux résidents",
+      "content": "AVIS AUX RÉSIDENTS\n\nEn raison de travaux de rénovation dans le hall d'entrée, l'accès principal de l'immeuble sera fermé du 15 au 22 mars. Veuillez utiliser l'entrée secondaire située rue Pasteur.\n\nNous nous excusons pour la gêne occasionnée.\nLa direction",
+      "contentEnglish": "NOTICE TO RESIDENTS\n\nDue to renovation work in the entrance hall, the main entrance of the building will be closed from March 15 to 22. Please use the secondary entrance located on Rue Pasteur.\n\nWe apologize for the inconvenience.\nThe management",
+      "questions": [
+        {
+          "id": "tef_ce_001_A_02_q1",
+          "question": "Pendant combien de temps l'entrée principale sera-t-elle fermée ?",
+          "questionEnglish": "For how long will the main entrance be closed?",
+          "options": [
+            "Deux jours",
+            "Une semaine",
+            "Deux semaines",
+            "Un mois"
+          ],
+          "optionsEnglish": [
+            "Two days",
+            "One week",
+            "Two weeks",
+            "One month"
+          ],
+          "correctIndex": 1,
+          "explanation": "The notice says the main entrance will be closed 'du 15 au 22 mars' (from March 15 to 22), which is approximately one week."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_A_03",
+      "type": "advertisement",
+      "title": "Restaurant Le Petit Lyonnais",
+      "content": "RESTAURANT LE PETIT LYONNAIS\nNouveau ! Menu du midi à 14,90 €\nEntrée + Plat + Dessert\nDu lundi au vendredi, de 12h à 14h30\nRéservation conseillée au 04 72 33 45 67\nFermé le week-end pour le déjeuner\nOuvert tous les soirs de 19h à 23h",
+      "contentEnglish": "RESTAURANT LE PETIT LYONNAIS\nNew! Lunch menu at 14.90 euros\nStarter + Main course + Dessert\nMonday to Friday, from 12:00 PM to 2:30 PM\nReservation recommended at 04 72 33 45 67\nClosed on weekends for lunch\nOpen every evening from 7:00 PM to 11:00 PM",
+      "questions": [
+        {
+          "id": "tef_ce_001_A_03_q1",
+          "question": "Quand peut-on profiter du menu du midi ?",
+          "questionEnglish": "When can you enjoy the lunch menu?",
+          "options": [
+            "Tous les jours de la semaine",
+            "Du lundi au vendredi uniquement",
+            "Le week-end seulement",
+            "Le soir de 19h à 23h"
+          ],
+          "optionsEnglish": [
+            "Every day of the week",
+            "Monday to Friday only",
+            "Weekends only",
+            "In the evening from 7 PM to 11 PM"
+          ],
+          "correctIndex": 1,
+          "explanation": "The ad specifies 'Du lundi au vendredi, de 12h à 14h30' and notes the restaurant is 'Fermé le week-end pour le déjeuner'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_A_04",
+      "type": "notice",
+      "title": "Règlement du parc municipal",
+      "content": "PARC MUNICIPAL - RÈGLEMENT\n- Chiens autorisés en laisse uniquement\n- Vélos interdits sur les sentiers piétons\n- Pique-nique autorisé dans les zones désignées\n- Fermeture des portes à la tombée de la nuit\n- Jeux de ballon autorisés sur le terrain de sport",
+      "contentEnglish": "MUNICIPAL PARK - RULES\n- Dogs allowed on leash only\n- Bicycles prohibited on pedestrian paths\n- Picnics allowed in designated areas\n- Gates close at nightfall\n- Ball games allowed on the sports field",
+      "questions": [
+        {
+          "id": "tef_ce_001_A_04_q1",
+          "question": "D'après ce règlement, que peut-on faire dans le parc ?",
+          "questionEnglish": "According to these rules, what can you do in the park?",
+          "options": [
+            "Faire du vélo sur tous les sentiers",
+            "Laisser son chien se promener librement",
+            "Manger dans les zones prévues à cet effet",
+            "Rester dans le parc après la tombée de la nuit"
+          ],
+          "optionsEnglish": [
+            "Ride a bicycle on all paths",
+            "Let your dog roam freely",
+            "Eat in the designated areas",
+            "Stay in the park after nightfall"
+          ],
+          "correctIndex": 2,
+          "explanation": "The rules state 'Pique-nique autorisé dans les zones désignées' (Picnics allowed in designated areas)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_A_05",
+      "type": "notice",
+      "title": "Pharmacie de garde",
+      "content": "PHARMACIE DE GARDE - DIMANCHE 12 JANVIER\n\nPharmacie Centrale\n15, avenue de la République\nOuverte de 9h00 à 20h00\n\nPour les urgences en dehors de ces horaires,\nappelez le 3237 (service payant)",
+      "contentEnglish": "ON-DUTY PHARMACY - SUNDAY, JANUARY 12\n\nPharmacie Centrale\n15, Avenue de la République\nOpen from 9:00 AM to 8:00 PM\n\nFor emergencies outside these hours,\ncall 3237 (paid service)",
+      "questions": [
+        {
+          "id": "tef_ce_001_A_05_q1",
+          "question": "Que doit-on faire en cas d'urgence après 20h le dimanche ?",
+          "questionEnglish": "What should you do in case of emergency after 8 PM on Sunday?",
+          "options": [
+            "Aller à la Pharmacie Centrale",
+            "Attendre le lundi matin",
+            "Appeler le 3237",
+            "Se rendre à l'hôpital"
+          ],
+          "optionsEnglish": [
+            "Go to the Pharmacie Centrale",
+            "Wait until Monday morning",
+            "Call 3237",
+            "Go to the hospital"
+          ],
+          "correctIndex": 2,
+          "explanation": "The notice states 'Pour les urgences en dehors de ces horaires, appelez le 3237'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_B_01",
+      "type": "email",
+      "title": "Confirmation d'expédition",
+      "content": "De : service.client@technoplus.fr\nÀ : m.dupont@email.com\nObjet : Votre commande n° 45892\n\nMadame, Monsieur,\n\nNous vous informons que votre commande n° 45892 a été expédiée ce jour. Le colis sera livré à votre domicile sous 3 à 5 jours ouvrables.\n\nVous pouvez suivre votre livraison grâce au numéro de suivi suivant : TR789456123FR sur le site de La Poste.\n\nEn cas d'absence lors de la livraison, un avis de passage sera déposé dans votre boîte aux lettres et votre colis sera disponible à votre bureau de poste pendant 15 jours.\n\nCordialement,\nLe service client TechnoPlus",
+      "contentEnglish": "From: service.client@technoplus.fr\nTo: m.dupont@email.com\nSubject: Your order #45892\n\nDear Sir or Madam,\n\nWe are writing to inform you that your order #45892 has been shipped today. The package will be delivered to your home within 3 to 5 business days.\n\nYou can track your delivery using the following tracking number: TR789456123FR on the La Poste website.\n\nIf you are not home at the time of delivery, a delivery notice will be left in your mailbox and your package will be available at your local post office for 15 days.\n\nBest regards,\nTechnoPlus Customer Service",
+      "questions": [
+        {
+          "id": "tef_ce_001_B_01_q1",
+          "question": "Quel est l'objet principal de cet email ?",
+          "questionEnglish": "What is the main purpose of this email?",
+          "options": [
+            "Confirmer une commande",
+            "Informer de l'expédition d'un colis",
+            "Signaler un retard de livraison",
+            "Proposer un nouveau produit"
+          ],
+          "optionsEnglish": [
+            "To confirm an order",
+            "To inform about the shipment of a package",
+            "To report a delivery delay",
+            "To offer a new product"
+          ],
+          "correctIndex": 1,
+          "explanation": "The email informs the customer that their order 'a été expédiée ce jour' (has been shipped today)."
+        },
+        {
+          "id": "tef_ce_001_B_01_q2",
+          "question": "Que se passe-t-il si le client n'est pas chez lui lors de la livraison ?",
+          "questionEnglish": "What happens if the customer is not home at the time of delivery?",
+          "options": [
+            "Le colis est renvoyé à l'expéditeur",
+            "Le livreur revient le lendemain",
+            "Un avis de passage est laissé et le colis est gardé à la poste",
+            "Le colis est laissé devant la porte"
+          ],
+          "optionsEnglish": [
+            "The package is returned to the sender",
+            "The delivery driver comes back the next day",
+            "A delivery notice is left and the package is held at the post office",
+            "The package is left at the door"
+          ],
+          "correctIndex": 2,
+          "explanation": "The email explains 'un avis de passage sera déposé dans votre boîte aux lettres et votre colis sera disponible à votre bureau de poste pendant 15 jours'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_B_02",
+      "type": "article",
+      "title": "Le covoiturage en France",
+      "content": "LE COVOITURAGE EN FRANCE : UNE PRATIQUE EN PLEINE CROISSANCE\n\nLe covoiturage connaît un succès grandissant en France. Selon une étude récente, près de 3 millions de Français utilisent régulièrement des plateformes de covoiturage pour leurs trajets quotidiens ou occasionnels.\n\nLes raisons principales sont économiques : partager les frais d'essence et de péage permet d'économiser en moyenne 2 000 euros par an. Mais les motivations écologiques jouent aussi un rôle important. Un trajet en covoiturage réduit les émissions de CO2 de 75 % par passager par rapport à un trajet en voiture individuelle.\n\nLe gouvernement encourage cette pratique en proposant des voies réservées sur certaines autoroutes et des places de stationnement dédiées près des gares.",
+      "contentEnglish": "CARPOOLING IN FRANCE: A RAPIDLY GROWING PRACTICE\n\nCarpooling is enjoying growing success in France. According to a recent study, nearly 3 million French people regularly use carpooling platforms for their daily or occasional trips.\n\nThe main reasons are economic: sharing fuel and toll costs saves an average of 2,000 euros per year. But environmental motivations also play an important role. A carpooling trip reduces CO2 emissions by 75% per passenger compared to driving alone.\n\nThe government encourages this practice by offering reserved lanes on some highways and dedicated parking spaces near train stations.",
+      "questions": [
+        {
+          "id": "tef_ce_001_B_02_q1",
+          "question": "Selon l'article, quelle est la principale raison du succès du covoiturage ?",
+          "questionEnglish": "According to the article, what is the main reason for the success of carpooling?",
+          "options": [
+            "Le gain de temps",
+            "Les économies financières",
+            "Le confort du trajet",
+            "L'obligation légale"
+          ],
+          "optionsEnglish": [
+            "Saving time",
+            "Financial savings",
+            "Travel comfort",
+            "Legal obligation"
+          ],
+          "correctIndex": 1,
+          "explanation": "The article states 'Les raisons principales sont économiques' with an average saving of 2,000 euros per year."
+        },
+        {
+          "id": "tef_ce_001_B_02_q2",
+          "question": "Comment le gouvernement soutient-il le covoiturage ?",
+          "questionEnglish": "How does the government support carpooling?",
+          "options": [
+            "En offrant des subventions aux conducteurs",
+            "En réduisant le prix de l'essence",
+            "En réservant des voies sur les autoroutes et des parkings près des gares",
+            "En rendant le covoiturage obligatoire pour aller travailler"
+          ],
+          "optionsEnglish": [
+            "By offering subsidies to drivers",
+            "By reducing the price of fuel",
+            "By reserving lanes on highways and parking spaces near train stations",
+            "By making carpooling mandatory for commuting to work"
+          ],
+          "correctIndex": 2,
+          "explanation": "The government offers 'des voies réservées sur certaines autoroutes et des places de stationnement dédiées près des gares'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_B_03",
+      "type": "notice",
+      "title": "Inscription aux cours de français",
+      "content": "INSCRIPTION AUX COURS DE FRANÇAIS - CENTRE LINGUISTIQUE INTERNATIONAL\n\nProcédure d'inscription :\n1. Remplir le formulaire en ligne sur notre site www.cli-langues.fr\n2. Joindre une copie de votre pièce d'identité\n3. Effectuer le test de niveau en ligne (30 minutes)\n4. Recevoir votre résultat et votre placement par email sous 48 heures\n5. Régler les frais d'inscription (350 € par trimestre)\n\nLes cours ont lieu du lundi au jeudi, de 9h à 12h ou de 14h à 17h, selon le niveau. Les groupes sont composés de 8 à 12 personnes maximum.\n\nAttention : aucun remboursement ne sera effectué après le début des cours. Toute demande d'annulation doit être faite au moins 7 jours avant le premier cours.",
+      "contentEnglish": "REGISTRATION FOR FRENCH COURSES - INTERNATIONAL LANGUAGE CENTER\n\nRegistration procedure:\n1. Fill out the online form on our website www.cli-langues.fr\n2. Attach a copy of your ID\n3. Take the online placement test (30 minutes)\n4. Receive your results and placement by email within 48 hours\n5. Pay the registration fees (350 euros per term)\n\nClasses are held Monday through Thursday, from 9:00 AM to 12:00 PM or from 2:00 PM to 5:00 PM, depending on level. Groups are made up of 8 to 12 people maximum.\n\nPlease note: no refunds will be issued after classes have begun. Any cancellation request must be made at least 7 days before the first class.",
+      "questions": [
+        {
+          "id": "tef_ce_001_B_03_q1",
+          "question": "Que doit faire un candidat avant de payer les frais d'inscription ?",
+          "questionEnglish": "What must a candidate do before paying the registration fees?",
+          "options": [
+            "Assister à un cours d'essai",
+            "Passer un test de niveau en ligne",
+            "Rencontrer un professeur",
+            "Fournir un certificat médical"
+          ],
+          "optionsEnglish": [
+            "Attend a trial class",
+            "Take an online placement test",
+            "Meet a teacher",
+            "Provide a medical certificate"
+          ],
+          "correctIndex": 1,
+          "explanation": "Step 3 is to take an online placement test ('Effectuer le test de niveau en ligne') before paying fees in step 5."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_C_01",
+      "type": "article",
+      "title": "Le télétravail transforme la vie des Français",
+      "content": "LE TÉLÉTRAVAIL TRANSFORME LA VIE DES FRANÇAIS\n\nDepuis la pandémie, le télétravail s'est installé durablement dans les habitudes des Français. Une enquête de l'INSEE publiée en 2024 révèle que 29 % des salariés travaillent à distance au moins un jour par semaine, contre seulement 3 % avant 2020.\n\nCette évolution a des conséquences profondes sur l'organisation du territoire. De nombreuses familles ont quitté les grandes villes pour s'installer dans des villes moyennes ou à la campagne, où les logements sont plus spacieux et moins chers. Des villes comme Angers, Rennes ou La Rochelle ont vu leur population augmenter de manière significative.\n\nCependant, le télétravail n'est pas sans inconvénients. Selon une étude de l'Université Paris-Dauphine, 45 % des télétravailleurs déclarent souffrir d'isolement social et 38 % ont du mal à séparer vie professionnelle et vie personnelle. Les psychologues du travail recommandent de limiter le télétravail à deux ou trois jours par semaine pour maintenir un équilibre sain.\n\nLes entreprises, de leur côté, s'adaptent en proposant des espaces de travail partagés, des journées d'équipe obligatoires et des outils de communication plus performants. Le modèle hybride — quelques jours au bureau, quelques jours à la maison — semble être la solution privilégiée par la majorité des employeurs et des salariés.",
+      "contentEnglish": "REMOTE WORK IS TRANSFORMING THE LIVES OF THE FRENCH\n\nSince the pandemic, remote work has become a lasting part of French habits. A survey by INSEE published in 2024 reveals that 29% of employees work remotely at least one day per week, compared to only 3% before 2020.\n\nThis shift has had profound consequences on territorial organization. Many families have left large cities to settle in medium-sized towns or the countryside, where housing is more spacious and less expensive. Cities like Angers, Rennes, and La Rochelle have seen their populations increase significantly.\n\nHowever, remote work is not without its drawbacks. According to a study by Paris-Dauphine University, 45% of remote workers report suffering from social isolation and 38% have difficulty separating their professional and personal lives. Occupational psychologists recommend limiting remote work to two or three days per week to maintain a healthy balance.\n\nCompanies, for their part, are adapting by offering shared workspaces, mandatory team days, and more effective communication tools. The hybrid model -- a few days at the office, a few days at home -- seems to be the preferred solution for the majority of employers and employees.",
+      "questions": [
+        {
+          "id": "tef_ce_001_C_01_q1",
+          "question": "Quel changement majeur le télétravail a-t-il provoqué dans l'organisation du territoire ?",
+          "questionEnglish": "What major change has remote work caused in territorial organization?",
+          "options": [
+            "Les entreprises ont fermé leurs bureaux en ville",
+            "Des familles ont quitté les grandes villes pour des villes moyennes ou la campagne",
+            "Les transports en commun ont été supprimés",
+            "Les loyers ont augmenté dans les petites villes"
+          ],
+          "optionsEnglish": [
+            "Companies closed their offices in cities",
+            "Families left large cities for medium-sized towns or the countryside",
+            "Public transportation was eliminated",
+            "Rents increased in small towns"
+          ],
+          "correctIndex": 1,
+          "explanation": "The article states 'De nombreuses familles ont quitté les grandes villes pour s'installer dans des villes moyennes ou à la campagne'."
+        },
+        {
+          "id": "tef_ce_001_C_01_q2",
+          "question": "Que recommandent les psychologues du travail ?",
+          "questionEnglish": "What do occupational psychologists recommend?",
+          "options": [
+            "D'arrêter complètement le télétravail",
+            "De travailler uniquement depuis la maison",
+            "De limiter le télétravail à deux ou trois jours par semaine",
+            "De travailler seul dans un espace dédié"
+          ],
+          "optionsEnglish": [
+            "To stop remote work completely",
+            "To work only from home",
+            "To limit remote work to two or three days per week",
+            "To work alone in a dedicated space"
+          ],
+          "correctIndex": 2,
+          "explanation": "Psychologists recommend 'de limiter le télétravail à deux ou trois jours par semaine pour maintenir un équilibre sain'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_C_02",
+      "type": "article",
+      "title": "L'alimentation bio : entre conviction et réalité",
+      "content": "L'ALIMENTATION BIO : ENTRE CONVICTION ET RÉALITÉ\n\nLe marché du bio en France représente aujourd'hui 12 milliards d'euros. Pourtant, après des années de croissance record, les ventes de produits biologiques ont ralenti. Comment expliquer ce phénomène ?\n\nPlusieurs facteurs entrent en jeu. D'abord, l'inflation a poussé de nombreux consommateurs à revoir leurs priorités budgétaires. Un panier de produits bio coûte en moyenne 30 % plus cher qu'un panier conventionnel. Pour les familles aux revenus modestes, cet écart est devenu difficile à supporter.\n\nEnsuite, la confusion autour des labels n'aide pas. Entre le label AB (Agriculture Biologique), le label européen, et les multiples certifications privées, les consommateurs ne savent plus toujours ce qu'ils achètent. Certains se tournent vers des alternatives comme le « local » ou le « raisonné », jugés plus accessibles.\n\nNéanmoins, les experts s'accordent à dire que le bio reste une tendance de fond. Les jeunes générations, en particulier, considèrent l'alimentation biologique comme un choix de société plutôt qu'un simple acte de consommation. Les cantines scolaires, qui doivent désormais proposer 20 % de produits bio dans leurs menus, contribuent à normaliser cette pratique.",
+      "contentEnglish": "ORGANIC FOOD: BETWEEN CONVICTION AND REALITY\n\nThe organic market in France now represents 12 billion euros. Yet, after years of record growth, sales of organic products have slowed down. How can this phenomenon be explained?\n\nSeveral factors are at play. First, inflation has pushed many consumers to reconsider their budget priorities. A basket of organic products costs on average 30% more than a conventional one. For families with modest incomes, this difference has become hard to bear.\n\nAdditionally, confusion around labels does not help. Between the AB label (Organic Agriculture), the European label, and multiple private certifications, consumers no longer always know what they are buying. Some are turning to alternatives like \"local\" or \"reasoned farming,\" seen as more accessible.\n\nNevertheless, experts agree that organic food remains a deep-rooted trend. Younger generations, in particular, view organic food as a societal choice rather than a simple consumer act. School cafeterias, which must now offer 20% organic products in their menus, are helping to normalize this practice.",
+      "questions": [
+        {
+          "id": "tef_ce_001_C_02_q1",
+          "question": "Pourquoi les ventes de produits bio ont-elles ralenti ?",
+          "questionEnglish": "Why have organic product sales slowed down?",
+          "options": [
+            "Parce que les produits bio sont de mauvaise qualité",
+            "À cause de l'inflation et du coût plus élevé des produits bio",
+            "Parce que les magasins bio ont fermé",
+            "En raison d'un scandale sanitaire"
+          ],
+          "optionsEnglish": [
+            "Because organic products are of poor quality",
+            "Due to inflation and the higher cost of organic products",
+            "Because organic stores have closed",
+            "Due to a health scandal"
+          ],
+          "correctIndex": 1,
+          "explanation": "The article explains inflation pushed consumers to reconsider budgets, and organic products cost 30% more on average."
+        },
+        {
+          "id": "tef_ce_001_C_02_q2",
+          "question": "Dans ce texte, que signifie l'expression « une tendance de fond » ?",
+          "questionEnglish": "In this text, what does the expression 'une tendance de fond' mean?",
+          "options": [
+            "Un phénomène temporaire et superficiel",
+            "Une mode passagère chez les jeunes",
+            "Un mouvement durable et profondément ancré",
+            "Une obligation imposée par le gouvernement"
+          ],
+          "optionsEnglish": [
+            "A temporary and superficial phenomenon",
+            "A passing fad among young people",
+            "A lasting and deeply rooted movement",
+            "An obligation imposed by the government"
+          ],
+          "correctIndex": 2,
+          "explanation": "'Tendance de fond' means a deep, lasting trend. Experts say organic food remains important and young generations see it as a societal choice."
+        },
+        {
+          "id": "tef_ce_001_C_02_q3",
+          "question": "Quelle obligation concerne les cantines scolaires ?",
+          "questionEnglish": "What obligation applies to school cafeterias?",
+          "options": [
+            "Servir uniquement des produits bio",
+            "Proposer au moins 20 % de produits bio dans les menus",
+            "Supprimer la viande des menus",
+            "Acheter des produits locaux exclusivement"
+          ],
+          "optionsEnglish": [
+            "To serve only organic products",
+            "To offer at least 20% organic products in their menus",
+            "To remove meat from menus",
+            "To buy only local products"
+          ],
+          "correctIndex": 1,
+          "explanation": "School cafeterias 'doivent désormais proposer 20 % de produits bio dans leurs menus'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_001_D_01",
+      "type": "article",
+      "title": "Faut-il interdire les écrans aux enfants de moins de trois ans ?",
+      "content": "FAUT-IL INTERDIRE LES ÉCRANS AUX ENFANTS DE MOINS DE TROIS ANS ?\n\nLa question de l'exposition des jeunes enfants aux écrans numériques divise les spécialistes et les parents. En France, le Haut Conseil de la Santé Publique recommande de ne pas exposer les enfants de moins de trois ans aux écrans, quels qu'ils soient. Mais cette recommandation est-elle réaliste dans une société où les écrans sont omniprésents ?\n\nLe docteur Sophie Martin, pédiatre à l'hôpital Necker, est catégorique : « Les écrans sont néfastes pour le développement cognitif des tout-petits. Ils réduisent les interactions avec les parents, retardent l'acquisition du langage et perturbent le sommeil. » Elle cite une étude canadienne montrant que chaque heure passée devant un écran avant l'âge de deux ans est associée à une diminution de 7 % des capacités d'attention à l'âge de cinq ans.\n\nEn revanche, Marc Legrand, chercheur en sciences de l'éducation à l'Université de Lyon, nuance cette position : « Il ne faut pas diaboliser les écrans en tant que tels. Ce qui compte, c'est la qualité du contenu et la présence d'un adulte. Un enfant qui regarde un programme éducatif avec ses parents, qui lui expliquent et interagissent, n'est pas dans la même situation qu'un enfant laissé seul devant une tablette pendant des heures. »\n\nLes pays scandinaves ont adopté une approche intermédiaire. En Suède, les recommandations ne fixent pas d'âge minimum absolu mais insistent sur la qualité des contenus et la durée limitée. En Finlande, les crèches intègrent des outils numériques adaptés à l'âge des enfants dans leurs activités pédagogiques, avec des résultats jugés positifs par les éducateurs.\n\nFace à ces positions divergentes, l'Académie des Sciences française a proposé une approche équilibrée : pas d'écran avant 2 ans, un usage très limité et accompagné entre 2 et 6 ans, et une éducation progressive au numérique à partir de 6 ans. Cette position pragmatique reconnaît que l'objectif n'est pas d'éliminer les écrans — ce qui serait utopique — mais d'apprendre aux familles à les utiliser de manière responsable.",
+      "contentEnglish": "SHOULD SCREENS BE BANNED FOR CHILDREN UNDER THREE?\n\nThe question of young children's exposure to digital screens divides specialists and parents. In France, the High Council for Public Health recommends not exposing children under three to screens of any kind. But is this recommendation realistic in a society where screens are everywhere?\n\nDr. Sophie Martin, a pediatrician at Necker Hospital, is categorical: \"Screens are harmful to the cognitive development of toddlers. They reduce interactions with parents, delay language acquisition, and disrupt sleep.\" She cites a Canadian study showing that every hour spent in front of a screen before the age of two is associated with a 7% decrease in attention capacity at age five.\n\nOn the other hand, Marc Legrand, a researcher in education sciences at the University of Lyon, qualifies this position: \"We must not demonize screens as such. What matters is the quality of the content and the presence of an adult. A child watching an educational program with their parents, who explain and interact, is not in the same situation as a child left alone in front of a tablet for hours.\"\n\nThe Scandinavian countries have adopted an intermediate approach. In Sweden, recommendations do not set an absolute minimum age but emphasize content quality and limited duration. In Finland, daycare centers incorporate age-appropriate digital tools into their educational activities, with results deemed positive by educators.\n\nFaced with these divergent positions, the French Academy of Sciences proposed a balanced approach: no screens before age 2, very limited and supervised use between ages 2 and 6, and progressive digital education from age 6. This pragmatic position acknowledges that the goal is not to eliminate screens -- which would be utopian -- but to teach families to use them responsibly.",
+      "questions": [
+        {
+          "id": "tef_ce_001_D_01_q1",
+          "question": "Quelle est la recommandation du Haut Conseil de la Santé Publique ?",
+          "questionEnglish": "What is the recommendation of the High Council for Public Health?",
+          "options": [
+            "Limiter les écrans à une heure par jour pour les enfants",
+            "Ne pas exposer les enfants de moins de trois ans aux écrans",
+            "Autoriser uniquement les programmes éducatifs",
+            "Interdire les écrans dans les écoles maternelles"
+          ],
+          "optionsEnglish": [
+            "Limit screens to one hour per day for children",
+            "Do not expose children under three to screens",
+            "Allow only educational programs",
+            "Ban screens in preschools"
+          ],
+          "correctIndex": 1,
+          "explanation": "The text states the High Council 'recommande de ne pas exposer les enfants de moins de trois ans aux écrans'."
+        },
+        {
+          "id": "tef_ce_001_D_01_q2",
+          "question": "Selon l'étude canadienne citée, quel est l'effet des écrans sur les jeunes enfants ?",
+          "questionEnglish": "According to the Canadian study cited, what is the effect of screens on young children?",
+          "options": [
+            "Ils améliorent la créativité",
+            "Ils réduisent les capacités d'attention à cinq ans",
+            "Ils favorisent l'apprentissage des langues",
+            "Ils n'ont aucun effet mesurable"
+          ],
+          "optionsEnglish": [
+            "They improve creativity",
+            "They reduce attention capacity at age five",
+            "They promote language learning",
+            "They have no measurable effect"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each hour before age two is associated with a 7% decrease in attention capacity at age five."
+        },
+        {
+          "id": "tef_ce_001_D_01_q3",
+          "question": "Selon Marc Legrand, quel est le facteur le plus important concernant l'usage des écrans par les enfants ?",
+          "questionEnglish": "According to Marc Legrand, what is the most important factor regarding children's screen use?",
+          "options": [
+            "L'âge de l'enfant",
+            "La marque de l'appareil",
+            "La qualité du contenu et la présence d'un adulte",
+            "La durée totale d'utilisation"
+          ],
+          "optionsEnglish": [
+            "The child's age",
+            "The brand of the device",
+            "The quality of the content and the presence of an adult",
+            "The total duration of use"
+          ],
+          "correctIndex": 2,
+          "explanation": "Marc Legrand states 'Ce qui compte, c'est la qualité du contenu et la présence d'un adulte'."
+        },
+        {
+          "id": "tef_ce_001_D_01_q4",
+          "question": "Comment les pays scandinaves abordent-ils la question des écrans pour les enfants ?",
+          "questionEnglish": "How do the Scandinavian countries approach the issue of screens for children?",
+          "options": [
+            "Ils interdisent totalement les écrans avant 6 ans",
+            "Ils n'ont aucune recommandation sur le sujet",
+            "Ils mettent l'accent sur la qualité des contenus et une durée limitée",
+            "Ils laissent les parents décider sans aucune directive"
+          ],
+          "optionsEnglish": [
+            "They completely ban screens before age 6",
+            "They have no recommendations on the subject",
+            "They emphasize content quality and limited duration",
+            "They let parents decide without any guidelines"
+          ],
+          "correctIndex": 2,
+          "explanation": "Sweden focuses on content quality and limited duration; Finland integrates age-appropriate digital tools in daycare."
+        },
+        {
+          "id": "tef_ce_001_D_01_q5",
+          "question": "Quelle est la position de l'Académie des Sciences française ?",
+          "questionEnglish": "What is the position of the French Academy of Sciences?",
+          "options": [
+            "Interdire complètement les écrans pour tous les enfants",
+            "Laisser les parents décider sans recommandations",
+            "Proposer une approche progressive selon l'âge de l'enfant",
+            "Imposer un contrôle parental obligatoire sur tous les appareils"
+          ],
+          "optionsEnglish": [
+            "Completely ban screens for all children",
+            "Let parents decide without recommendations",
+            "Propose a progressive approach based on the child's age",
+            "Impose mandatory parental controls on all devices"
+          ],
+          "correctIndex": 2,
+          "explanation": "The Académie proposes no screens before 2, very limited use between 2-6, and progressive digital education from age 6."
+        }
+      ]
+    }
+  ]
+}

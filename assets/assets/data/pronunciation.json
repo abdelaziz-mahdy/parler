@@ -1,0 +1,42 @@
+{
+  "goldenRules": [
+    "SILENT FINAL CONSONANTS: Most consonants at the end of a word are silent. 'Petit' = puh-TEE (the t is silent). Exception: C, R, F, L are usually pronounced (CaReFuL).",
+    "STRESS IS ALWAYS ON THE LAST SYLLABLE: Unlike English, French stress is predictable. Every word and phrase is stressed on the final syllable. 'chocolat' = sho-ko-LA.",
+    "NASAL VOWELS: When a vowel is followed by N or M (and no vowel after), it becomes nasal. 'bon' = boh(n), 'pain' = pa(n), 'vin' = va(n)."
+  ],
+  "vowelSounds": [
+    {"letters": "ou", "sound": "\"oo\" like boot", "examples": ["vous (voo)", "nous (noo)", "tout (too)"], "hint": "English \"oo\" in \"food\""},
+    {"letters": "u", "sound": "No English equivalent! Say \"ee\" with rounded lips", "examples": ["tu (t\u00fc)", "rue (r\u00fc)", "plus (pl\u00fc)"], "hint": "Say \"ee\" but push lips forward into a kiss"},
+    {"letters": "eu / oeu", "sound": "Like \"uh\" but with rounded lips", "examples": ["deux (duh)", "bleu (bluh)", "heure (uhr)"], "hint": "English \"uh\" in \"duh\" with puckered lips"},
+    {"letters": "oi", "sound": "\"wah\"", "examples": ["moi (mwah)", "trois (twah)", "boire (bwahr)"], "hint": "Always says \"wah\" - very consistent"},
+    {"letters": "ai / ei", "sound": "\"eh\" like bed", "examples": ["lait (leh)", "maison (meh-zoh(n))", "faire (fehr)"], "hint": "English \"e\" in \"get\""},
+    {"letters": "au / eau", "sound": "\"oh\"", "examples": ["eau (oh)", "beau (boh)", "restaurant (res-toh-rah(n))"], "hint": "Always \"oh\" - never \"aw\""},
+    {"letters": "\u00e9", "sound": "\"ay\" like day", "examples": ["caf\u00e9 (ka-FAY)", "\u00e9t\u00e9 (ay-TAY)"], "hint": "Accent aigu = always \"ay\""},
+    {"letters": "\u00e8 / \u00ea", "sound": "\"eh\" like bed", "examples": ["m\u00e8re (mehr)", "f\u00eate (feht)", "tr\u00e8s (treh)"], "hint": "Accent grave/circumflex = open \"eh\""},
+    {"letters": "e (no accent, end)", "sound": "Silent or barely whispered", "examples": ["table (TAHBL)", "France (FRAHNS)"], "hint": "Just drop it mentally"},
+    {"letters": "e (no accent, mid-word)", "sound": "\"uh\" (schwa)", "examples": ["le (luh)", "petit (puh-TEE)", "devenir (duh-vuh-NEER)"], "hint": "Quick unstressed \"uh\""}
+  ],
+  "nasalVowels": [
+    {"spelling": "an / am / en / em", "sound": "ah(n) - nasalized \"ah\"", "examples": ["France", "enfant", "comment", "temps", "chanson"], "howToSay": "Say \"ah\" but let air go through nose. Don't fully pronounce the N."},
+    {"spelling": "on / om", "sound": "oh(n) - nasalized \"oh\"", "examples": ["bon", "nom", "maison", "onze", "bonjour"], "howToSay": "Say \"oh\" through your nose."},
+    {"spelling": "in / im / ain / ein / un", "sound": "a(n) - nasalized \"ah\" (shorter)", "examples": ["vin", "pain", "demain", "important", "lundi"], "howToSay": "Like \"an\" in English \"can't\" said through nose."}
+  ],
+  "consonantRules": [
+    {"letter": "c", "rule": "Before e, i, y: \"s\" sound. Before a, o, u: \"k\" sound.", "examples": ["centre (SAHN-truh)", "ici (ee-SEE)", "car (KAR)", "comme (KOM)"], "notes": "Same rule as English!"},
+    {"letter": "\u00e7 (c-cedilla)", "rule": "Always \"s\" sound", "examples": ["fran\u00e7ais (frahn-SAY)", "gar\u00e7on (gar-SOH(N))"], "notes": "Cedilla forces \"s\" before a, o, u"},
+    {"letter": "g", "rule": "Before e, i: \"zh\" (like pleasure). Before a, o, u: hard \"g\".", "examples": ["manger (mahn-ZHAY)", "garage (ga-RAZH)"], "notes": "Same logic as C rule"},
+    {"letter": "gn", "rule": "\"ny\" sound (like canyon)", "examples": ["montagne (mon-TA-nyuh)", "champagne", "gagner"], "notes": "Think \"lasagna\" = la-ZA-nya"},
+    {"letter": "h", "rule": "ALWAYS silent", "examples": ["homme (OM)", "h\u00f4tel (oh-TEL)", "heure (UHR)"], "notes": "French H never makes a sound"},
+    {"letter": "j", "rule": "\"zh\" sound (like pleasure)", "examples": ["je (zhuh)", "jour (zhoor)", "jardin (zhar-DA(N))"], "notes": "NEVER \"dj\" like English J"},
+    {"letter": "r", "rule": "Back of throat, like gargling gently", "examples": ["rouge (roozh)", "Paris (pa-REE)", "merci (mair-SEE)"], "notes": "The signature French sound. Practice gargling."},
+    {"letter": "qu", "rule": "Always just \"k\" (never \"kw\")", "examples": ["qui (kee)", "que (kuh)", "quand (kah(n))"], "notes": "Unlike English, never say \"kw\""},
+    {"letter": "ch", "rule": "\"sh\" sound (never \"ch\" like church)", "examples": ["chat (SHA)", "chose (SHOHZ)", "chercher (shair-SHAY)"], "notes": "French CH = English SH"},
+    {"letter": "th", "rule": "Just \"t\" (never the English \"th\")", "examples": ["th\u00e9\u00e2tre (tay-AH-truh)", "thon (TOH(N))"], "notes": "No tongue-between-teeth sound in French"}
+  ],
+  "carefulRule": [
+    {"letter": "C", "examples": ["avec (a-VEK)", "sac (SAK)", "parc (PARK)"]},
+    {"letter": "R", "examples": ["pour (POOR)", "sur (S\u00dcR)", "bonjour (bon-ZHOOR)"]},
+    {"letter": "F", "examples": ["chef (SHEF)", "sportif (spor-TEEF)", "neuf (NUHF)"]},
+    {"letter": "L", "examples": ["animal (a-nee-MAL)", "hotel (oh-TEL)", "avril (a-VREEL)"]}
+  ]
+}

@@ -1,0 +1,282 @@
+[
+  {
+    "id": "q1_1",
+    "chapterId": 1,
+    "type": "multiple_choice",
+    "question": "What is the French ending for English words ending in '-tion'?",
+    "options": ["-tion (same)", "-sion", "-ment", "-ique"],
+    "correctAnswer": "-tion (same)",
+    "explanation": "English '-tion' words keep the same spelling in French, just with French pronunciation (e.g., 'nation', 'information').",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q1_2",
+    "chapterId": 1,
+    "type": "multiple_choice",
+    "question": "How do you convert English '-ty' words to French?",
+    "options": ["-te", "-ti", "-te\u0301", "-tue"],
+    "correctAnswer": "-te\u0301",
+    "explanation": "English '-ty' becomes '-te\u0301' in French: university \u2192 universite\u0301, quality \u2192 qualite\u0301. Always feminine!",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q1_3",
+    "chapterId": 1,
+    "type": "multiple_choice",
+    "question": "What does the English ending '-ly' become in French?",
+    "options": ["-lement", "-ment", "-ment\u00e9", "-lie"],
+    "correctAnswer": "-ment",
+    "explanation": "English adverbs ending in '-ly' become '-ment' in French: normally \u2192 normalement, exactly \u2192 exactement.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q1_4",
+    "chapterId": 1,
+    "type": "multiple_choice",
+    "question": "English '-ic' words become what in French?",
+    "options": ["-ique", "-ic", "-ick", "-ica"],
+    "correctAnswer": "-ique",
+    "explanation": "Add '-que' to make '-ique': music \u2192 musique, public \u2192 publique, fantastic \u2192 fantastique.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q2_1",
+    "chapterId": 2,
+    "type": "multiple_choice",
+    "question": "What is the most important French pronunciation rule?",
+    "options": ["Stress the first syllable", "Most final consonants are silent", "All vowels are nasal", "R is always silent"],
+    "correctAnswer": "Most final consonants are silent",
+    "explanation": "In French, most final consonants are silent. 'Petit' = puh-TEE (t is silent). The exception is C, R, F, L (CaReFuL rule).",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q2_2",
+    "chapterId": 2,
+    "type": "multiple_choice",
+    "question": "Which consonants ARE usually pronounced at the end of French words? (CaReFuL rule)",
+    "options": ["B, D, G, P", "C, R, F, L", "S, T, X, Z", "M, N, P, Q"],
+    "correctAnswer": "C, R, F, L",
+    "explanation": "Remember 'CaReFuL' \u2013 C, R, F, L are usually pronounced at the end of French words.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q2_3",
+    "chapterId": 2,
+    "type": "multiple_choice",
+    "question": "How is 'ch' pronounced in French?",
+    "options": ["Like 'ch' in 'church'", "Like 'sh' in 'shoe'", "Like 'k'", "Like 'tch'"],
+    "correctAnswer": "Like 'sh' in 'shoe'",
+    "explanation": "French 'ch' = English 'sh': chat (SHA), chose (SHOHZ), chercher (shair-SHAY).",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q2_4",
+    "chapterId": 2,
+    "type": "multiple_choice",
+    "question": "Where does stress fall in French words?",
+    "options": ["First syllable", "Second syllable", "Last syllable", "Varies"],
+    "correctAnswer": "Last syllable",
+    "explanation": "French stress is always on the last syllable: chocolat = sho-ko-LA, information = an-for-ma-see-ON.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q3_1",
+    "chapterId": 3,
+    "type": "multiple_choice",
+    "question": "Words ending in '-tion' in French are almost always...",
+    "options": ["Masculine", "Feminine", "Either", "Neuter"],
+    "correctAnswer": "Feminine",
+    "explanation": "Words ending in '-tion/-sion' are ~99% feminine: la nation, la te\u0301le\u0301vision, la situation.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q3_2",
+    "chapterId": 3,
+    "type": "multiple_choice",
+    "question": "Words ending in '-age' in French are usually...",
+    "options": ["Feminine", "Masculine", "Always feminine", "No pattern"],
+    "correctAnswer": "Masculine",
+    "explanation": "Words ending in '-age' are ~90% masculine: le garage, le voyage, le message. Exceptions: la plage, la page, l'image.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q3_3",
+    "chapterId": 3,
+    "type": "multiple_choice",
+    "question": "What is the best strategy for learning noun genders?",
+    "options": ["Just guess", "Learn gender WITH the word (la maison, not just maison)", "All words ending in vowels are feminine", "Only learn masculine words"],
+    "correctAnswer": "Learn gender WITH the word (la maison, not just maison)",
+    "explanation": "Always learn the article with the noun: never learn 'maison' alone, learn 'la maison' or 'une maison'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q4_1",
+    "chapterId": 4,
+    "type": "multiple_choice",
+    "question": "For regular -er verbs, how many distinct SOUNDS are there in present tense?",
+    "options": ["Six (one per subject)", "Four", "Three", "Two"],
+    "correctAnswer": "Three",
+    "explanation": "je/tu/il/ils all sound the same, then nous (-ons) and vous (-ez). Only 3 distinct sounds!",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q4_2",
+    "chapterId": 4,
+    "type": "multiple_choice",
+    "question": "How do you express the future tense easily in spoken French?",
+    "options": ["Use the formal future tense", "Use aller + infinitive", "Add '-ai' to the verb", "Use 'sera' before the verb"],
+    "correctAnswer": "Use aller + infinitive",
+    "explanation": "Just like English 'I'm going to...': Je vais manger = I'm going to eat. 100% acceptable in everyday French.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q4_3",
+    "chapterId": 4,
+    "type": "multiple_choice",
+    "question": "What is the passe\u0301 compose\u0301 formula?",
+    "options": ["Subject + verb + -e\u0301", "Subject + avoir/e\u0302tre + past participle", "Subject + aller + verb", "Subject + past participle only"],
+    "correctAnswer": "Subject + avoir/e\u0302tre + past participle",
+    "explanation": "Most verbs: subject + avoir + past participle (j'ai mange\u0301). DR MRS VANDERTRAMP verbs use e\u0302tre instead.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q5_1",
+    "chapterId": 5,
+    "type": "multiple_choice",
+    "question": "How do you make a French sentence negative?",
+    "options": ["Add 'non' before the verb", "Put NE...PAS around the verb", "Add 'pas' at the end", "Add 'ne' before the verb only"],
+    "correctAnswer": "Put NE...PAS around the verb",
+    "explanation": "Sandwich the verb: Je NE parle PAS (I don't speak). In spoken French, 'ne' is often dropped.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q5_2",
+    "chapterId": 5,
+    "type": "multiple_choice",
+    "question": "What is the easiest way to ask a question in French?",
+    "options": ["Inversion (Parles-tu?)", "Est-ce que...", "Rising intonation (Tu parles?)", "Adding 'oui' at the end"],
+    "correctAnswer": "Rising intonation (Tu parles?)",
+    "explanation": "Just raise your voice at the end, like English. French people use this 90% of the time.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q5_3",
+    "chapterId": 5,
+    "type": "multiple_choice",
+    "question": "What must you NEVER say in French (mandatory contraction)?",
+    "options": ["je ai", "de le", "a\u0300 le", "All of these"],
+    "correctAnswer": "All of these",
+    "explanation": "These contractions are mandatory: je + vowel = j' (j'ai), de + le = du, a\u0300 + le = au. Never skip them.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q6_1",
+    "chapterId": 6,
+    "type": "multiple_choice",
+    "question": "What is 70 in French?",
+    "options": ["septante", "soixante-dix", "soixante-doux", "septente"],
+    "correctAnswer": "soixante-dix",
+    "explanation": "70 = soixante-dix (literally 60 + 10). Note: Belgian/Swiss French uses 'septante'.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q6_2",
+    "chapterId": 6,
+    "type": "multiple_choice",
+    "question": "What is 80 in French?",
+    "options": ["huitante", "octante", "quatre-vingts", "soixante-vingt"],
+    "correctAnswer": "quatre-vingts",
+    "explanation": "80 = quatre-vingts (literally 4 \u00d7 20). Note: Belgian French uses 'huitante' or 'octante'.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q7_1",
+    "chapterId": 7,
+    "type": "multiple_choice",
+    "question": "What does 'actuellement' mean in French?",
+    "options": ["Actually", "Currently/right now", "Actively", "Accurately"],
+    "correctAnswer": "Currently/right now",
+    "explanation": "False friend! 'Actuellement' means 'currently/right now', NOT 'actually'. Use 'en fait' for 'actually'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q7_2",
+    "chapterId": 7,
+    "type": "multiple_choice",
+    "question": "What does 'excite\u0301' mean in French? (Be careful!)",
+    "options": ["Excited/enthusiastic", "Sexually aroused", "Exhausted", "Excellent"],
+    "correctAnswer": "Sexually aroused",
+    "explanation": "Very dangerous false friend! Use 'enthousiaste' for 'excited'. 'Excite\u0301' has a sexual connotation in French.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q7_3",
+    "chapterId": 7,
+    "type": "multiple_choice",
+    "question": "What does 'librairie' mean in French?",
+    "options": ["Library", "Bookstore", "Free store", "Liberty"],
+    "correctAnswer": "Bookstore",
+    "explanation": "False friend! 'Librairie' = bookstore. 'Bibliothe\u0300que' = library.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q8_1",
+    "chapterId": 8,
+    "type": "multiple_choice",
+    "question": "When does liaison occur in French?",
+    "options": ["When a word ends in a vowel", "When a normally silent final consonant is pronounced before a vowel", "At the start of sentences", "Between all words"],
+    "correctAnswer": "When a normally silent final consonant is pronounced before a vowel",
+    "explanation": "Liaison makes French sound flowing: les_amis (lay-ZA-mee), not les / amis.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q8_2",
+    "chapterId": 8,
+    "type": "multiple_choice",
+    "question": "In liaison, what sound does 's' or 'x' make?",
+    "options": ["S sound", "Z sound", "Silent", "SH sound"],
+    "correctAnswer": "Z sound",
+    "explanation": "s/x become a Z sound in liaison: les amis = lay-ZA-mee, deux heures = duh-ZUHR.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q9_1",
+    "chapterId": 9,
+    "type": "multiple_choice",
+    "question": "What phrase means 'I don't understand' in French?",
+    "options": ["Je ne sais pas", "Je ne comprends pas", "Je ne parle pas", "Je ne vois pas"],
+    "correctAnswer": "Je ne comprends pas",
+    "explanation": "Your #1 safety phrase! 'Je ne comprends pas' = I don't understand.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q9_2",
+    "chapterId": 9,
+    "type": "multiple_choice",
+    "question": "How do you politely say 'I would like...' in French?",
+    "options": ["Je veux...", "Je voudrais...", "Je prends...", "Je demande..."],
+    "correctAnswer": "Je voudrais...",
+    "explanation": "'Je voudrais...' is the polite way to say 'I would like...'. 'Je veux' is more direct/demanding.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q10_1",
+    "chapterId": 10,
+    "type": "multiple_choice",
+    "question": "What is the #1 TEF speaking secret?",
+    "options": ["Perfect grammar", "Keep talking and never go silent", "Use formal language", "Memorize long speeches"],
+    "correctAnswer": "Keep talking and never go silent",
+    "explanation": "A confident speaker who makes mistakes but keeps talking will ALWAYS score higher than someone who pauses with perfect grammar.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q10_2",
+    "chapterId": 10,
+    "type": "multiple_choice",
+    "question": "Which filler word can you use when starting any answer?",
+    "options": ["Euh...", "Alors...", "Bon...", "All of these"],
+    "correctAnswer": "All of these",
+    "explanation": "All French fillers work! 'Alors' (So/Well), 'Bon/Ben' (Well/Um), 'Euh' (Uh). They buy you thinking time.",
+    "difficulty": "easy"
+  }
+]

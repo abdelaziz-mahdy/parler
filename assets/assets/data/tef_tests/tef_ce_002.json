@@ -1,0 +1,489 @@
+{
+  "id": "tef_ce_002",
+  "title": "TEF Compréhension écrite - Test 2",
+  "description": "Practice test with everyday French scenarios: work, health, tourism, and social topics.",
+  "section": "comprehension_ecrite",
+  "difficulty": "B1",
+  "timeMinutes": 60,
+  "passages": [
+    {
+      "id": "tef_ce_002_A_01",
+      "type": "advertisement",
+      "title": "Déménagement Express",
+      "content": "DÉMÉNAGEMENT EXPRESS\nDevis gratuit en ligne !\n- Appartements et maisons\n- Garde-meubles disponible\n- Assurance incluse\nPrix à partir de 390 € (studio, même ville)\nTél : 01 55 78 90 12\nDisponible 7j/7, y compris jours fériés",
+      "contentEnglish": "EXPRESS MOVING\nFree online quote!\n- Apartments and houses\n- Furniture storage available\n- Insurance included\nPrices starting from 390 euros (studio, same city)\nPhone: 01 55 78 90 12\nAvailable 7 days a week, including public holidays",
+      "questions": [
+        {
+          "id": "tef_ce_002_A_01_q1",
+          "question": "Que propose cette entreprise en plus du déménagement ?",
+          "questionEnglish": "What does this company offer in addition to moving services?",
+          "options": [
+            "La vente de meubles",
+            "Le stockage de meubles",
+            "La décoration d'intérieur",
+            "Le nettoyage d'appartement"
+          ],
+          "optionsEnglish": [
+            "Furniture sales",
+            "Furniture storage",
+            "Interior decoration",
+            "Apartment cleaning"
+          ],
+          "correctIndex": 1,
+          "explanation": "The ad mentions 'Garde-meubles disponible' (Furniture storage available)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_A_02",
+      "type": "notice",
+      "title": "Fermeture de la piscine",
+      "content": "PISCINE MUNICIPALE JEAN MOULIN\nFERMETURE EXCEPTIONNELLE\n\nLa piscine sera fermée du 1er au 14 septembre pour maintenance annuelle des bassins.\n\nLes abonnés pourront utiliser la piscine du complexe sportif des Lilas (15 min en bus, ligne 7) sur présentation de leur carte d'abonnement.\n\nRéouverture le 15 septembre à 8h00.",
+      "contentEnglish": "JEAN MOULIN MUNICIPAL SWIMMING POOL\nEXCEPTIONAL CLOSURE\n\nThe swimming pool will be closed from September 1 to 14 for annual pool maintenance.\n\nSubscribers may use the swimming pool at the Les Lilas sports complex (15 min by bus, line 7) upon presentation of their membership card.\n\nReopening on September 15 at 8:00 AM.",
+      "questions": [
+        {
+          "id": "tef_ce_002_A_02_q1",
+          "question": "Que peuvent faire les abonnés pendant la fermeture ?",
+          "questionEnglish": "What can subscribers do during the closure?",
+          "options": [
+            "Demander un remboursement",
+            "Nager dans une autre piscine avec leur carte",
+            "Attendre la réouverture",
+            "S'inscrire dans un club privé"
+          ],
+          "optionsEnglish": [
+            "Request a refund",
+            "Swim in another pool with their card",
+            "Wait for the reopening",
+            "Join a private club"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subscribers can use the pool at 'complexe sportif des Lilas ... sur présentation de leur carte d'abonnement'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_A_03",
+      "type": "notice",
+      "title": "Marché de Noël de Strasbourg",
+      "content": "MARCHÉ DE NOËL DE STRASBOURG\ndu 24 novembre au 24 décembre\n\nPlus de 300 chalets sur 10 sites différents\nArtisanat local, gastronomie alsacienne, animations\n\nHoraires : 10h - 20h (jusqu'à 22h les vendredis et samedis)\nEntrée libre\n\nPatinoire : 5 € / personne (gratuit pour les moins de 6 ans)",
+      "contentEnglish": "STRASBOURG CHRISTMAS MARKET\nfrom November 24 to December 24\n\nMore than 300 chalets across 10 different sites\nLocal crafts, Alsatian gastronomy, entertainment\n\nHours: 10:00 AM - 8:00 PM (until 10:00 PM on Fridays and Saturdays)\nFree admission\n\nIce rink: 5 euros per person (free for children under 6)",
+      "questions": [
+        {
+          "id": "tef_ce_002_A_03_q1",
+          "question": "À quel horaire le marché ferme-t-il le samedi ?",
+          "questionEnglish": "What time does the market close on Saturday?",
+          "options": [
+            "18h",
+            "20h",
+            "22h",
+            "Minuit"
+          ],
+          "optionsEnglish": [
+            "6 PM",
+            "8 PM",
+            "10 PM",
+            "Midnight"
+          ],
+          "correctIndex": 2,
+          "explanation": "Hours are '10h - 20h (jusqu'à 22h les vendredis et samedis)' (until 10pm on Fridays and Saturdays)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_A_04",
+      "type": "sign",
+      "title": "Centre médical Pasteur",
+      "content": "CENTRE MÉDICAL PASTEUR\nConsultations uniquement sur rendez-vous\n\nDr. Lemaire (Généraliste) - Lundi, Mercredi, Vendredi\nDr. Faure (Pédiatre) - Mardi et Jeudi\nDr. Nguyen (Dermatologue) - Mercredi après-midi\n\nUrgences : composez le 15 (SAMU)\nPas de consultations sans rendez-vous. Merci.",
+      "contentEnglish": "PASTEUR MEDICAL CENTER\nConsultations by appointment only\n\nDr. Lemaire (General Practitioner) - Monday, Wednesday, Friday\nDr. Faure (Pediatrician) - Tuesday and Thursday\nDr. Nguyen (Dermatologist) - Wednesday afternoon\n\nEmergencies: dial 15 (SAMU)\nNo walk-in consultations. Thank you.",
+      "questions": [
+        {
+          "id": "tef_ce_002_A_04_q1",
+          "question": "Si un enfant est malade un lundi, que doit-on faire ?",
+          "questionEnglish": "If a child is sick on a Monday, what should you do?",
+          "options": [
+            "Consulter le Dr. Faure directement",
+            "Aller au centre médical sans rendez-vous",
+            "Prendre rendez-vous, car le Dr. Faure consulte le mardi et jeudi",
+            "Appeler le 15"
+          ],
+          "optionsEnglish": [
+            "See Dr. Faure directly",
+            "Go to the medical center without an appointment",
+            "Make an appointment, since Dr. Faure sees patients on Tuesday and Thursday",
+            "Call 15"
+          ],
+          "correctIndex": 2,
+          "explanation": "The pediatrician Dr. Faure only sees patients on Tuesday and Thursday, and all consultations require an appointment."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_A_05",
+      "type": "notice",
+      "title": "Avis de coupure d'eau",
+      "content": "AVIS DE COUPURE D'EAU\n\nLe mardi 8 octobre de 8h00 à 14h00, une coupure d'eau est prévue dans les rues suivantes :\n- Rue Victor Hugo\n- Rue Émile Zola\n- Avenue Jean Jaurès\n\nNous vous conseillons de prévoir des réserves d'eau.\nNous vous remercions de votre compréhension.\n\nService des eaux - Mairie de Clichy",
+      "contentEnglish": "WATER OUTAGE NOTICE\n\nOn Tuesday, October 8 from 8:00 AM to 2:00 PM, a water outage is planned for the following streets:\n- Rue Victor Hugo\n- Rue Emile Zola\n- Avenue Jean Jaures\n\nWe advise you to prepare water reserves.\nThank you for your understanding.\n\nWater Department - City of Clichy",
+      "questions": [
+        {
+          "id": "tef_ce_002_A_05_q1",
+          "question": "Combien de temps durera la coupure d'eau ?",
+          "questionEnglish": "How long will the water outage last?",
+          "options": [
+            "2 heures",
+            "4 heures",
+            "6 heures",
+            "8 heures"
+          ],
+          "optionsEnglish": [
+            "2 hours",
+            "4 hours",
+            "6 hours",
+            "8 hours"
+          ],
+          "correctIndex": 2,
+          "explanation": "The water will be cut 'de 8h00 à 14h00' (from 8am to 2pm), which is 6 hours."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_B_01",
+      "type": "email",
+      "title": "Nouveau règlement télétravail",
+      "content": "De : rh@entreprise-martin.fr\nÀ : tous.les.employes@entreprise-martin.fr\nObjet : Nouveau règlement intérieur - Télétravail\n\nChers collaborateurs,\n\nÀ compter du 1er janvier, le règlement intérieur de l'entreprise évolue concernant le télétravail :\n\n- Tous les salariés ayant plus de 6 mois d'ancienneté peuvent bénéficier de 2 jours de télétravail par semaine.\n- Les jours de télétravail doivent être fixés et validés par le responsable d'équipe.\n- Une indemnité mensuelle de 30 € sera versée pour couvrir les frais (électricité, internet).\n- Les réunions d'équipe du lundi restent obligatoires en présentiel.\n\nLes demandes doivent être adressées au service RH avant le 15 décembre.\n\nCordialement,\nIsabelle Roche\nDirectrice des Ressources Humaines",
+      "contentEnglish": "From: rh@entreprise-martin.fr\nTo: tous.les.employes@entreprise-martin.fr\nSubject: New internal policy - Remote work\n\nDear colleagues,\n\nStarting January 1, the company's internal regulations regarding remote work will change:\n\n- All employees with more than 6 months of seniority may benefit from 2 days of remote work per week.\n- Remote work days must be set and approved by the team manager.\n- A monthly allowance of 30 euros will be paid to cover expenses (electricity, internet).\n- Monday team meetings remain mandatory in person.\n\nRequests must be submitted to the HR department before December 15.\n\nBest regards,\nIsabelle Roche\nDirector of Human Resources",
+      "questions": [
+        {
+          "id": "tef_ce_002_B_01_q1",
+          "question": "Qui peut bénéficier du télétravail dans cette entreprise ?",
+          "questionEnglish": "Who can benefit from remote work in this company?",
+          "options": [
+            "Tous les employés sans condition",
+            "Les employés ayant plus de 6 mois d'ancienneté",
+            "Uniquement les cadres et les managers",
+            "Les employés qui habitent loin du bureau"
+          ],
+          "optionsEnglish": [
+            "All employees without conditions",
+            "Employees with more than 6 months of seniority",
+            "Only executives and managers",
+            "Employees who live far from the office"
+          ],
+          "correctIndex": 1,
+          "explanation": "All employees with more than 6 months of seniority can benefit from 2 days of remote work."
+        },
+        {
+          "id": "tef_ce_002_B_01_q2",
+          "question": "Quel jour les employés doivent-ils obligatoirement être au bureau ?",
+          "questionEnglish": "Which day must employees be at the office?",
+          "options": [
+            "Le vendredi",
+            "Le mercredi",
+            "Le lundi",
+            "Tous les jours"
+          ],
+          "optionsEnglish": [
+            "Friday",
+            "Wednesday",
+            "Monday",
+            "Every day"
+          ],
+          "correctIndex": 2,
+          "explanation": "'Les réunions d'équipe du lundi restent obligatoires en présentiel' (Monday team meetings remain mandatory in person)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_B_02",
+      "type": "article",
+      "title": "Record de touristes étrangers",
+      "content": "LA FRANCE BAT SON RECORD DE TOURISTES ÉTRANGERS\n\nLa France a accueilli 100 millions de touristes étrangers l'année dernière, un record historique qui confirme sa place de première destination touristique mondiale.\n\nParis reste la ville la plus visitée, mais les régions attirent de plus en plus. La Provence, la Bretagne et les Alpes ont enregistré des hausses de fréquentation de 15 % à 20 %. Les touristes recherchent désormais des expériences authentiques : séjours à la ferme, cours de cuisine régionale, randonnées dans les vignobles.\n\nLe secteur touristique représente 8 % du PIB français et emploie directement 2 millions de personnes. Cependant, le surtourisme dans certaines zones pose des problèmes : nuisances pour les habitants, dégradation des sites naturels et hausse des prix de l'immobilier.",
+      "contentEnglish": "FRANCE BREAKS ITS RECORD FOR FOREIGN TOURISTS\n\nFrance welcomed 100 million foreign tourists last year, a historic record that confirms its position as the world's top tourist destination.\n\nParis remains the most visited city, but the regions are attracting more and more visitors. Provence, Brittany, and the Alps recorded attendance increases of 15% to 20%. Tourists are now looking for authentic experiences: farm stays, regional cooking classes, and hikes through vineyards.\n\nThe tourism sector represents 8% of French GDP and directly employs 2 million people. However, overtourism in certain areas poses problems: disturbances for residents, degradation of natural sites, and rising property prices.",
+      "questions": [
+        {
+          "id": "tef_ce_002_B_02_q1",
+          "question": "D'après l'article, qu'est-ce qui attire les touristes en dehors de Paris ?",
+          "questionEnglish": "According to the article, what attracts tourists outside of Paris?",
+          "options": [
+            "Les prix plus bas des hôtels",
+            "Les expériences authentiques comme les cours de cuisine et les randonnées",
+            "Les parcs d'attractions",
+            "Les festivals de musique"
+          ],
+          "optionsEnglish": [
+            "Lower hotel prices",
+            "Authentic experiences like cooking classes and hikes",
+            "Amusement parks",
+            "Music festivals"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tourists seek 'des expériences authentiques : séjours à la ferme, cours de cuisine régionale, randonnées dans les vignobles'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_B_03",
+      "type": "notice",
+      "title": "Comment obtenir votre carte Vitale",
+      "content": "COMMENT OBTENIR VOTRE CARTE VITALE\n\nLa carte Vitale est la carte d'assurance maladie en France. Elle permet le remboursement de vos dépenses de santé.\n\nPour obtenir votre carte Vitale :\n1. Être affilié à la Sécurité sociale (par votre emploi ou votre résidence en France depuis plus de 3 mois)\n2. Créer votre compte sur ameli.fr\n3. Envoyer un formulaire de demande accompagné d'une photo d'identité et d'un justificatif d'identité\n4. Délai de réception : 2 à 4 semaines\n\nEn attendant votre carte, vous pouvez demander une attestation temporaire sur ameli.fr. Cette attestation vous permet d'être remboursé normalement.\n\nImportant : Mettez à jour votre carte Vitale au moins une fois par an dans une pharmacie ou une borne de la Sécurité sociale.",
+      "contentEnglish": "HOW TO GET YOUR CARTE VITALE\n\nThe Carte Vitale is the health insurance card in France. It enables reimbursement of your healthcare expenses.\n\nTo obtain your Carte Vitale:\n1. Be affiliated with Social Security (through your employment or residence in France for more than 3 months)\n2. Create your account on ameli.fr\n3. Send an application form along with an ID photo and proof of identity\n4. Delivery time: 2 to 4 weeks\n\nWhile waiting for your card, you can request a temporary certificate on ameli.fr. This certificate allows you to be reimbursed normally.\n\nImportant: Update your Carte Vitale at least once a year at a pharmacy or a Social Security terminal.",
+      "questions": [
+        {
+          "id": "tef_ce_002_B_03_q1",
+          "question": "Que peut-on faire en attendant de recevoir sa carte Vitale ?",
+          "questionEnglish": "What can you do while waiting to receive your Carte Vitale?",
+          "options": [
+            "Aller à l'hôpital sans payer",
+            "Utiliser la carte Vitale d'un proche",
+            "Demander une attestation temporaire en ligne",
+            "Payer toutes les consultations sans remboursement"
+          ],
+          "optionsEnglish": [
+            "Go to the hospital without paying",
+            "Use a relative's Carte Vitale",
+            "Request a temporary certificate online",
+            "Pay for all consultations without reimbursement"
+          ],
+          "correctIndex": 2,
+          "explanation": "You can 'demander une attestation temporaire sur ameli.fr' which allows normal reimbursement."
+        },
+        {
+          "id": "tef_ce_002_B_03_q2",
+          "question": "À quelle fréquence faut-il mettre à jour sa carte Vitale ?",
+          "questionEnglish": "How often must you update your Carte Vitale?",
+          "options": [
+            "Tous les mois",
+            "Au moins une fois par an",
+            "Tous les 5 ans",
+            "Seulement en cas de changement d'adresse"
+          ],
+          "optionsEnglish": [
+            "Every month",
+            "At least once a year",
+            "Every 5 years",
+            "Only when changing address"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Mettez à jour votre carte Vitale au moins une fois par an'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_C_01",
+      "type": "article",
+      "title": "Les Français et le sport",
+      "content": "LES FRANÇAIS ET LE SPORT : UNE RÉVOLUTION SILENCIEUSE\n\nLa pratique sportive des Français a profondément évolué ces dernières années. Si le football reste le sport le plus populaire en nombre de licenciés (plus de 2 millions), les activités individuelles connaissent une croissance spectaculaire.\n\nLa course à pied est devenue un phénomène de société. On compte aujourd'hui 12 millions de coureurs réguliers en France, soit une augmentation de 40 % en dix ans. Le succès des applications de suivi (Strava, Nike Run Club) et des courses événementielles comme le Marathon de Paris ou les Color Run a contribué à populariser cette pratique.\n\nLe yoga et le pilates attirent aussi de plus en plus d'adeptes, en particulier chez les 25-45 ans. Ces disciplines, qui allient exercice physique et bien-être mental, répondent à un besoin croissant de gestion du stress dans une société de plus en plus exigeante.\n\nParadoxalement, la sédentarité reste un problème majeur de santé publique. Selon l'ANSES, 95 % des adultes français ne pratiquent pas suffisamment d'activité physique. L'Organisation Mondiale de la Santé recommande au minimum 150 minutes d'activité modérée par semaine, un objectif que la plupart des Français n'atteignent pas.\n\nLes pouvoirs publics tentent de réagir. Le programme « Bouger 30 minutes par jour » lancé dans les écoles primaires vise à créer des habitudes dès le plus jeune âge. Des pistes cyclables et des parcours sportifs en plein air sont aménagés dans de nombreuses villes pour encourager l'activité physique quotidienne.",
+      "contentEnglish": "THE FRENCH AND SPORTS: A QUIET REVOLUTION\n\nThe sporting habits of the French have evolved profoundly in recent years. While football remains the most popular sport in terms of registered members (more than 2 million), individual activities are experiencing spectacular growth.\n\nRunning has become a social phenomenon. There are now 12 million regular runners in France, representing a 40% increase in ten years. The success of tracking apps (Strava, Nike Run Club) and event races like the Paris Marathon or Color Run has helped popularize this activity.\n\nYoga and pilates are also attracting more and more followers, particularly among those aged 25-45. These disciplines, which combine physical exercise and mental well-being, meet a growing need for stress management in an increasingly demanding society.\n\nParadoxically, a sedentary lifestyle remains a major public health problem. According to ANSES, 95% of French adults do not get enough physical activity. The World Health Organization recommends at least 150 minutes of moderate activity per week, a goal that most French people do not reach.\n\nPublic authorities are trying to respond. The \"Move 30 minutes a day\" program launched in primary schools aims to create habits from an early age. Cycling paths and outdoor fitness trails are being set up in many cities to encourage daily physical activity.",
+      "questions": [
+        {
+          "id": "tef_ce_002_C_01_q1",
+          "question": "D'après l'article, quelle activité sportive a connu la plus forte croissance ?",
+          "questionEnglish": "According to the article, which sport has experienced the strongest growth?",
+          "options": [
+            "Le football",
+            "La course à pied",
+            "Le yoga",
+            "La natation"
+          ],
+          "optionsEnglish": [
+            "Football",
+            "Running",
+            "Yoga",
+            "Swimming"
+          ],
+          "correctIndex": 1,
+          "explanation": "Running is described as 'un phénomène de société' with 12 million regular runners and a 40% increase in ten years."
+        },
+        {
+          "id": "tef_ce_002_C_01_q2",
+          "question": "Que signifie le mot « paradoxalement » dans ce texte ?",
+          "questionEnglish": "What does the word 'paradoxalement' mean in this text?",
+          "options": [
+            "De manière logique et attendue",
+            "De façon contradictoire avec ce qui précède",
+            "De manière progressive",
+            "De façon définitive"
+          ],
+          "optionsEnglish": [
+            "In a logical and expected way",
+            "In a way that contradicts what came before",
+            "In a progressive manner",
+            "In a definitive way"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Paradoxalement' introduces a contradiction: despite the sports boom, sedentary behavior remains a major problem."
+        },
+        {
+          "id": "tef_ce_002_C_01_q3",
+          "question": "Quelle est la recommandation de l'OMS en matière d'activité physique ?",
+          "questionEnglish": "What is the WHO's recommendation regarding physical activity?",
+          "options": [
+            "30 minutes par jour",
+            "1 heure par semaine",
+            "Au moins 150 minutes d'activité modérée par semaine",
+            "3 séances de sport par semaine"
+          ],
+          "optionsEnglish": [
+            "30 minutes per day",
+            "1 hour per week",
+            "At least 150 minutes of moderate activity per week",
+            "3 sports sessions per week"
+          ],
+          "correctIndex": 2,
+          "explanation": "The WHO recommends 'au minimum 150 minutes d'activité modérée par semaine'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_C_02",
+      "type": "article",
+      "title": "Pour ou contre l'uniforme à l'école ?",
+      "content": "POUR OU CONTRE L'UNIFORME À L'ÉCOLE ?\n\nLe débat sur l'uniforme scolaire revient régulièrement en France. Ses partisans affirment qu'il réduit les inégalités sociales visibles, évite les conflits liés aux vêtements de marque et renforce le sentiment d'appartenance à l'école.\n\nSes opposants, en revanche, y voient une atteinte à la liberté d'expression des élèves. Ils soulignent que l'uniforme ne résout pas les problèmes d'inégalité profonds et qu'il représente un coût supplémentaire pour les familles, qui doivent acheter à la fois l'uniforme et des vêtements pour le week-end.\n\nEn France, l'uniforme n'est pas obligatoire dans les écoles publiques, contrairement à de nombreux pays anglophones. Seuls quelques établissements privés l'imposent. Un sondage récent montre que 63 % des Français seraient favorables à l'introduction de l'uniforme dans les écoles publiques.",
+      "contentEnglish": "FOR OR AGAINST SCHOOL UNIFORMS?\n\nThe debate over school uniforms regularly resurfaces in France. Its supporters claim that it reduces visible social inequalities, prevents conflicts related to designer clothing, and strengthens the sense of belonging to the school.\n\nIts opponents, on the other hand, see it as an infringement on students' freedom of expression. They point out that uniforms do not solve deep-rooted inequality problems and that they represent an additional cost for families, who must buy both the uniform and clothes for the weekend.\n\nIn France, uniforms are not mandatory in public schools, unlike in many English-speaking countries. Only a few private schools require them. A recent survey shows that 63% of French people would be in favor of introducing uniforms in public schools.",
+      "questions": [
+        {
+          "id": "tef_ce_002_C_02_q1",
+          "question": "Quel argument les opposants à l'uniforme avancent-ils ?",
+          "questionEnglish": "What argument do opponents of school uniforms put forward?",
+          "options": [
+            "L'uniforme est trop difficile à entretenir",
+            "Il représente un coût supplémentaire et limite la liberté d'expression",
+            "Les enfants préfèrent porter des vêtements de sport",
+            "L'uniforme est inconfortable en été"
+          ],
+          "optionsEnglish": [
+            "The uniform is too difficult to maintain",
+            "It represents an additional cost and limits freedom of expression",
+            "Children prefer wearing sportswear",
+            "The uniform is uncomfortable in summer"
+          ],
+          "correctIndex": 1,
+          "explanation": "Opponents see uniform as 'une atteinte à la liberté d'expression des élèves' and 'un coût supplémentaire pour les familles'."
+        },
+        {
+          "id": "tef_ce_002_C_02_q2",
+          "question": "Quelle est la situation actuelle de l'uniforme dans les écoles publiques françaises ?",
+          "questionEnglish": "What is the current situation regarding uniforms in French public schools?",
+          "options": [
+            "Il est obligatoire partout",
+            "Il est interdit",
+            "Il n'est pas obligatoire",
+            "Il est obligatoire uniquement au collège"
+          ],
+          "optionsEnglish": [
+            "It is mandatory everywhere",
+            "It is prohibited",
+            "It is not mandatory",
+            "It is mandatory only in middle school"
+          ],
+          "correctIndex": 2,
+          "explanation": "'L'uniforme n'est pas obligatoire dans les écoles publiques'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_002_D_01",
+      "type": "article",
+      "title": "L'intelligence artificielle et l'avenir du travail en France",
+      "content": "L'INTELLIGENCE ARTIFICIELLE ET L'AVENIR DU TRAVAIL EN FRANCE\n\nRapport de synthèse - Conseil Économique, Social et Environnemental\n\nL'intelligence artificielle (IA) transforme en profondeur le marché du travail. Selon un rapport de l'OCDE, 27 % des emplois en France présentent un risque élevé d'automatisation dans les dix prochaines années. Les métiers les plus exposés sont ceux qui impliquent des tâches répétitives et prévisibles : caissiers, comptables, agents administratifs.\n\nToutefois, l'IA crée aussi de nouveaux métiers. Les besoins en data scientists, ingénieurs en apprentissage automatique, et spécialistes de l'éthique de l'IA sont en forte croissance. Le problème est que ces nouveaux emplois exigent des compétences que le système éducatif actuel ne fournit pas suffisamment. Il y a un décalage croissant entre les compétences disponibles sur le marché et celles que les entreprises recherchent.\n\nLa formation continue apparaît comme une solution essentielle. Le Compte Personnel de Formation (CPF), qui permet à chaque salarié de cumuler des droits à la formation tout au long de sa carrière, doit être renforcé et mieux orienté vers les compétences numériques. Actuellement, seulement 15 % des formations financées par le CPF concernent le numérique.\n\nPar ailleurs, le dialogue social doit accompagner cette transition. Les entreprises qui automatisent certains postes ont une responsabilité envers leurs salariés : proposer des reconversions, financer des formations, et maintenir un dialogue transparent avec les représentants du personnel.\n\nLe modèle français de protection sociale offre un cadre favorable à cette transition, à condition de l'adapter. Le système d'assurance-chômage, les dispositifs de formation et les aides à la mobilité professionnelle doivent évoluer pour répondre aux défis spécifiques posés par l'automatisation. L'enjeu n'est pas de s'opposer au progrès technologique, mais de s'assurer qu'il bénéficie à l'ensemble de la société.",
+      "contentEnglish": "ARTIFICIAL INTELLIGENCE AND THE FUTURE OF WORK IN FRANCE\n\nSummary report - Economic, Social and Environmental Council\n\nArtificial intelligence (AI) is profoundly transforming the job market. According to an OECD report, 27% of jobs in France face a high risk of automation in the next ten years. The most exposed occupations are those involving repetitive and predictable tasks: cashiers, accountants, administrative workers.\n\nHowever, AI is also creating new jobs. The demand for data scientists, machine learning engineers, and AI ethics specialists is growing rapidly. The problem is that these new jobs require skills that the current education system does not provide sufficiently. There is a growing gap between the skills available on the market and those that companies are looking for.\n\nContinuing education appears to be an essential solution. The Personal Training Account (CPF), which allows every employee to accumulate training rights throughout their career, must be strengthened and better directed toward digital skills. Currently, only 15% of training funded by the CPF relates to digital skills.\n\nFurthermore, social dialogue must accompany this transition. Companies that automate certain positions have a responsibility toward their employees: offering career retraining, funding training, and maintaining transparent dialogue with staff representatives.\n\nThe French social protection model provides a favorable framework for this transition, provided it is adapted. The unemployment insurance system, training programs, and professional mobility assistance must evolve to meet the specific challenges posed by automation. The challenge is not to oppose technological progress, but to ensure that it benefits all of society.",
+      "questions": [
+        {
+          "id": "tef_ce_002_D_01_q1",
+          "question": "Selon le rapport de l'OCDE, quel pourcentage d'emplois en France est menacé par l'automatisation ?",
+          "questionEnglish": "According to the OECD report, what percentage of jobs in France is threatened by automation?",
+          "options": [
+            "15 %",
+            "27 %",
+            "40 %",
+            "50 %"
+          ],
+          "optionsEnglish": [
+            "15%",
+            "27%",
+            "40%",
+            "50%"
+          ],
+          "correctIndex": 1,
+          "explanation": "'27 % des emplois en France présentent un risque élevé d'automatisation'."
+        },
+        {
+          "id": "tef_ce_002_D_01_q2",
+          "question": "Quel problème le texte identifie-t-il concernant les nouveaux métiers liés à l'IA ?",
+          "questionEnglish": "What problem does the text identify regarding new AI-related jobs?",
+          "options": [
+            "Ces métiers sont mal rémunérés",
+            "Il n'y a pas assez de candidats avec les compétences requises",
+            "Les entreprises ne veulent pas embaucher",
+            "Ces métiers n'existent qu'à l'étranger"
+          ],
+          "optionsEnglish": [
+            "These jobs are poorly paid",
+            "There are not enough candidates with the required skills",
+            "Companies do not want to hire",
+            "These jobs only exist abroad"
+          ],
+          "correctIndex": 1,
+          "explanation": "There is 'un décalage croissant entre les compétences disponibles sur le marché et celles que les entreprises recherchent'."
+        },
+        {
+          "id": "tef_ce_002_D_01_q3",
+          "question": "Quel rôle le CPF devrait-il jouer selon le texte ?",
+          "questionEnglish": "What role should the CPF play according to the text?",
+          "options": [
+            "Financer les vacances des employés",
+            "Remplacer le système d'assurance-chômage",
+            "Être renforcé et mieux orienté vers les compétences numériques",
+            "Permettre aux employés de travailler moins"
+          ],
+          "optionsEnglish": [
+            "Fund employees' vacations",
+            "Replace the unemployment insurance system",
+            "Be strengthened and better directed toward digital skills",
+            "Allow employees to work less"
+          ],
+          "correctIndex": 2,
+          "explanation": "The CPF 'doit être renforcé et mieux orienté vers les compétences numériques'."
+        },
+        {
+          "id": "tef_ce_002_D_01_q4",
+          "question": "Quelle responsabilité le texte attribue-t-il aux entreprises qui automatisent ?",
+          "questionEnglish": "What responsibility does the text assign to companies that automate?",
+          "options": [
+            "Payer des impôts supplémentaires",
+            "Proposer des reconversions et financer des formations",
+            "Cesser d'utiliser l'IA",
+            "Augmenter les salaires de tous les employés"
+          ],
+          "optionsEnglish": [
+            "Pay additional taxes",
+            "Offer career retraining and fund training programs",
+            "Stop using AI",
+            "Increase all employees' salaries"
+          ],
+          "correctIndex": 1,
+          "explanation": "Companies must 'proposer des reconversions, financer des formations, et maintenir un dialogue transparent'."
+        },
+        {
+          "id": "tef_ce_002_D_01_q5",
+          "question": "Quelle est la conclusion principale du texte ?",
+          "questionEnglish": "What is the main conclusion of the text?",
+          "options": [
+            "Il faut interdire l'intelligence artificielle en France",
+            "Le progrès technologique est inévitable et bénéfique pour tous",
+            "Il faut adapter les dispositifs sociaux pour que le progrès bénéficie à toute la société",
+            "Le système éducatif français est le meilleur en Europe"
+          ],
+          "optionsEnglish": [
+            "Artificial intelligence must be banned in France",
+            "Technological progress is inevitable and beneficial for everyone",
+            "Social programs must be adapted so that progress benefits all of society",
+            "The French education system is the best in Europe"
+          ],
+          "correctIndex": 2,
+          "explanation": "'L'enjeu n'est pas de s'opposer au progrès technologique, mais de s'assurer qu'il bénéficie à l'ensemble de la société'."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "negation": {
+    "rule": "Put NE...PAS around the conjugated verb",
+    "examples": [
+      {"positive": "Je parle", "negative": "Je NE parle PAS", "english": "I don't speak"},
+      {"positive": "Il mange", "negative": "Il NE mange PAS", "english": "He doesn't eat"},
+      {"positive": "Nous avons fini", "negative": "Nous N'avons PAS fini", "english": "We haven't finished"}
+    ],
+    "spokenShortcut": "In everyday spoken French, the 'ne' is almost always DROPPED: Je parle pas. Il mange pas. C'est pas vrai."
+  },
+  "questionMethods": [
+    {"method": "Rising intonation", "level": "easiest/casual", "example": "Tu parles fran\u00e7ais?", "english": "You speak French?", "notes": "Just raise your voice at the end. French people use this 90% of the time."},
+    {"method": "Est-ce que", "level": "medium", "example": "Est-ce que tu parles fran\u00e7ais?", "english": "Do you speak French?", "notes": "Put 'est-ce que' before any statement."},
+    {"method": "Inversion", "level": "formal", "example": "Parles-tu fran\u00e7ais?", "english": "Do you speak French?", "notes": "Flip the verb and subject. Used in writing and formal speech."}
+  ],
+  "questionWords": [
+    {"french": "Qui", "english": "Who", "example": "Qui est-ce? (Who is it?)", "pronunciation": "kee"},
+    {"french": "Quoi / Que", "english": "What", "example": "C'est quoi? / Qu'est-ce que c'est?", "pronunciation": "kwah / kuh"},
+    {"french": "O\u00f9", "english": "Where", "example": "O\u00f9 est la gare? (Where is the station?)", "pronunciation": "oo"},
+    {"french": "Quand", "english": "When", "example": "Quand est-ce qu'on part?", "pronunciation": "kah(n)"},
+    {"french": "Pourquoi", "english": "Why", "example": "Pourquoi pas? (Why not?)", "pronunciation": "poor-KWAH"},
+    {"french": "Comment", "english": "How", "example": "Comment allez-vous? (How are you?)", "pronunciation": "ko-MAH(N)"},
+    {"french": "Combien", "english": "How much/many", "example": "Combien \u00e7a co\u00fbte? (How much?)", "pronunciation": "kom-BEE-A(N)"}
+  ],
+  "articles": [
+    {"type": "definite", "masculine": "le (le chat = the cat)", "feminine": "la (la maison = the house)", "plural": "les (les chats = the cats)", "beforeVowel": "l' (l'homme / l'\u00e9cole)"},
+    {"type": "indefinite", "masculine": "un (un chat = a cat)", "feminine": "une (une maison = a house)", "plural": "des (des chats = some cats)"}
+  ],
+  "contractions": [
+    {"combination": "de + le", "contraction": "du", "example": "du pain (some bread)", "notes": "MANDATORY. Never say 'de le'"},
+    {"combination": "de + les", "contraction": "des", "example": "des enfants (some children)", "notes": "MANDATORY"},
+    {"combination": "\u00e0 + le", "contraction": "au", "example": "au restaurant (at/to the restaurant)", "notes": "MANDATORY. Never say '\u00e0 le'"},
+    {"combination": "\u00e0 + les", "contraction": "aux", "example": "aux \u00c9tats-Unis (in the US)", "notes": "MANDATORY"},
+    {"combination": "je + vowel", "contraction": "j'", "example": "j'ai, j'aime, j'habite", "notes": "Always contract before vowels"},
+    {"combination": "ne + vowel", "contraction": "n'", "example": "je n'ai pas", "notes": "Always contract before vowels"}
+  ]
+}

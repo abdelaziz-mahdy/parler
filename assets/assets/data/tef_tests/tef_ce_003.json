@@ -1,0 +1,489 @@
+{
+  "id": "tef_ce_003",
+  "title": "TEF Compréhension écrite - Test 3",
+  "description": "Practice test covering road signs, cooking classes, pets, aging society, and energy transition.",
+  "section": "comprehension_ecrite",
+  "difficulty": "B2",
+  "timeMinutes": 60,
+  "passages": [
+    {
+      "id": "tef_ce_003_A_01",
+      "type": "sign",
+      "title": "Attention travaux",
+      "content": "ATTENTION TRAVAUX\nRoute départementale D45\nDéviation obligatoire par la D12\ndu 3 au 17 février\n\nAccès riverains maintenu.\nCirculation interdite aux véhicules de plus de 3,5 tonnes.\nMerci de votre patience.",
+      "contentEnglish": "CAUTION: ROAD WORK\nDepartmental road D45\nMandatory detour via D12\nfrom February 3 to 17\n\nLocal resident access maintained.\nTraffic prohibited for vehicles over 3.5 tons.\nThank you for your patience.",
+      "questions": [
+        {
+          "id": "tef_ce_003_A_01_q1",
+          "question": "Qui peut encore utiliser cette route pendant les travaux ?",
+          "questionEnglish": "Who can still use this road during the construction work?",
+          "options": [
+            "Tous les véhicules légers",
+            "Les camions de plus de 3,5 tonnes",
+            "Les habitants du quartier uniquement",
+            "Personne"
+          ],
+          "optionsEnglish": [
+            "All light vehicles",
+            "Trucks over 3.5 tons",
+            "Local residents only",
+            "Nobody"
+          ],
+          "correctIndex": 2,
+          "explanation": "'Accès riverains maintenu' means only local residents can still use the road."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_A_02",
+      "type": "advertisement",
+      "title": "Cours de cuisine provençale",
+      "content": "COURS DE CUISINE PROVENÇALE\navec le Chef Antoine Moreau\n\nSamedi 15 mars - 10h à 14h\nAu menu : ratatouille, tapenade et tarte au citron\n\nTarif : 65 € par personne\n(ingrédients et tablier fournis)\nPlaces limitées à 8 participants\n\nInscription : contact@ateliersdupalais.fr\nAnnulation gratuite jusqu'à 48h avant le cours",
+      "contentEnglish": "PROVENCAL COOKING CLASS\nwith Chef Antoine Moreau\n\nSaturday, March 15 - 10:00 AM to 2:00 PM\nOn the menu: ratatouille, tapenade, and lemon tart\n\nPrice: 65 euros per person\n(ingredients and apron provided)\nLimited to 8 participants\n\nRegistration: contact@ateliersdupalais.fr\nFree cancellation up to 48 hours before the class",
+      "questions": [
+        {
+          "id": "tef_ce_003_A_02_q1",
+          "question": "Que comprend le tarif de 65 euros ?",
+          "questionEnglish": "What does the 65 euro price include?",
+          "options": [
+            "Le repas et les boissons",
+            "Les ingrédients et un tablier",
+            "Le transport et le parking",
+            "Un livre de recettes"
+          ],
+          "optionsEnglish": [
+            "The meal and drinks",
+            "Ingredients and an apron",
+            "Transportation and parking",
+            "A recipe book"
+          ],
+          "correctIndex": 1,
+          "explanation": "The ad specifies '(ingrédients et tablier fournis)' (ingredients and apron provided)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_A_03",
+      "type": "notice",
+      "title": "Assemblée générale des copropriétaires",
+      "content": "RÉSIDENCE LES ACACIAS\nASSEMBLÉE GÉNÉRALE DES COPROPRIÉTAIRES\n\nDate : Jeudi 20 mars à 19h00\nLieu : Salle polyvalente, rez-de-chaussée\n\nOrdre du jour :\n1. Approbation des comptes 2025\n2. Travaux de ravalement de façade\n3. Installation de bornes de recharge électrique\n4. Questions diverses\n\nEn cas d'impossibilité, vous pouvez donner procuration à un autre copropriétaire. Formulaire disponible chez le gardien.",
+      "contentEnglish": "LES ACACIAS RESIDENCE\nGENERAL MEETING OF CO-OWNERS\n\nDate: Thursday, March 20 at 7:00 PM\nLocation: Multi-purpose room, ground floor\n\nAgenda:\n1. Approval of 2025 accounts\n2. Building facade renovation work\n3. Installation of electric vehicle charging stations\n4. Miscellaneous items\n\nIf you are unable to attend, you may give proxy to another co-owner. Form available from the caretaker.",
+      "questions": [
+        {
+          "id": "tef_ce_003_A_03_q1",
+          "question": "Que peut faire un copropriétaire qui ne peut pas assister à la réunion ?",
+          "questionEnglish": "What can a co-owner who cannot attend the meeting do?",
+          "options": [
+            "Voter par internet",
+            "Reporter la réunion",
+            "Donner procuration à un autre copropriétaire",
+            "Envoyer un email au syndic"
+          ],
+          "optionsEnglish": [
+            "Vote online",
+            "Postpone the meeting",
+            "Give proxy to another co-owner",
+            "Send an email to the property manager"
+          ],
+          "correctIndex": 2,
+          "explanation": "'Vous pouvez donner procuration à un autre copropriétaire' (you can give proxy to another co-owner)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_A_04",
+      "type": "sign",
+      "title": "Médiathèque - services",
+      "content": "MÉDIATHÈQUE MARGUERITE DURAS\n\nWi-Fi gratuit disponible\nCode d'accès à demander à l'accueil\n\nImpression : 0,10 € / page (noir et blanc)\n              0,30 € / page (couleur)\n\nPhotocopies : même tarif\nPaiement par carte uniquement (pas d'espèces)",
+      "contentEnglish": "MARGUERITE DURAS MEDIA LIBRARY\n\nFree Wi-Fi available\nAccess code available at the front desk\n\nPrinting: 0.10 euros per page (black and white)\n              0.30 euros per page (color)\n\nPhotocopies: same price\nPayment by card only (no cash)",
+      "questions": [
+        {
+          "id": "tef_ce_003_A_04_q1",
+          "question": "Comment peut-on payer les impressions ?",
+          "questionEnglish": "How can you pay for printing?",
+          "options": [
+            "En espèces uniquement",
+            "Par carte bancaire uniquement",
+            "En espèces ou par carte",
+            "Par chèque"
+          ],
+          "optionsEnglish": [
+            "Cash only",
+            "By bank card only",
+            "Cash or card",
+            "By check"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Paiement par carte uniquement (pas d'espèces)' (Payment by card only, no cash)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_A_05",
+      "type": "notice",
+      "title": "Collecte des sapins de Noël",
+      "content": "COLLECTE DES SAPINS DE NOËL\n\nLa mairie organise la collecte gratuite des sapins de Noël naturels (sans décoration ni pied).\n\nPoints de dépôt :\n- Parking du gymnase (av. de la Gare)\n- Place de la Mairie\n- Parc des Sports\n\nDu 2 au 15 janvier.\nLes sapins seront transformés en compost.",
+      "contentEnglish": "CHRISTMAS TREE COLLECTION\n\nThe city hall is organizing free collection of natural Christmas trees (without decorations or stands).\n\nDrop-off points:\n- Gymnasium parking lot (Avenue de la Gare)\n- Town Hall Square\n- Sports Park\n\nFrom January 2 to 15.\nThe trees will be turned into compost.",
+      "questions": [
+        {
+          "id": "tef_ce_003_A_05_q1",
+          "question": "Que deviendront les sapins collectés ?",
+          "questionEnglish": "What will happen to the collected trees?",
+          "options": [
+            "Ils seront brûlés",
+            "Ils seront replantés",
+            "Ils seront transformés en compost",
+            "Ils seront vendus"
+          ],
+          "optionsEnglish": [
+            "They will be burned",
+            "They will be replanted",
+            "They will be turned into compost",
+            "They will be sold"
+          ],
+          "correctIndex": 2,
+          "explanation": "'Les sapins seront transformés en compost' (The trees will be turned into compost)."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_B_01",
+      "type": "article",
+      "title": "Les Français et leurs animaux de compagnie",
+      "content": "LES FRANÇAIS ET LEURS ANIMAUX DE COMPAGNIE\n\nLa France compte 80 millions d'animaux de compagnie, ce qui en fait le pays d'Europe avec le plus grand nombre d'animaux domestiques. Un foyer sur deux possède au moins un animal.\n\nLes chats sont les plus populaires (15 millions), devant les chiens (7,5 millions). Cette préférence pour les chats s'explique en partie par l'évolution des modes de vie : un chat s'adapte mieux à un appartement et demande moins de disponibilité qu'un chien.\n\nLa dépense annuelle moyenne pour un animal de compagnie est de 800 euros pour un chien et de 600 euros pour un chat (nourriture, vétérinaire, accessoires). Le marché des animaux de compagnie en France dépasse 5 milliards d'euros par an.\n\nMalgré cet engouement, l'abandon reste un fléau. Chaque année, près de 100 000 animaux sont abandonnés en France, en particulier pendant la période des vacances d'été. La loi française punit l'abandon d'un animal de 3 ans d'emprisonnement et 45 000 euros d'amende.",
+      "contentEnglish": "THE FRENCH AND THEIR PETS\n\nFrance has 80 million pets, making it the European country with the most domestic animals. One in two households owns at least one pet.\n\nCats are the most popular (15 million), ahead of dogs (7.5 million). This preference for cats is partly explained by the evolution of lifestyles: a cat adapts better to apartment living and requires less availability than a dog.\n\nThe average annual expenditure for a pet is 800 euros for a dog and 600 euros for a cat (food, veterinary care, accessories). The pet market in France exceeds 5 billion euros per year.\n\nDespite this enthusiasm, abandonment remains a scourge. Every year, nearly 100,000 animals are abandoned in France, particularly during the summer vacation period. French law punishes animal abandonment with 3 years of imprisonment and a 45,000 euro fine.",
+      "questions": [
+        {
+          "id": "tef_ce_003_B_01_q1",
+          "question": "Pourquoi les Français préfèrent-ils les chats aux chiens ?",
+          "questionEnglish": "Why do French people prefer cats over dogs?",
+          "options": [
+            "Les chats sont moins chers à l'achat",
+            "Les chats s'adaptent mieux à la vie en appartement",
+            "Les chats vivent plus longtemps",
+            "Les chats sont plus affectueux"
+          ],
+          "optionsEnglish": [
+            "Cats are cheaper to buy",
+            "Cats adapt better to apartment living",
+            "Cats live longer",
+            "Cats are more affectionate"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Un chat s'adapte mieux à un appartement et demande moins de disponibilité qu'un chien'."
+        },
+        {
+          "id": "tef_ce_003_B_01_q2",
+          "question": "Que risque une personne qui abandonne son animal en France ?",
+          "questionEnglish": "What does a person who abandons their pet in France risk?",
+          "options": [
+            "Une amende de 200 euros",
+            "Une interdiction de posséder un autre animal",
+            "Jusqu'à 3 ans de prison et 45 000 euros d'amende",
+            "Un avertissement de la mairie"
+          ],
+          "optionsEnglish": [
+            "A 200 euro fine",
+            "A ban on owning another animal",
+            "Up to 3 years in prison and a 45,000 euro fine",
+            "A warning from the city hall"
+          ],
+          "correctIndex": 2,
+          "explanation": "French law punishes animal abandonment with '3 ans d'emprisonnement et 45 000 euros d'amende'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_B_02",
+      "type": "email",
+      "title": "Inscription scolaire - pièces manquantes",
+      "content": "De : mairie-inscriptions@ville-nanterre.fr\nÀ : famille.benali@email.com\nObjet : Inscription scolaire de votre enfant - pièces manquantes\n\nMadame, Monsieur Benali,\n\nNous avons bien reçu votre demande d'inscription de votre enfant Yasmine Benali à l'école élémentaire Jules Ferry pour la rentrée prochaine.\n\nCependant, votre dossier est incomplet. Il nous manque les documents suivants :\n- Le certificat de vaccination à jour (DT Polio obligatoire)\n- Un justificatif de domicile de moins de 3 mois\n\nMerci de nous faire parvenir ces documents avant le 30 avril, par email ou en vous rendant à la mairie, service scolaire, 2e étage, bureau 205.\n\nPassé ce délai, l'inscription ne pourra pas être garantie.\n\nCordialement,\nService des affaires scolaires\nMairie de Nanterre",
+      "contentEnglish": "From: mairie-inscriptions@ville-nanterre.fr\nTo: famille.benali@email.com\nSubject: School registration for your child - missing documents\n\nDear Mr. and Mrs. Benali,\n\nWe have received your request to register your child Yasmine Benali at Jules Ferry Elementary School for the upcoming school year.\n\nHowever, your file is incomplete. We are missing the following documents:\n- An up-to-date vaccination certificate (DT Polio mandatory)\n- Proof of address less than 3 months old\n\nPlease send us these documents before April 30, by email or by visiting city hall, school services department, 2nd floor, office 205.\n\nAfter this deadline, registration cannot be guaranteed.\n\nBest regards,\nSchool Affairs Department\nCity of Nanterre",
+      "questions": [
+        {
+          "id": "tef_ce_003_B_02_q1",
+          "question": "Pourquoi la mairie a-t-elle envoyé cet email ?",
+          "questionEnglish": "Why did the city hall send this email?",
+          "options": [
+            "Pour confirmer l'inscription de l'enfant",
+            "Pour demander des documents manquants au dossier",
+            "Pour refuser l'inscription de l'enfant",
+            "Pour informer d'un changement d'école"
+          ],
+          "optionsEnglish": [
+            "To confirm the child's registration",
+            "To request missing documents for the file",
+            "To refuse the child's registration",
+            "To inform about a school change"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Votre dossier est incomplet. Il nous manque les documents suivants' -- it's a request for missing documents."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_B_03",
+      "type": "article",
+      "title": "Le succès des Repair Cafés en France",
+      "content": "LE SUCCÈS DES REPAIR CAFÉS EN FRANCE\n\nLes Repair Cafés, ces ateliers où des bénévoles aident les particuliers à réparer leurs objets du quotidien, se multiplient en France. On en compte désormais plus de 500 dans tout le pays.\n\nLe concept est simple : vous apportez un objet en panne (petit électroménager, vêtement déchiré, vélo, jouet) et des réparateurs bénévoles vous aident à le réparer, tout en vous apprenant les gestes de base. L'accès est gratuit, une participation libre aux frais est bienvenue.\n\nAu-delà de l'aspect écologique — éviter de jeter et de racheter — les Repair Cafés jouent un rôle social important. Ils créent du lien entre les générations et les quartiers. « Ici, un retraité ancien mécanicien peut montrer à un jeune comment réparer son vélo, et en retour le jeune peut l'aider avec son téléphone », explique Marie Lefebvre, coordinatrice du Repair Café de Montpellier.",
+      "contentEnglish": "THE SUCCESS OF REPAIR CAFES IN FRANCE\n\nRepair Cafes, workshops where volunteers help individuals repair their everyday items, are multiplying in France. There are now more than 500 across the country.\n\nThe concept is simple: you bring a broken item (small appliance, torn clothing, bicycle, toy) and volunteer repairers help you fix it, while teaching you the basics. Admission is free, and a voluntary contribution toward costs is welcome.\n\nBeyond the environmental aspect -- avoiding throwing things away and buying replacements -- Repair Cafes play an important social role. They create connections between generations and neighborhoods. \"Here, a retired mechanic can show a young person how to repair their bicycle, and in return the young person can help them with their phone,\" explains Marie Lefebvre, coordinator of the Montpellier Repair Cafe.",
+      "questions": [
+        {
+          "id": "tef_ce_003_B_03_q1",
+          "question": "Quel est le principe des Repair Cafés ?",
+          "questionEnglish": "What is the principle of Repair Cafes?",
+          "options": [
+            "Acheter des objets d'occasion à bas prix",
+            "Faire réparer ses objets par des professionnels payants",
+            "Apprendre à réparer ses objets avec l'aide de bénévoles",
+            "Recycler ses vieux appareils électroniques"
+          ],
+          "optionsEnglish": [
+            "Buy second-hand items at low prices",
+            "Have your items repaired by paid professionals",
+            "Learn to repair your items with the help of volunteers",
+            "Recycle your old electronic devices"
+          ],
+          "correctIndex": 2,
+          "explanation": "Volunteers 'vous aident à le réparer, tout en vous apprenant les gestes de base' (help you repair while teaching basic skills)."
+        },
+        {
+          "id": "tef_ce_003_B_03_q2",
+          "question": "En plus de l'aspect écologique, quel autre rôle les Repair Cafés jouent-ils ?",
+          "questionEnglish": "In addition to the environmental aspect, what other role do Repair Cafes play?",
+          "options": [
+            "Un rôle politique",
+            "Un rôle social, en créant des liens entre les gens",
+            "Un rôle économique, en créant des emplois",
+            "Un rôle éducatif dans les écoles"
+          ],
+          "optionsEnglish": [
+            "A political role",
+            "A social role, by creating connections between people",
+            "An economic role, by creating jobs",
+            "An educational role in schools"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Les Repair Cafés jouent un rôle social important. Ils créent du lien entre les générations et les quartiers'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_C_01",
+      "type": "article",
+      "title": "Vieillir en France : les défis d'une société vieillissante",
+      "content": "VIEILLIR EN FRANCE : LES DÉFIS D'UNE SOCIÉTÉ VIEILLISSANTE\n\nLa France compte aujourd'hui 14 millions de personnes âgées de plus de 65 ans, soit 21 % de la population. D'ici 2040, ce chiffre pourrait atteindre 20 millions. Ce vieillissement démographique pose des défis majeurs en matière de santé, de logement et de solidarité intergénérationnelle.\n\nLe maintien à domicile est la solution privilégiée par la grande majorité des personnes âgées : 90 % d'entre elles souhaitent vivre chez elles le plus longtemps possible. Pour rendre cela possible, des aides existent : services d'aide à domicile, télé-assistance, aménagement du logement (douche à l'italienne, monte-escalier, domotique). L'Allocation Personnalisée d'Autonomie (APA) finance une partie de ces services en fonction des ressources de la personne.\n\nCependant, le secteur de l'aide à domicile souffre d'un manque chronique de personnel. Les aides-soignantes et auxiliaires de vie sont mal rémunérées (souvent au SMIC) et exercent un métier physiquement et émotionnellement exigeant. Le turnover est élevé et le recrutement difficile.\n\nDes solutions innovantes émergent. L'habitat intergénérationnel, qui met en relation des personnes âgées disposant d'une chambre libre avec des étudiants cherchant un logement, connaît un succès croissant. L'étudiant paie un loyer modique en échange de quelques heures de présence et de petits services. Ce modèle répond à la fois à l'isolement des personnes âgées et à la crise du logement étudiant.",
+      "contentEnglish": "AGING IN FRANCE: THE CHALLENGES OF AN AGING SOCIETY\n\nFrance currently has 14 million people over the age of 65, representing 21% of the population. By 2040, this figure could reach 20 million. This demographic aging poses major challenges in terms of healthcare, housing, and intergenerational solidarity.\n\nStaying at home is the preferred solution for the vast majority of elderly people: 90% of them wish to live at home for as long as possible. To make this possible, support services exist: home care services, remote assistance, home modifications (walk-in shower, stair lift, home automation). The Personalized Autonomy Allowance (APA) funds part of these services based on the person's financial resources.\n\nHowever, the home care sector suffers from a chronic shortage of staff. Care assistants and home helpers are poorly paid (often at minimum wage) and work in a physically and emotionally demanding profession. Turnover is high and recruitment is difficult.\n\nInnovative solutions are emerging. Intergenerational housing, which connects elderly people who have a spare room with students looking for housing, is enjoying growing success. The student pays a modest rent in exchange for a few hours of presence and small services. This model addresses both the isolation of elderly people and the student housing crisis.",
+      "questions": [
+        {
+          "id": "tef_ce_003_C_01_q1",
+          "question": "Quel pourcentage de personnes âgées souhaitent rester vivre chez elles ?",
+          "questionEnglish": "What percentage of elderly people wish to remain living at home?",
+          "options": [
+            "65 %",
+            "75 %",
+            "90 %",
+            "100 %"
+          ],
+          "optionsEnglish": [
+            "65%",
+            "75%",
+            "90%",
+            "100%"
+          ],
+          "correctIndex": 2,
+          "explanation": "'90 % d'entre elles souhaitent vivre chez elles le plus longtemps possible'."
+        },
+        {
+          "id": "tef_ce_003_C_01_q2",
+          "question": "Quel est le principal problème du secteur de l'aide à domicile ?",
+          "questionEnglish": "What is the main problem in the home care sector?",
+          "options": [
+            "Le coût trop élevé pour les familles",
+            "Le manque de personnel et les salaires trop bas",
+            "L'absence de formation adaptée",
+            "Le refus des personnes âgées d'accepter de l'aide"
+          ],
+          "optionsEnglish": [
+            "The cost being too high for families",
+            "The shortage of staff and wages being too low",
+            "The lack of appropriate training",
+            "Elderly people refusing to accept help"
+          ],
+          "correctIndex": 1,
+          "explanation": "The sector suffers from 'un manque chronique de personnel' and workers are 'mal rémunérées (souvent au SMIC)'."
+        },
+        {
+          "id": "tef_ce_003_C_01_q3",
+          "question": "En quoi consiste l'habitat intergénérationnel ?",
+          "questionEnglish": "What does intergenerational housing consist of?",
+          "options": [
+            "Des résidences où vivent ensemble uniquement des personnes âgées",
+            "Des logements sociaux réservés aux étudiants",
+            "Un système où un étudiant loge chez une personne âgée en échange de services",
+            "Des maisons de retraite avec des crèches"
+          ],
+          "optionsEnglish": [
+            "Residences where only elderly people live together",
+            "Social housing reserved for students",
+            "A system where a student lives with an elderly person in exchange for services",
+            "Retirement homes with daycare centers"
+          ],
+          "correctIndex": 2,
+          "explanation": "An elderly person hosts a student who 'paie un loyer modique en échange de quelques heures de présence et de petits services'."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_C_02",
+      "type": "article",
+      "title": "La place du français dans le monde numérique",
+      "content": "LA PLACE DU FRANÇAIS DANS LE MONDE NUMÉRIQUE\n\nLe français est-il menacé par la domination de l'anglais sur internet ? Avec 321 millions de locuteurs dans le monde, le français est la cinquième langue la plus parlée. Pourtant, seulement 4 % du contenu en ligne est en français, contre plus de 60 % en anglais.\n\nCette situation inquiète les défenseurs de la francophonie. Si les contenus scientifiques, technologiques et culturels ne sont disponibles qu'en anglais, les francophones risquent d'être marginalisés dans l'économie de la connaissance. L'intelligence artificielle, formée majoritairement sur des données anglophones, pourrait aggraver ce déséquilibre en produisant des résultats moins pertinents en français.\n\nMais d'autres observateurs sont plus optimistes. Le nombre de francophones devrait atteindre 700 millions d'ici 2050, principalement grâce à la croissance démographique en Afrique. Cette masse critique de locuteurs pourrait stimuler la création de contenus en français et attirer les investissements des grandes entreprises technologiques.",
+      "contentEnglish": "THE PLACE OF FRENCH IN THE DIGITAL WORLD\n\nIs French threatened by the dominance of English on the internet? With 321 million speakers worldwide, French is the fifth most spoken language. Yet only 4% of online content is in French, compared to more than 60% in English.\n\nThis situation worries defenders of the French-speaking world. If scientific, technological, and cultural content is only available in English, French speakers risk being marginalized in the knowledge economy. Artificial intelligence, trained mostly on English-language data, could worsen this imbalance by producing less relevant results in French.\n\nBut other observers are more optimistic. The number of French speakers is expected to reach 700 million by 2050, mainly thanks to demographic growth in Africa. This critical mass of speakers could stimulate the creation of French-language content and attract investment from major technology companies.",
+      "questions": [
+        {
+          "id": "tef_ce_003_C_02_q1",
+          "question": "Quel est le déséquilibre identifié dans ce texte ?",
+          "questionEnglish": "What is the imbalance identified in this text?",
+          "options": [
+            "Il y a trop de francophones et pas assez de contenu",
+            "Le français est très parlé mais sous-représenté en ligne",
+            "L'anglais est en déclin sur internet",
+            "Les pays francophones n'ont pas accès à internet"
+          ],
+          "optionsEnglish": [
+            "There are too many French speakers and not enough content",
+            "French is widely spoken but underrepresented online",
+            "English is in decline on the internet",
+            "French-speaking countries do not have internet access"
+          ],
+          "correctIndex": 1,
+          "explanation": "French has 321 million speakers (5th most spoken) but only 4% of online content, versus 60%+ in English."
+        },
+        {
+          "id": "tef_ce_003_C_02_q2",
+          "question": "Pourquoi certains observateurs sont-ils optimistes pour l'avenir du français ?",
+          "questionEnglish": "Why are some observers optimistic about the future of French?",
+          "options": [
+            "Parce que l'anglais va disparaître d'internet",
+            "Parce que le nombre de francophones devrait fortement augmenter grâce à l'Afrique",
+            "Parce que l'Union Européenne va imposer le français",
+            "Parce que les Français utilisent de moins en moins internet"
+          ],
+          "optionsEnglish": [
+            "Because English will disappear from the internet",
+            "Because the number of French speakers should increase significantly thanks to Africa",
+            "Because the European Union will impose French",
+            "Because French people are using the internet less and less"
+          ],
+          "correctIndex": 1,
+          "explanation": "French speakers should reach 700 million by 2050, mainly thanks to demographic growth in Africa."
+        }
+      ]
+    },
+    {
+      "id": "tef_ce_003_D_01",
+      "type": "article",
+      "title": "La transition énergétique en France : bilan et perspectives",
+      "content": "LA TRANSITION ÉNERGÉTIQUE EN FRANCE : BILAN ET PERSPECTIVES\n\nLa France s'est engagée à atteindre la neutralité carbone d'ici 2050. Cet objectif ambitieux implique une transformation profonde de son modèle énergétique, qui repose encore largement sur le nucléaire (environ 70 % de la production électrique) et les énergies fossiles (pour les transports et le chauffage).\n\nLe développement des énergies renouvelables constitue un pilier central de cette transition. L'éolien et le solaire ont connu une progression importante : la capacité installée en solaire a triplé en cinq ans, et la France dispose désormais de 8 500 éoliennes terrestres. Cependant, la France reste en retard par rapport à ses voisins européens. L'Allemagne produit trois fois plus d'énergie solaire et l'Espagne a une capacité éolienne supérieure de 50 %.\n\nLe secteur du bâtiment représente 45 % de la consommation énergétique totale du pays. La rénovation thermique des logements est donc une priorité absolue. Le gouvernement a lancé le dispositif MaPrimeRénov, qui finance jusqu'à 90 % des travaux de rénovation énergétique pour les ménages les plus modestes. Depuis son lancement, plus de 2 millions de dossiers ont été traités, mais les experts estiment qu'il faudrait rénover 700 000 logements par an pour atteindre les objectifs fixés, contre 200 000 actuellement.\n\nLes transports constituent l'autre grand défi. Le secteur est responsable de 31 % des émissions de gaz à effet de serre en France. L'interdiction de la vente de véhicules thermiques neufs à partir de 2035 accélère la transition vers l'électrique. Mais le prix élevé des voitures électriques (en moyenne 35 000 euros) et le manque de bornes de recharge freinent l'adoption par les particuliers. Le gouvernement a mis en place un bonus écologique pouvant atteindre 7 000 euros et s'est fixé l'objectif de 400 000 bornes de recharge publiques d'ici 2030.\n\nEnfin, la question du nucléaire reste au cœur des débats. La France a décidé de construire 6 nouveaux réacteurs EPR2 pour garantir la sécurité d'approvisionnement. Les partisans du nucléaire soulignent qu'il s'agit d'une énergie bas carbone et stable. Ses détracteurs pointent les risques liés aux déchets radioactifs, le coût croissant des chantiers et les délais de construction qui dépassent systématiquement les prévisions. Le chantier de l'EPR de Flamanville, initié en 2007, n'a été achevé qu'en 2024, avec un coût final quatre fois supérieur au budget initial.",
+      "contentEnglish": "THE ENERGY TRANSITION IN FRANCE: ASSESSMENT AND OUTLOOK\n\nFrance has committed to achieving carbon neutrality by 2050. This ambitious goal requires a profound transformation of its energy model, which still relies heavily on nuclear power (approximately 70% of electricity production) and fossil fuels (for transportation and heating).\n\nThe development of renewable energy is a central pillar of this transition. Wind and solar power have seen significant growth: installed solar capacity has tripled in five years, and France now has 8,500 onshore wind turbines. However, France still lags behind its European neighbors. Germany produces three times more solar energy, and Spain has a wind capacity that is 50% higher.\n\nThe building sector accounts for 45% of the country's total energy consumption. Thermal renovation of housing is therefore an absolute priority. The government launched the MaPrimeRenov program, which funds up to 90% of energy renovation work for the lowest-income households. Since its launch, more than 2 million applications have been processed, but experts estimate that 700,000 homes per year would need to be renovated to meet the targets, compared to 200,000 currently.\n\nTransportation is the other major challenge. The sector is responsible for 31% of greenhouse gas emissions in France. The ban on the sale of new combustion engine vehicles starting in 2035 is accelerating the transition to electric. But the high price of electric cars (an average of 35,000 euros) and the lack of charging stations are slowing adoption by individuals. The government has introduced an ecological bonus of up to 7,000 euros and has set a target of 400,000 public charging stations by 2030.\n\nFinally, the nuclear question remains at the heart of the debate. France has decided to build 6 new EPR2 reactors to guarantee security of supply. Nuclear supporters emphasize that it is a low-carbon and stable energy source. Its critics point to the risks associated with radioactive waste, the rising costs of construction projects, and construction timelines that systematically exceed forecasts. The Flamanville EPR construction project, initiated in 2007, was not completed until 2024, with a final cost four times the initial budget.",
+      "questions": [
+        {
+          "id": "tef_ce_003_D_01_q1",
+          "question": "Quel est l'objectif énergétique de la France pour 2050 ?",
+          "questionEnglish": "What is France's energy goal for 2050?",
+          "options": [
+            "Doubler sa production nucléaire",
+            "Atteindre la neutralité carbone",
+            "Abandonner complètement le nucléaire",
+            "Devenir le premier producteur d'énergie solaire en Europe"
+          ],
+          "optionsEnglish": [
+            "Double its nuclear production",
+            "Achieve carbon neutrality",
+            "Completely abandon nuclear power",
+            "Become the leading solar energy producer in Europe"
+          ],
+          "correctIndex": 1,
+          "explanation": "'La France s'est engagée à atteindre la neutralité carbone d'ici 2050'."
+        },
+        {
+          "id": "tef_ce_003_D_01_q2",
+          "question": "Pourquoi la rénovation des bâtiments est-elle une priorité ?",
+          "questionEnglish": "Why is building renovation a priority?",
+          "options": [
+            "Parce que les bâtiments sont trop vieux et dangereux",
+            "Parce que le secteur du bâtiment consomme 45 % de l'énergie totale",
+            "Parce que les Français se plaignent du froid chez eux",
+            "Parce que les normes européennes l'exigent"
+          ],
+          "optionsEnglish": [
+            "Because the buildings are too old and dangerous",
+            "Because the building sector consumes 45% of total energy",
+            "Because French people complain about being cold at home",
+            "Because European standards require it"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Le secteur du bâtiment représente 45 % de la consommation énergétique totale du pays'."
+        },
+        {
+          "id": "tef_ce_003_D_01_q3",
+          "question": "Quels sont les obstacles à l'adoption des voitures électriques par les particuliers ?",
+          "questionEnglish": "What are the obstacles to the adoption of electric cars by individuals?",
+          "options": [
+            "La vitesse trop faible des voitures électriques",
+            "Le prix élevé et le manque de bornes de recharge",
+            "L'absence d'aide gouvernementale",
+            "Le refus des constructeurs de produire des modèles électriques"
+          ],
+          "optionsEnglish": [
+            "The speed of electric cars being too low",
+            "The high price and the lack of charging stations",
+            "The absence of government aid",
+            "Manufacturers' refusal to produce electric models"
+          ],
+          "correctIndex": 1,
+          "explanation": "The main obstacles are 'le prix élevé des voitures électriques (en moyenne 35 000 euros) et le manque de bornes de recharge'."
+        },
+        {
+          "id": "tef_ce_003_D_01_q4",
+          "question": "Quel problème illustre le chantier de l'EPR de Flamanville ?",
+          "questionEnglish": "What problem does the Flamanville EPR construction project illustrate?",
+          "options": [
+            "Le manque de travailleurs qualifiés",
+            "L'opposition des habitants de la région",
+            "Les dépassements de délais et de coûts des projets nucléaires",
+            "La fermeture anticipée de la centrale"
+          ],
+          "optionsEnglish": [
+            "The lack of qualified workers",
+            "Opposition from local residents",
+            "Cost and schedule overruns in nuclear projects",
+            "The early closure of the power plant"
+          ],
+          "correctIndex": 2,
+          "explanation": "Flamanville EPR was 'initié en 2007, n'a été achevé qu'en 2024, avec un coût final quatre fois supérieur au budget initial'."
+        },
+        {
+          "id": "tef_ce_003_D_01_q5",
+          "question": "Quel rythme de rénovation serait nécessaire pour atteindre les objectifs ?",
+          "questionEnglish": "What renovation rate would be necessary to meet the targets?",
+          "options": [
+            "100 000 logements par an",
+            "200 000 logements par an",
+            "500 000 logements par an",
+            "700 000 logements par an"
+          ],
+          "optionsEnglish": [
+            "100,000 homes per year",
+            "200,000 homes per year",
+            "500,000 homes per year",
+            "700,000 homes per year"
+          ],
+          "correctIndex": 3,
+          "explanation": "'Il faudrait rénover 700 000 logements par an pour atteindre les objectifs fixés, contre 200 000 actuellement'."
+        }
+      ]
+    }
+  ]
+}
