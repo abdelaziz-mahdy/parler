@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,11 +6,12 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/adaptive_colors.dart';
 import '../../core/constants/app_colors.dart';
+import '../../database/app_database.dart';
 import '../../models/vocabulary_word.dart';
-import '../../models/progress.dart';
 import '../../providers/data_provider.dart';
+import '../../providers/database_provider.dart';
 import '../../providers/progress_provider.dart';
-import '../../services/spaced_repetition.dart';
+import '../../services/fsrs.dart';
 import '../../core/constants/responsive.dart';
 import '../../widgets/french_card.dart';
 import '../../widgets/speaker_button.dart';
@@ -47,10 +49,9 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
 
   /// Builds the study session by selecting due cards first, then new cards,
   /// capped at [_maxSessionSize].
-  void _buildSession() {
+  Future<void> _buildSession() async {
     final List<VocabularyWord> allWords;
     if (_isReviewMode || _isDailyMode) {
-      // Review/daily mode: load all vocabulary.
       final vocabAsync = ref.read(vocabularyProvider);
       allWords = vocabAsync.when(
         data: (words) => words,
@@ -62,24 +63,42 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
     }
     if (allWords.isEmpty) return;
 
-    final progress = ref.read(progressProvider);
+    final cardStateDao = ref.read(cardStateDaoProvider);
+    final fsrs = ref.read(fsrsProvider);
+    final allCardStates = await cardStateDao.allCards();
 
-    // Build CardProgress entries for every word so we can prioritize.
+    // Build a map from cardId to Drift CardState
+    final cardMap = <String, CardState>{};
+    for (final cs in allCardStates) {
+      cardMap[cs.cardId] = cs;
+    }
+
+    // Build entries for session building
     final cardEntries = <_WordCard>[];
     for (final word in allWords) {
-      final cardId = 'vocab_${word.french}';
-      final card = progress.flashcards[cardId] ?? CardProgress.initial(cardId);
-      cardEntries.add(_WordCard(word: word, card: card));
+      final cs = cardMap[word.id];
+      final fsrsCard = cs != null
+          ? FsrsCardState(
+              cardId: cs.cardId,
+              stability: cs.stability,
+              difficulty: cs.difficulty,
+              lastReview: cs.lastReview,
+              nextReview: cs.nextReview,
+              reps: cs.reps,
+              lapses: cs.lapses,
+              state: _parseFsrsState(cs.state),
+            )
+          : FsrsCardState(cardId: word.id);
+      cardEntries.add(_WordCard(word: word, card: fsrsCard));
     }
 
     // Daily mode: only new (unstudied) cards, shuffled across categories.
     if (_isDailyMode) {
       final newOnly = cardEntries
-          .where((e) => e.card.repetitions == 0)
+          .where((e) => e.card.state == FsrsState.newCard && e.card.reps == 0)
           .toList()
         ..shuffle();
 
-      // Ensure category variety: max 3 per category.
       final selected = <_WordCard>[];
       final catCount = <String, int>{};
       for (final entry in newOnly) {
@@ -92,8 +111,6 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
         if (selected.length >= _maxSessionSize) break;
       }
 
-      // If we have fewer than _maxSessionSize but there are more new words,
-      // do a second pass without the per-category limit.
       if (selected.length < _maxSessionSize) {
         final selectedSet = selected.map((e) => e.word.french).toSet();
         for (final entry in newOnly) {
@@ -110,16 +127,18 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
     }
 
     // Separate into due and not-yet-due cards.
+    final now = DateTime.now();
     final due = cardEntries
-        .where((e) => SpacedRepetition.isDue(e.card))
+        .where((e) => fsrs.isDue(e.card, now: now))
         .toList();
     final notDue = cardEntries
-        .where((e) => !SpacedRepetition.isDue(e.card))
+        .where((e) => !fsrs.isDue(e.card, now: now))
         .toList();
 
-    // Prioritize due cards (harder ones first).
-    final prioritizedDue = SpacedRepetition.prioritize(
+    // Prioritize due cards (lowest retrievability first).
+    final prioritizedDue = fsrs.prioritize(
       due.map((e) => e.card).toList(),
+      now: now,
     );
     final orderedDue = prioritizedDue.map((card) {
       return due.firstWhere((e) => e.card.cardId == card.cardId);
@@ -128,12 +147,11 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
     // New cards (never reviewed) come next -- skip in review mode.
     final newCards = _isReviewMode
         ? <_WordCard>[]
-        : notDue.where((e) => e.card.repetitions == 0).toList();
+        : notDue.where((e) => e.card.reps == 0).toList();
 
     final combined = [...orderedDue, ...newCards];
     final selected = combined.take(_maxSessionSize).toList();
 
-    // Fallback: if nothing is due and no new cards, just take the first batch.
     if (selected.isEmpty) {
       final fallback = allWords.take(_maxSessionSize).toList();
       setState(() {
@@ -147,6 +165,32 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
     });
   }
 
+  FsrsState _parseFsrsState(String state) {
+    switch (state) {
+      case 'learning':
+        return FsrsState.learning;
+      case 'review':
+        return FsrsState.review;
+      case 'relearning':
+        return FsrsState.relearning;
+      default:
+        return FsrsState.newCard;
+    }
+  }
+
+  String _fsrsStateToString(FsrsState state) {
+    switch (state) {
+      case FsrsState.newCard:
+        return 'new';
+      case FsrsState.learning:
+        return 'learning';
+      case FsrsState.review:
+        return 'review';
+      case FsrsState.relearning:
+        return 'relearning';
+    }
+  }
+
   void _flipCard() {
     if (_isFlipped) return; // Already flipped, wait for rating.
     setState(() {
@@ -155,33 +199,90 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
   }
 
   /// Compute the next review interval (in days) for the current card at a
-  /// given quality rating, using the SM-2 algorithm.
+  /// given quality rating, using the FSRS algorithm.
   String _intervalLabel(int quality) {
     final word = _sessionWords[_currentIndex];
-    final cardId = 'vocab_${word.french}';
-    final progress = ref.read(progressProvider);
-    final card = progress.flashcards[cardId] ?? CardProgress.initial(cardId);
-    final result = SpacedRepetition.review(card, quality);
-    final days = result.interval;
-    if (days < 1) return '<1d';
+    final fsrs = ref.read(fsrsProvider);
+    // Build an FSRS card state from the cached session state
+    final fsrsCard = _cachedCardStates[word.id] ?? FsrsCardState(cardId: word.id);
+    final rating = quality >= 4 ? FsrsRating.good : FsrsRating.again;
+    final schedule = fsrs.review(fsrsCard, rating);
+    final days = fsrs.nextInterval(schedule.stability);
+    if (rating == FsrsRating.again) return '<1d';
     if (days == 1) return '1d';
     if (days < 7) return '${days}d';
     if (days < 30) return '${(days / 7).round()}w';
     return '${(days / 30).round()}mo';
   }
 
-  void _rateCard(int quality) {
-    final word = _sessionWords[_currentIndex];
-    final cardId = 'vocab_${word.french}';
-    final progress = ref.read(progressProvider);
-    final existingCard =
-        progress.flashcards[cardId] ?? CardProgress.initial(cardId);
+  /// Cache of FSRS card states for the current session words.
+  final Map<String, FsrsCardState> _cachedCardStates = {};
 
-    final updatedCard = SpacedRepetition.review(existingCard, quality);
-    ref.read(progressProvider.notifier).updateCardProgress(updatedCard);
+  Future<void> _rateCard(int quality) async {
+    final word = _sessionWords[_currentIndex];
+    final fsrs = ref.read(fsrsProvider);
+    final cardStateDao = ref.read(cardStateDaoProvider);
+    final reviewLogDao = ref.read(reviewLogDaoProvider);
+
+    // Get or create current FSRS state
+    final existingCard = await cardStateDao.getCard(word.id);
+    final currentFsrs = existingCard != null
+        ? FsrsCardState(
+            cardId: existingCard.cardId,
+            stability: existingCard.stability,
+            difficulty: existingCard.difficulty,
+            lastReview: existingCard.lastReview,
+            nextReview: existingCard.nextReview,
+            reps: existingCard.reps,
+            lapses: existingCard.lapses,
+            state: _parseFsrsState(existingCard.state),
+          )
+        : FsrsCardState(cardId: word.id);
+
+    // Map quality to FSRS rating: Easy/Good -> good, Hard/Again -> again
+    final rating = quality >= 4 ? FsrsRating.good : FsrsRating.again;
+    final now = DateTime.now();
+    final schedule = fsrs.review(currentFsrs, rating, now: now);
+
+    // Write updated card state to Drift
+    await cardStateDao.upsertCard(CardStatesCompanion(
+      cardId: drift.Value(word.id),
+      stability: drift.Value(schedule.stability),
+      difficulty: drift.Value(schedule.difficulty),
+      lastReview: drift.Value(now),
+      nextReview: drift.Value(schedule.nextReview),
+      reps: drift.Value(schedule.reps),
+      lapses: drift.Value(schedule.lapses),
+      state: drift.Value(_fsrsStateToString(schedule.state)),
+    ));
+
+    // Write review log
+    final elapsed = currentFsrs.lastReview != null
+        ? now.difference(currentFsrs.lastReview!).inHours / 24.0
+        : 0.0;
+    await reviewLogDao.insert(ReviewLogsCompanion(
+      cardId: drift.Value(word.id),
+      timestamp: drift.Value(now),
+      rating: drift.Value(rating.value),
+      elapsedDays: drift.Value(elapsed),
+      stability: drift.Value(schedule.stability),
+      difficulty: drift.Value(schedule.difficulty),
+    ));
+
+    // Cache updated state
+    _cachedCardStates[word.id] = FsrsCardState(
+      cardId: word.id,
+      stability: schedule.stability,
+      difficulty: schedule.difficulty,
+      lastReview: now,
+      nextReview: schedule.nextReview,
+      reps: schedule.reps,
+      lapses: schedule.lapses,
+      state: schedule.state,
+    );
 
     // Record session rating.
-    _sessionRatings[cardId] = quality;
+    _sessionRatings[word.id] = quality;
 
     // Advance to next card or finish.
     if (_currentIndex < _sessionWords.length - 1) {
@@ -1000,7 +1101,7 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
 
 class _WordCard {
   final VocabularyWord word;
-  final CardProgress card;
+  final FsrsCardState card;
   const _WordCard({required this.word, required this.card});
 }
 

@@ -7,7 +7,6 @@ void main() {
       final progress = UserProgress.initial();
 
       expect(progress.chapters, isEmpty);
-      expect(progress.flashcards, isEmpty);
       expect(progress.currentStreak, 0);
       expect(progress.lastStudyDate, isNull);
       expect(progress.streakFreezes, 0);
@@ -25,16 +24,6 @@ void main() {
             'quizAttempts': 2,
           },
         },
-        'flashcards': {
-          'card1': {
-            'cardId': 'card1',
-            'easeFactor': 2.5,
-            'interval': 3,
-            'repetitions': 2,
-            'nextReviewDate': '2026-02-10',
-            'quality': 4,
-          },
-        },
         'currentStreak': 5,
         'lastStudyDate': '2026-02-08',
         'streakFreezes': 1,
@@ -46,8 +35,6 @@ void main() {
       expect(progress.chapters.length, 1);
       expect(progress.chapters[1]!.chapterId, 1);
       expect(progress.chapters[1]!.completionPercent, 75.0);
-      expect(progress.flashcards.length, 1);
-      expect(progress.flashcards['card1']!.easeFactor, 2.5);
       expect(progress.currentStreak, 5);
       expect(progress.lastStudyDate, '2026-02-08');
       expect(progress.streakFreezes, 1);
@@ -140,71 +127,6 @@ void main() {
 
       final progress = ChapterProgress.fromJson(json);
       expect(progress.completionPercent, 100.0);
-    });
-  });
-
-  group('CardProgress', () {
-    test('initial factory creates default SM-2 values', () {
-      final card = CardProgress.initial('test-card');
-
-      expect(card.cardId, 'test-card');
-      expect(card.easeFactor, 2.5);
-      expect(card.interval, 0);
-      expect(card.repetitions, 0);
-      expect(card.quality, 0);
-    });
-
-    test('fromJson/toJson roundtrip', () {
-      final json = {
-        'cardId': 'vocab-1',
-        'easeFactor': 2.3,
-        'interval': 6,
-        'repetitions': 3,
-        'nextReviewDate': '2026-02-14',
-        'quality': 4,
-      };
-
-      final card = CardProgress.fromJson(json);
-
-      expect(card.cardId, 'vocab-1');
-      expect(card.easeFactor, 2.3);
-      expect(card.interval, 6);
-      expect(card.repetitions, 3);
-      expect(card.nextReviewDate, '2026-02-14');
-      expect(card.quality, 4);
-
-      final restored = CardProgress.fromJson(card.toJson());
-      expect(restored.cardId, card.cardId);
-      expect(restored.easeFactor, card.easeFactor);
-      expect(restored.interval, card.interval);
-    });
-
-    test('copyWith preserves cardId', () {
-      final card = CardProgress.initial('card-x');
-      final updated = card.copyWith(
-        easeFactor: 2.1,
-        interval: 10,
-        repetitions: 5,
-        quality: 3,
-      );
-
-      expect(updated.cardId, 'card-x');
-      expect(updated.easeFactor, 2.1);
-      expect(updated.interval, 10);
-    });
-
-    test('fromJson handles int easeFactor', () {
-      final json = {
-        'cardId': 'c1',
-        'easeFactor': 3,
-        'interval': 1,
-        'repetitions': 1,
-        'nextReviewDate': '2026-02-09',
-        'quality': 5,
-      };
-
-      final card = CardProgress.fromJson(json);
-      expect(card.easeFactor, 3.0);
     });
   });
 }

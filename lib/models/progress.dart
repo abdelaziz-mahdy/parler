@@ -6,10 +6,6 @@ class UserProgress {
   final int streakFreezes;
   final String? lastStreakFreezeEarned;
 
-  /// Legacy flashcard map — kept for backward compat with old screens.
-  /// New card state is managed via Drift database. This field is not persisted.
-  final Map<String, CardProgress> flashcards;
-
   const UserProgress({
     required this.chapters,
     required this.tefResults,
@@ -17,7 +13,6 @@ class UserProgress {
     this.lastStudyDate,
     this.streakFreezes = 0,
     this.lastStreakFreezeEarned,
-    this.flashcards = const {},
   });
 
   factory UserProgress.initial() => const UserProgress(
@@ -48,15 +43,6 @@ class UserProgress {
         tefList.add(TefTestResult.fromJson(item as Map<String, dynamic>));
       }
     }
-    // Parse legacy flashcards for SM-2 migration
-    final flashcardsMap = <String, CardProgress>{};
-    if (json['flashcards'] != null) {
-      (json['flashcards'] as Map<String, dynamic>).forEach((key, value) {
-        flashcardsMap[key] = CardProgress.fromJson(
-          value as Map<String, dynamic>,
-        );
-      });
-    }
     return UserProgress(
       chapters: chaptersMap,
       tefResults: tefList,
@@ -64,7 +50,6 @@ class UserProgress {
       lastStudyDate: json['lastStudyDate'] as String?,
       streakFreezes: json['streakFreezes'] as int? ?? 0,
       lastStreakFreezeEarned: json['lastStreakFreezeEarned'] as String?,
-      flashcards: flashcardsMap,
     );
   }
 
@@ -85,7 +70,6 @@ class UserProgress {
     String? lastStudyDate,
     int? streakFreezes,
     String? lastStreakFreezeEarned,
-    Map<String, CardProgress>? flashcards,
   }) {
     return UserProgress(
       chapters: chapters ?? this.chapters,
@@ -95,7 +79,6 @@ class UserProgress {
       streakFreezes: streakFreezes ?? this.streakFreezes,
       lastStreakFreezeEarned:
           lastStreakFreezeEarned ?? this.lastStreakFreezeEarned,
-      flashcards: flashcards ?? this.flashcards,
     );
   }
 }
@@ -191,70 +174,4 @@ class TefTestResult {
     'completedAt': completedAt,
     'answers': answers,
   };
-}
-
-/// Legacy SM-2 card progress — kept for migration from old data.
-/// New card state is managed via Drift database (CardStates table).
-class CardProgress {
-  final String cardId;
-  final double easeFactor;
-  final int interval;
-  final int repetitions;
-  final String nextReviewDate;
-  final int quality;
-
-  const CardProgress({
-    required this.cardId,
-    required this.easeFactor,
-    required this.interval,
-    required this.repetitions,
-    required this.nextReviewDate,
-    required this.quality,
-  });
-
-  factory CardProgress.initial(String cardId) {
-    return CardProgress(
-      cardId: cardId,
-      easeFactor: 2.5,
-      interval: 0,
-      repetitions: 0,
-      nextReviewDate: DateTime.now().toIso8601String().split('T').first,
-      quality: 0,
-    );
-  }
-
-  factory CardProgress.fromJson(Map<String, dynamic> json) => CardProgress(
-    cardId: json['cardId'] as String,
-    easeFactor: (json['easeFactor'] as num).toDouble(),
-    interval: json['interval'] as int,
-    repetitions: json['repetitions'] as int,
-    nextReviewDate: json['nextReviewDate'] as String,
-    quality: json['quality'] as int,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'cardId': cardId,
-    'easeFactor': easeFactor,
-    'interval': interval,
-    'repetitions': repetitions,
-    'nextReviewDate': nextReviewDate,
-    'quality': quality,
-  };
-
-  CardProgress copyWith({
-    double? easeFactor,
-    int? interval,
-    int? repetitions,
-    String? nextReviewDate,
-    int? quality,
-  }) {
-    return CardProgress(
-      cardId: cardId,
-      easeFactor: easeFactor ?? this.easeFactor,
-      interval: interval ?? this.interval,
-      repetitions: repetitions ?? this.repetitions,
-      nextReviewDate: nextReviewDate ?? this.nextReviewDate,
-      quality: quality ?? this.quality,
-    );
-  }
 }

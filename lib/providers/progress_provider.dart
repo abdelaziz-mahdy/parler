@@ -130,14 +130,4 @@ class ProgressNotifier extends Notifier<UserProgress> {
     );
     await _save();
   }
-
-  /// Legacy: update SM-2 card progress in SharedPreferences.
-  /// Kept for backward compat with old flashcard/quiz screens.
-  /// New card state is managed via Drift database.
-  Future<void> updateCardProgress(CardProgress card) async {
-    state = state.copyWith(
-      flashcards: {...state.flashcards, card.cardId: card},
-    );
-    await _save();
-  }
 }

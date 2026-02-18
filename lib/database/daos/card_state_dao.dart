@@ -53,4 +53,11 @@ class CardStateDao extends DatabaseAccessor<AppDatabase>
         .map((row) => row.read(cardStates.cardId.count()) ?? 0)
         .watchSingle();
   }
+
+  /// Watch the set of all studied card IDs (reps > 0).
+  Stream<Set<String>> watchStudiedCardIds() {
+    final query = select(cardStates)
+      ..where((t) => t.reps.isBiggerThanValue(0));
+    return query.watch().map((rows) => rows.map((r) => r.cardId).toSet());
+  }
 }

@@ -12,6 +12,7 @@ import '../../models/chapter.dart';
 import '../../models/progress.dart';
 import '../../models/vocabulary_word.dart';
 import '../../providers/data_provider.dart';
+import '../../providers/database_provider.dart';
 import '../../providers/progress_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/error_view.dart';
@@ -529,7 +530,7 @@ class _WordBankGrid extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vocabAsync = ref.watch(vocabularyProvider);
-    final progress = ref.watch(progressProvider);
+    final studiedIds = ref.watch(studiedCardIdsProvider).whenOrNull(data: (ids) => ids) ?? <String>{};
 
     return vocabAsync.when(
       data: (allWords) {
@@ -557,10 +558,7 @@ class _WordBankGrid extends ConsumerWidget {
             delegate: SliverChildBuilderDelegate((context, index) {
               final cat = activeCategories[index];
               final words = wordsPerCategory[cat.key] ?? [];
-              final studiedCount = words.where((w) {
-                final card = progress.flashcards['vocab_${w.french}'];
-                return card != null && card.repetitions > 0;
-              }).length;
+              final studiedCount = words.where((w) => studiedIds.contains(w.id)).length;
               final isComplete = studiedCount == words.length && words.isNotEmpty;
 
               return _VocabCategoryCard(

@@ -6,7 +6,6 @@ import '../../screens/profile/new_profile_screen.dart';
 import '../../screens/session/session_screen.dart';
 import '../../screens/session/session_complete_screen.dart';
 import '../../screens/lessons/lesson_detail_screen.dart';
-import '../../screens/words/words_screen.dart';
 import '../../screens/words/flashcard_screen.dart';
 import '../../screens/words/vocab_quiz_screen.dart';
 import '../../screens/tef/tef_screen.dart';
@@ -133,27 +132,6 @@ final appRouter = GoRouter(
         final testId = state.pathParameters['testId'] ?? '';
         return CustomTransitionPage(
           child: TefPlayScreen(testId: testId),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SlideTransition(
-              position:
-                  Tween<Offset>(
-                    begin: const Offset(0, 0.15),
-                    end: Offset.zero,
-                  ).animate(
-                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
-                  ),
-              child: FadeTransition(opacity: animation, child: child),
-            );
-          },
-        );
-      },
-    ),
-    GoRoute(
-      path: '/words',
-      parentNavigatorKey: _rootNavigatorKey,
-      pageBuilder: (context, state) {
-        return CustomTransitionPage(
-          child: const WordsScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position:
