@@ -15,9 +15,13 @@
 - **Full FSRS Migration**: All screens (Flashcards, Vocab Quiz, Today, Learn, Lessons) now read/write card progress exclusively through Drift/FSRS instead of the legacy SM-2/SharedPreferences system
 - **Removed Legacy Flashcard System**: Cleaned up `UserProgress.flashcards` field, `updateCardProgress()`, and all SM-2 references from UI screens
 
+### Session Content
+- **False Friend Trap Questions**: False friend quizzes always include the misleading English word as a distractor (e.g., "actually" as a wrong option for "actuellement") with a post-answer warning hint
+
 ### Cleanup
-- **Removed 5 Orphaned Screens**: Deleted unused v1 screens (home, lessons, quiz, profile, wordbank)
+- **Removed 6 Orphaned Screens**: Deleted unused v1 screens (home, lessons, quiz, profile, wordbank) and duplicate WordsScreen
 - **Removed Dead SM-2 Code**: Deleted `spaced_repetition.dart`, `sm2_migration.dart`, and `CardProgress` class
+- **Removed Duplicate Word Bank Route**: `/words` entry point removed — Word Bank is accessible via the Learn tab
 
 ## 2.0.3
 

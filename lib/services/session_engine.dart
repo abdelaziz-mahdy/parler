@@ -39,6 +39,8 @@ VocabularyWord verbToVocab(Verb v) => VocabularyWord(
 /// Convert a FalseFriend to a VocabularyWord.
 /// The english field is the *actual* meaning, so the quiz naturally tests
 /// whether the user knows the real meaning vs the deceptive cognate.
+/// The phonetic field stores the trap word (what it "looks like" in English)
+/// so the quiz engine can include it as a deliberate distractor.
 VocabularyWord falseFriendToVocab(FalseFriend f) => VocabularyWord(
       id: 'ff_${f.frenchWord.toLowerCase().replaceAll(RegExp(r"[^a-z0-9]"), '_')}',
       french: f.frenchWord,
@@ -48,7 +50,7 @@ VocabularyWord falseFriendToVocab(FalseFriend f) => VocabularyWord(
       exampleEn: 'Looks like "${f.looksLike}" but means "${f.actualMeaning}"',
       level: 'B1',
       category: 'false_friends',
-      phonetic: '',
+      phonetic: f.looksLike, // trap word stored here for quiz distractor
     );
 
 /// Session intensity setting
@@ -229,7 +231,12 @@ class SessionEngine {
         SessionLength.intense => 3,
       };
       for (final bonus in shuffledBonus.take(bonusCount)) {
-        mixedPool.add(_makeFrenchToEnglish(bonus, distractorPool));
+        if (bonus.category == 'false_friends' && bonus.phonetic.isNotEmpty) {
+          // False friends get a trap question with the misleading word as option
+          mixedPool.add(_makeFalseFriendQuestion(bonus, distractorPool));
+        } else {
+          mixedPool.add(_makeFrenchToEnglish(bonus, distractorPool));
+        }
       }
     }
     mixedPool.shuffle(_random);
@@ -350,6 +357,44 @@ class SessionEngine {
       mode: QuestionMode.cloze,
       clozeSentence: blanked,
       memoryHint: _generateMemoryHint(word, allWords),
+    );
+  }
+
+  /// Show French false friend word, pick the ACTUAL meaning from 4 options.
+  /// One distractor is always the trap word (what it "looks like" in English).
+  ReviewQuestion _makeFalseFriendQuestion(
+    VocabularyWord word,
+    List<VocabularyWord> allWords,
+  ) {
+    final trapWord = word.phonetic; // stored by falseFriendToVocab
+    final distractors = _pickDistractors(word, allWords);
+
+    // Build options: correct answer + trap + 2 random distractors
+    final options = <String>[word.english];
+    // Always include the trap word if it's different from the correct answer
+    if (trapWord.isNotEmpty && trapWord != word.english) {
+      options.add(trapWord);
+    }
+    // Fill remaining slots with distractor meanings
+    for (final d in distractors) {
+      if (options.length >= 4) break;
+      if (!options.contains(d.english)) {
+        options.add(d.english);
+      }
+    }
+    // Ensure we have exactly 4 options
+    while (options.length < 4) {
+      options.add('(unknown)');
+    }
+    options.shuffle(_random);
+
+    return ReviewQuestion(
+      word: word,
+      options: options,
+      correctIndex: options.indexOf(word.english),
+      mode: QuestionMode.frenchToEnglish,
+      memoryHint: '⚠️ False friend! "${word.french}" looks like "$trapWord" '
+          'but actually means "${word.english}"',
     );
   }
 
