@@ -147,7 +147,7 @@ jobs:
             --clobber
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -198,7 +198,7 @@ jobs:
           commit_message: "deploy: release ${{ needs.create-release.outputs.version }}"
 
       - name: Upload web build artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-web
           path: build/web/

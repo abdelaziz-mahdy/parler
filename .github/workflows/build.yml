@@ -93,7 +93,7 @@ jobs:
 
       # Upload the universal APK as a build artifact
       - name: Upload universal APK
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: apk-universal
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -162,7 +162,7 @@ jobs:
 
       # Upload arm64-v8a APK (most modern Android devices)
       - name: Upload arm64-v8a APK
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: apk-arm64-v8a
           path: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
@@ -170,7 +170,7 @@ jobs:
 
       # Upload armeabi-v7a APK (older 32-bit ARM devices)
       - name: Upload armeabi-v7a APK
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: apk-armeabi-v7a
           path: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
@@ -178,7 +178,7 @@ jobs:
 
       # Upload x86_64 APK (emulators and rare x86 devices)
       - name: Upload x86_64 APK
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: apk-x86_64
           path: build/app/outputs/flutter-apk/app-x86_64-release.apk
@@ -220,7 +220,7 @@ jobs:
 
       # Upload the web build directory as an artifact
       - name: Upload web build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: web-build
           path: build/web/
